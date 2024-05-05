@@ -52,7 +52,8 @@ function SearchScreenNoRedux(props) {
           re.test(item.NumeroAIT) ||
           re.test(item.NumeroCotizacion) ||
           re.test(item.TipoServicio) ||
-          re.test(item.companyName)
+          re.test(item.companyName) ||
+          re.test(item.EmpresaMinera)
         );
       });
 
@@ -160,6 +161,10 @@ function SearchScreenNoRedux(props) {
                   <Text style={styles.info}>
                     {"Tipo: "}
                     {item.TipoServicio}
+                  </Text>
+                  <Text style={styles.info}>
+                    {"Empresa Minera: "}
+                    {item.EmpresaMinera}
                   </Text>
                   {companyName !== item.companyName && (
                     <Text style={styles.info}>

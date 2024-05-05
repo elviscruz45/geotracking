@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { styles } from "./AITForms.styles";
 import { Input } from "@rneui/themed";
 import { Modal } from "../../../shared/Modal/Modal";
+import { ChangeDisplayEmpresaMinera } from "../../FormsAIT/ChangeEmpresaMinera/ChangeDisplayEmpresaMinera";
 import { ChangeDisplayArea } from "../../FormsAIT/ChangeArea/ChangeDisplayArea";
 import { ChangeDisplayTipoServicio } from "../../FormsAIT/ChangeTipoServicio/ChangeDisplayTipoServicio";
 import { ChangeDisplayAdminContracts } from "../../FormsAIT/ChangeContratos/ChangeDisplayContratos";
@@ -26,6 +27,8 @@ export function AITForms(props) {
 
   //state of displays
   // const [numeroAIT, setnumeroAIT] = useState(null);
+  const [minera, setMinera] = useState(null);
+
   const [areaservicio, setAreaservicio] = useState(null);
   const [tiposervicio, setTiposervicio] = useState(null);
   const [responsableempresausuario, setResponsableempresausuario] =
@@ -98,6 +101,15 @@ export function AITForms(props) {
   };
 
   const selectComponent = (key) => {
+    if (key === "EmpresaMinera") {
+      setRenderComponent(
+        <ChangeDisplayEmpresaMinera
+          onClose={onCloseOpenModal}
+          formik={formik}
+          setMinera={setMinera}
+        />
+      );
+    }
     if (key === "AreaServicio") {
       setRenderComponent(
         <ChangeDisplayArea
@@ -237,10 +249,29 @@ export function AITForms(props) {
     <View>
       <View style={styles.content}>
         <Input
+          value={minera}
+          placeholder="Empresa Minera"
+          // multiline={true}
+          editable={true}
+          errorMessage={formik.errors.EmpresaMinera}
+          onChangeText={(text) => {
+            formik.setFieldValue("EmpresaMinera", text);
+            setMinera(text);
+          }}
+          rightIcon={{
+            type: "material-community",
+            testID: "right-icon",
+            name: "arrow-right-circle-outline",
+            onPress: () => {
+              selectComponent("EmpresaMinera");
+            },
+          }}
+        />
+        <Input
           value={areaservicio}
           placeholder="Area del Servicio a Realizar"
           editable={false}
-          // errorMessage={formik.errors.AreaServicio}
+          errorMessage={formik.errors.AreaServicio}
           rightIcon={{
             type: "material-community",
             name: "arrow-right-circle-outline",

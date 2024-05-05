@@ -111,6 +111,9 @@ function EditAITNoReduxScreen(props) {
         if (newData?.NumeroAIT) {
           updateDataLasEventPost.NumeroAIT = newData.NumeroAIT;
         }
+        if (newData?.EmpresaMinera) {
+          updateDataLasEventPost.EmpresaMinera = newData.EmpresaMinera;
+        }
         if (newData?.AreaServicio) {
           updateDataLasEventPost.AreaServicio = newData.AreaServicio;
         }

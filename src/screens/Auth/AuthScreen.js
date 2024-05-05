@@ -16,18 +16,18 @@ export function AuthScreen(props) {
       <View style={styles.image}>
         <ImageExpo
           testID="image"
-          source={require("../../../assets/appTeseoLogol.png")}
-          style={{ width: 60, height: 70 }}
+          source={require("../../../assets/MVG.jpeg")}
+          style={{ width: 120, height: 130 }}
           cachePolicy={"memory-disk"}
         />
         <Text></Text>
         <Text></Text>
 
-        <ImageExpo
+        {/* <ImageExpo
           source={require("../../../assets/TeseoLetra.png")}
           style={{ width: 188, height: 37 }}
           cachePolicy={"memory-disk"}
-        />
+        /> */}
       </View>
       <View>
         <ConnectedLoginForm />
@@ -38,6 +38,32 @@ export function AuthScreen(props) {
             Regístrarse
           </Text>
         </Text> */}
+      </View>
+      <View style={styles.image}>
+        <ImageExpo
+          testID="image"
+          source={require("../../../assets/appTeseoLogol.png")}
+          style={{ width: 40, height: 45 }}
+          cachePolicy={"memory-disk"}
+        />
+        <Text></Text>
+        <Text style={styles.btnRegister}>
+          Powered by Teseo Software Company
+        </Text>
+        {/* <ImageExpo
+          testID="image"
+          source={require("../../../assets/appTeseoLogol.png")}
+          style={{ width: 60, height: 70 }}
+          cachePolicy={"memory-disk"}
+        /> */}
+        <Text></Text>
+        <Text></Text>
+
+        {/* <ImageExpo
+          source={require("../../../assets/TeseoLetra.png")}
+          style={{ width: 188, height: 37 }}
+          cachePolicy={"memory-disk"}
+        /> */}
       </View>
     </KeyboardAwareScrollView>
   );

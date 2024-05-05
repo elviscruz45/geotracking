@@ -55,7 +55,8 @@ function PostScreen(props) {
         return (
           re.test(item.NumeroAIT) ||
           re.test(item.NombreServicio) ||
-          re.test(item.companyName)
+          re.test(item.companyName) ||
+          re.test(item.EmpresaMinera)
         );
       });
       setSearchResults(result.slice(0, 50));
@@ -310,6 +311,10 @@ function PostScreen(props) {
                   <Text style={styles.info}>
                     {"Tipo: "}
                     {item.TipoServicio}
+                  </Text>
+                  <Text style={styles.info}>
+                    {"Empresa Minera: "}
+                    {item.EmpresaMinera}
                   </Text>
                   {companyName !== item.companyName && (
                     <Text style={styles.info}>

@@ -3,6 +3,7 @@ export function initialValues() {
   return {
     NombreServicio: "",
     NumeroAIT: "",
+    EmpresaMinera: "",
     AreaServicio: "",
     TipoServicio: "",
     ResponsableEmpresaUsuario: "",

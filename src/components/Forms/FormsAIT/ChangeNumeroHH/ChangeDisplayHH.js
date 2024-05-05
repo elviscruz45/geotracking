@@ -6,7 +6,7 @@ import Toast from "react-native-toast-message";
 
 export function ChangeDisplayHH(props) {
   const { onClose, setHorashombre, formik } = props;
-  const [text, setText] = useState("");
+  const [text, setText] = useState("0");
 
   return (
     <View>
@@ -42,8 +42,9 @@ export function ChangeDisplayHH(props) {
               onClose();
             } else {
               setHorashombre(text.toString());
-              onClose();
               formik.setFieldValue("HorasHombre", text.toString());
+
+              onClose();
             }
           }}
           // loading={formik.isSubmitting}

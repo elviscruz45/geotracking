@@ -3,6 +3,7 @@ export function initialValues() {
   return {
     NombreServicio: "",
     NumeroAIT: "",
+    EmpresaMinera: "",
     AreaServicio: "",
     TipoServicio: "",
     ResponsableEmpresaUsuario: "",
@@ -15,17 +16,18 @@ export function initialValues() {
     FechaFin: null,
     NumeroCotizacion: "",
     Moneda: "",
-    Monto: "",
-    HorasHombre: "",
+    Monto: "0",
+    HorasHombre: "0",
     pdfFile: [],
   };
 }
 
 export function validationSchema() {
   return Yup.object({
+    EmpresaMinera: Yup.string().required("Campo obligatorio"),
     NombreServicio: Yup.string().required("Campo obligatorio"),
     // NumeroAIT: Yup.string().required("Campo obligatorio"),
-    // AreaServicio: Yup.string().required("Campo obligatorio"),
+    AreaServicio: Yup.string().required("Campo obligatorio"),
     TipoServicio: Yup.string().required("Campo obligatorio"),
     // ResponsableEmpresaUsuario: Yup.string().required("Campo obligatorio"),
     // ResponsableEmpresaContratista: Yup.string().required("Campo obligatorio"),
