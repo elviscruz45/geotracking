@@ -39,7 +39,6 @@ export function ChangeDisplayHH(props) {
                 position: "bottom",
                 text1: "Solo numeros mayores a 0",
               });
-
               onClose();
             } else {
               setHorashombre(text.toString());

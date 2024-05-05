@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import { Input, Button } from "@rneui/themed";
 import { styles } from "./ChangeDisplayMonto.styles";
+import Toast from "react-native-toast-message";
 
 export function ChangeDisplayMonto(props) {
   const { onClose, setMonto, formik } = props;
@@ -25,11 +26,27 @@ export function ChangeDisplayMonto(props) {
           containerStyle={styles.btnContainer}
           buttonStyle={styles.btn}
           onPress={() => {
-            setMonto(text.toString());
-            onClose();
-            formik.setFieldValue("Monto", text.toString());
+            if (isNaN(text)) {
+              Toast.show({
+                type: "error",
+                position: "bottom",
+                text1: "Ingrese un número válido",
+              });
+              onClose();
+            } else if (text.trim() === "" || text < 0) {
+              Toast.show({
+                type: "error",
+                position: "bottom",
+                text1: "Solo numeros mayores a 0",
+              });
+
+              onClose();
+            } else {
+              setMonto(text.toString());
+              onClose();
+              formik.setFieldValue("Monto", text.toString());
+            }
           }}
-          // loading={formik.isSubmitting}
         />
       </View>
     </View>
