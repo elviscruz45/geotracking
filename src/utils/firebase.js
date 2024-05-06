@@ -19,6 +19,17 @@ const firebaseConfig = {
   messagingSenderId: "629895390761",
   appId: "1:629895390761:web:6304c7338934889fac5e38",
 };
+
+//--------------Teseo-MVG--------------
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAoCOORUHRj93QcflPF2XoGJbA4zljiHTA",
+//   authDomain: "teseo-mvg.firebaseapp.com",
+//   projectId: "teseo-mvg",
+//   storageBucket: "teseo-mvg.appspot.com",
+//   messagingSenderId: "603797920691",
+//   appId: "1:603797920691:web:d2ffa670c4f4f5b65f09c6"
+// };
+
 // ---------Prueba------
 
 // const firebaseConfig = {

@@ -18,11 +18,17 @@ export const SelectExampleBare = (props) => {
   const companyName = props.email?.match(regex)?.[1].toUpperCase() || "Anonimo";
   const userType = props.profile?.userType;
   const etapaLists =
-    companyName === "FMI" && userType !== "Trabajador"
+    companyName !== "INGEPERU" &&
+    companyName !== "MAESTRANZAPERU" &&
+    userType !== "Trabajador"
       ? etapaListUsuario
-      : companyName === "FMI" && userType === "Trabajador"
+      : companyName !== "INGEPERU" &&
+        companyName !== "MAESTRANZAPERU" &&
+        userType === "Trabajador"
       ? etapaListUsuarioSupervision
-      : companyName !== "FMI" && userType === "Trabajador"
+      : companyName !== "INGEPERU" &&
+        companyName !== "MAESTRANZAPERU" &&
+        userType === "Trabajador"
       ? etapaListContratistaSupervision
       : etapaListContratista;
 

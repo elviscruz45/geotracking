@@ -26,6 +26,7 @@ import { areaLists } from "../../../utils/areaList";
 import { resetPostPerPageHome } from "../../../actions/home";
 import { saveApprovalListnew } from "../../../actions/search";
 import { updateAITServicesDATA } from "../../../actions/home";
+import { mineraCorreosList } from "../../../utils/MineraList";
 import Toast from "react-native-toast-message";
 
 // import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -42,21 +43,28 @@ function HomeScreen(props) {
   const regex = /@(.+?)\./i;
 
   // this useEffect is used to retrive all data from firebase
-
   useEffect(() => {
     let unsubscribe;
 
     if (props.email) {
       const companyName =
         capitalizeFirstLetter(props.email?.match(regex)?.[1]) || "Anonimo";
+      const companyNameLowercase = companyName.toLowerCase();
+      console.log(mineraCorreosList[companyNameLowercase]);
 
       async function fetchData() {
         let queryRef;
-        if (companyName === "Fmi") {
+        if (companyName !== "Ingeperu" && companyName !== "Maestranzaperu") {
           queryRef = query(
             collection(db, "events"),
             limit(20),
             where("visibilidad", "==", "Todos"),
+            where(
+              "AITEmpresaMinera",
+              "==",
+              mineraCorreosList[companyNameLowercase]
+            ),
+
             orderBy("createdAt", "desc")
           );
         } else {
@@ -284,15 +292,15 @@ function HomeScreen(props) {
                   </View>
                 </View>
                 <View style={[styles.row, styles.center]}>
-                  {companyName === "Fmi" && (
-                    <Text style={{ marginLeft: 5, color: "#5B5B5B" }}>
-                      {"Empresa:  "}
-                      {item.AITcompanyName}
-                    </Text>
-                  )}
+                  <Text style={{ marginLeft: 5, color: "#5B5B5B" }}>
+                    {"Empresa Minera:  "}
+                    {item.AITEmpresaMinera}
+                  </Text>
                 </View>
+
                 <View style={[styles.row, styles.center]}>
-                  {companyName !== "Fmi" && (
+                  {(companyName === "Ingeperu" ||
+                    companyName === "Maestranzaperu") && (
                     <Text style={{ marginLeft: 5, color: "#5B5B5B" }}>
                       {"Visibilidad:  "}
                       {item.visibilidad}

@@ -197,7 +197,10 @@ function MoreDetailScreenNoRedux(props) {
       <Text></Text>
       <View>
         <Text></Text>
-
+        <View style={[styles.row, styles.center]}>
+          <Text style={styles.info}>{"Empresa Minera:  "}</Text>
+          <Text style={styles.info2}>{Item.EmpresaMinera}</Text>
+        </View>
         <View style={[styles.row, styles.center]}>
           <Text style={styles.info}>{"Numero de AIT:  "}</Text>
           <Text style={styles.info2}>{Item.NumeroAIT}</Text>
@@ -207,7 +210,6 @@ function MoreDetailScreenNoRedux(props) {
           <Text style={styles.info}>{"Numero de Cotizacion:  "}</Text>
           <Text style={styles.info2}>{Item.NumeroCotizacion}</Text>
         </View>
-
         <View style={[styles.row, styles.center]}>
           <Text style={styles.info}>{"Tipo de Servicio:  "}</Text>
           <Text style={styles.info2}>{Item.TipoServicio}</Text>

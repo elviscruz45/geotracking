@@ -71,7 +71,7 @@ export const GanttHistorial = (props) => {
               </View>
             </View>
             <View style={[styles.circle]}>
-              {matches[1] === "fmi" ? (
+              {matches[1] !== "ingeperu" && matches[1] !== "maestranzaperu" ? (
                 <ImageExpo
                   source={require("../../../../assets/smcv2.jpeg")}
                   style={{ width: 20, height: 20 }}

@@ -21,7 +21,7 @@ export const useUserData = (email, saveTotalUsers, getTotalUsers) => {
         try {
           const queryRef1 = query(
             collection(db, "users"),
-            where("companyName", "==", "fmi"),
+            where("companyName", "!=", companyName),
             orderBy("email", "desc")
           );
 
@@ -33,7 +33,9 @@ export const useUserData = (email, saveTotalUsers, getTotalUsers) => {
 
           const getDocs1 = await getDocs(queryRef1);
           const getDocs2 =
-            companyName !== "fmi" ? await getDocs(queryRef2) : null;
+            companyName === "ingeperu" || companyName === "maestranzaperu"
+              ? await getDocs(queryRef2)
+              : null;
 
           const lista = [];
 

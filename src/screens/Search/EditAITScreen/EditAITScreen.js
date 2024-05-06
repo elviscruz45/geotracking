@@ -46,7 +46,7 @@ function EditAITNoReduxScreen(props) {
         try {
           const queryRef1 = query(
             collection(db, "users"),
-            where("companyName", "==", "fmi"),
+            where("companyName", "!=", companyName),
             orderBy("email", "desc")
           );
 
@@ -58,7 +58,9 @@ function EditAITNoReduxScreen(props) {
 
           const getDocs1 = await getDocs(queryRef1);
           const getDocs2 =
-            companyName !== "fmi" ? await getDocs(queryRef2) : null;
+            companyName === "ingeperu" || companyName === "maestranzaperu"
+              ? await getDocs(queryRef2)
+              : null;
           const lista = [];
 
           // Process results from the first query

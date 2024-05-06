@@ -242,7 +242,7 @@ function GeneralFormsBare(props) {
 
         {/* <Text style={styles.subtitleForm}>Opcional</Text> */}
 
-        {companyName !== "fmi" && (
+        {(companyName === "Ingeperu" || companyName === "Maestranzaperu") && (
           <Input
             value={visibilidad}
             placeholder="Visibilidad del evento"

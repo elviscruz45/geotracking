@@ -1,5 +1,8 @@
 export const tipoServicioList = [
   {
+    value: "Parada de Planta",
+  },
+  {
     value: "Reparacion",
   },
   {

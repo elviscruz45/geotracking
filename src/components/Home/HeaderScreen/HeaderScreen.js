@@ -11,6 +11,7 @@ import { CircularProgress } from "./CircularProgress";
 import { saveActualAITServicesFirebaseGlobalState } from "../../../actions/post";
 import { updateAITServicesDATA } from "../../../actions/home";
 import { saveApprovalListnew } from "../../../actions/search";
+import { mineraCorreosList } from "../../../utils/MineraList";
 
 function HeaderScreenNoRedux(props) {
   const navigation = useNavigation();
@@ -26,13 +27,23 @@ function HeaderScreenNoRedux(props) {
     if (props.email) {
       const companyName =
         capitalizeFirstLetter(props.email?.match(regex)?.[1]) || "Anonimo";
+      const companyNameLowercase = companyName.toLowerCase();
 
       function fetchData() {
         let queryRef;
-        if (companyName === "Fmi") {
+        if (companyName !== "Ingeperu" && companyName !== "Maestranzaperu") {
           queryRef = query(
             collection(db, "ServiciosAIT"),
-            where("AvanceAdministrativoTexto", "!=", "Contratista-Fin servicio")
+            where(
+              "AvanceAdministrativoTexto",
+              "!=",
+              "Contratista-Fin servicio"
+            ),
+            where(
+              "EmpresaMinera",
+              "==",
+              mineraCorreosList[companyNameLowercase]
+            )
           );
         } else {
           queryRef = query(

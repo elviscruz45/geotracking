@@ -49,6 +49,7 @@ function InformationScreen(props) {
         //data of the service AIT information
         newData.AITidServicios = props.actualServiceAIT?.idServiciosAIT;
         newData.AITNombreServicio = props.actualServiceAIT?.NombreServicio;
+        newData.AITEmpresaMinera = props.actualServiceAIT?.EmpresaMinera;
         newData.AITAreaServicio = props.actualServiceAIT?.AreaServicio;
         newData.AITphotoServiceURL = props.actualServiceAIT?.photoServiceURL;
         newData.AITNumero = props.actualServiceAIT?.NumeroAIT;

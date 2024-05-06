@@ -59,7 +59,7 @@ const ReportScreenNoRedux = (props) => {
         ...new Set(props.servicesData?.map((item) => item.companyName)),
       ]);
     }
-    if (companyName !== "FMI") {
+    if (companyName === "INGEPERU" || companyName === "MAESTRANZAPERU") {
       setCompany(companyName);
     }
   }, []);
@@ -122,7 +122,7 @@ const ReportScreenNoRedux = (props) => {
         >
           <Text></Text>
           <View style={{ flexDirection: "row", alignSelf: "center" }}>
-            {companyName === "FMI" ? (
+            {companyName !== "INGEPERU" && companyName !== "MAESTRANZAPERU" ? (
               <TouchableOpacity onPress={() => update_Data()}>
                 <Image
                   source={require("../../../../assets/empresa.png")}
@@ -152,12 +152,12 @@ const ReportScreenNoRedux = (props) => {
               />
             </TouchableOpacity>
           </View>
-          {companyName !== "FMI" ? (
+          {companyName === "INGEPERU" || companyName === "MAESTRANZAPERU" ? (
             <Text style={styles.company}>{companyName}</Text>
           ) : (
             <Text style={styles.company}>{company}</Text>
           )}
-          {company !== "FMI" &&
+          {(companyName === "INGEPERU" || companyName === "MAESTRANZAPERU") &&
             company !== "TOTAL CONTRATISTAS" &&
             (userType === "Gerente" ||
               userType === "Planificador" ||

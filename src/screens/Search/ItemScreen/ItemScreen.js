@@ -143,7 +143,7 @@ function ItemScreenNotRedux(props) {
       };
       lista.push(dataschema);
     });
-    if (companyName !== "Fmi") {
+    if (companyName === "Ingeperu" || companyName === "Maestranzaperu") {
       setPost(lista);
     } else {
       const filteredLista = lista.filter((item) => {

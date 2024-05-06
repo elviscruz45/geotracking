@@ -97,7 +97,7 @@ const HistoryScreenNoRedux = (props) => {
         const CompanySelectedHistory = capitalizeFirstLetter(
           company.toLowerCase()
         );
-        if (companyName === "Fmi") {
+        if (companyName !== "Ingeperu" && companyName !== "Maestranzaperu") {
           q = query(
             collection(db, "ServiciosAIT"),
             orderBy("createdAt", "desc"),
@@ -151,7 +151,7 @@ const HistoryScreenNoRedux = (props) => {
       >
         <Text></Text>
 
-        {companyName === "Fmi" ? (
+        {companyName !== "Ingeperu" && companyName !== "Maestranzaperu" ? (
           <TouchableOpacity onPress={() => update_Data()}>
             <Image
               source={require("../../../../assets/empresa.png")}
@@ -165,7 +165,7 @@ const HistoryScreenNoRedux = (props) => {
           />
         )}
 
-        {companyName !== "Fmi" ? (
+        {companyName === "Ingeperu" || companyName === "Maestranzaperu" ? (
           <Text style={styles.company}>{companyName}</Text>
         ) : (
           <Text style={styles.company}>{company}</Text>
