@@ -39,8 +39,8 @@ function PostStackBare(props) {
         headerTitle: () => (
           <TouchableOpacity onPress={() => home_screen()}>
             <Image
-              source={require("../../assets/teseoLong.png")}
-              style={{ width: 130, height: 25 }}
+              source={require("../../assets//appMVGLogo.png")}
+              style={{ width: 25, height: 30 }}
             />
           </TouchableOpacity>
         ),

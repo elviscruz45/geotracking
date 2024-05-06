@@ -14,7 +14,6 @@ export const areaLists = [
     tag: "C1-CH2",
     image: require("../../assets/equipmentplant/ImageIcons/c2cr021.jpeg"),
   },
-
   {
     value: "Chancado Terciario",
     tag: "C1-CH3",

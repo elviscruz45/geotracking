@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "TeseoTracking",
-    "slug": "teseo-tracking",
+    "name": "MVG",
+    "slug": "MVG",
     "description": "high perfomance for your industry",
-    "version": "2.0.0",
+    "version": "3.0.0",
     "orientation": "portrait",
-    "icon": "./assets/appTeseoLogol.png",
+    "icon": "./assets/appMVGLogo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logoteseofinal2.png",
+      "image": "./assets/appMVGLogo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,7 +22,7 @@
       "package": "com.elviscruz30.teseotracking",
       "versionCode": 6,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/appTeseoLogol.png",
+        "foregroundImage": "./assets/appMVGLogo.png",
         "backgroundColor": "#ffffff"
       }
     },

@@ -26,7 +26,7 @@ export const mineraList = [
   },
 ];
 
-//
+// the key is the email domain
 export const mineraCorreosList = {
   fmi: "Cerro Verde",
   southern: "Southern",

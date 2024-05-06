@@ -25,7 +25,6 @@ const MultiSelectExampleBare = (props) => {
             post_array.push(objectver2);
           }
         });
-
         setList(post_array);
       }
       fetchData();
