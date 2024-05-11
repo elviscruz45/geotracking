@@ -17,6 +17,9 @@ export function initialValues() {
     NumeroCotizacion: "",
     Moneda: "",
     Monto: "0",
+    SupervisorSeguridad: "0",
+    Supervisor: "0",
+    Tecnicos: "0",
     HorasHombre: "0",
     pdfFile: [],
   };

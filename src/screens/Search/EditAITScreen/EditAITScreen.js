@@ -161,7 +161,16 @@ function EditAITNoReduxScreen(props) {
         if (newData?.Monto) {
           updateDataLasEventPost.Monto = newData.Monto;
         }
-
+        if (newData?.SupervisorSeguridad) {
+          updateDataLasEventPost.SupervisorSeguridad =
+            newData.SupervisorSeguridad;
+        }
+        if (newData?.Supervisor) {
+          updateDataLasEventPost.Supervisor = newData.Supervisor;
+        }
+        if (newData?.Tecnicos) {
+          updateDataLasEventPost.Tecnicos = newData.Tecnicos;
+        }
         if (newData?.HorasHombre) {
           updateDataLasEventPost.HorasHombre = newData.HorasHombre;
         }

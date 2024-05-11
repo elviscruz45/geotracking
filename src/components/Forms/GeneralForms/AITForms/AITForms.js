@@ -14,6 +14,9 @@ import { ChangeDisplayAdminContratista2 } from "../../FormsAIT/ChangeContratista
 import { ChangeDisplayAdminContratista3 } from "../../FormsAIT/ChangeContratista3/ChangeDisplayContratista3";
 import { ChangeDisplaynumeroCot } from "../../FormsAIT/ChangeNumeroCot/ChangeDisplayNumeroCot";
 import { ChangeDisplayMonto } from "../../FormsAIT/ChangeNumeroMonto/ChangeDisplayMonto";
+import { ChangeSupervisorSeguridad } from "../../FormsAIT/ChangeSupervisorSeguridad/ChangeSupervisorSeguridad";
+import { ChangeSupervisor } from "../../FormsAIT/ChangeSupervisor/ChangeSupervisor";
+import { ChangeTecnicos } from "../../FormsAIT/ChangeTecnicos/ChangeTecnicos";
 import { ChangeDisplayHH } from "../../FormsAIT/ChangeNumeroHH/ChangeDisplayHH";
 import { ChangeDisplayMoneda } from "../../FormsAIT/ChangeMoneda/ChangeDisplayTipoServicio";
 import { ChangeDisplayFechaFin } from "../../FormsAIT/ChangeFechaFin/ChangeDisplayFechaFin";
@@ -51,6 +54,9 @@ export function AITForms(props) {
   const [numerocotizacion, setNumerocotizacion] = useState(null);
   const [moneda, setMoneda] = useState(null);
   const [monto, setMonto] = useState(null);
+  const [supervisorSeguridad, setSupervisorSeguridad] = useState(null);
+  const [supervisor, setSupervisor] = useState(null);
+  const [tecnicos, setTecnicos] = useState(null);
   const [horashombre, setHorashombre] = useState(null);
   // const [showTimePicker, setShowTimePicker] = useState(false);
   //open or close modal
@@ -230,6 +236,33 @@ export function AITForms(props) {
           onClose={onCloseOpenModal}
           formik={formik}
           setMonto={setMonto}
+        />
+      );
+    }
+    if (key === "SupervisorSeguridad") {
+      setRenderComponent(
+        <ChangeSupervisorSeguridad
+          onClose={onCloseOpenModal}
+          formik={formik}
+          setSupervisorSeguridad={setSupervisorSeguridad}
+        />
+      );
+    }
+    if (key === "Supervisor") {
+      setRenderComponent(
+        <ChangeSupervisor
+          onClose={onCloseOpenModal}
+          formik={formik}
+          setSupervisor={setSupervisor}
+        />
+      );
+    }
+    if (key === "Tecnicos") {
+      setRenderComponent(
+        <ChangeTecnicos
+          onClose={onCloseOpenModal}
+          formik={formik}
+          setTecnicos={setTecnicos}
         />
       );
     }
@@ -450,7 +483,42 @@ export function AITForms(props) {
             onPress: () => selectComponent("Monto"),
           }}
         />
-
+        <Input
+          value={formatNumber(horashombre)}
+          placeholder="Supervisor Seguridad"
+          editable={false}
+          // errorMessage={formik.errors.HorasHombre}
+          rightIcon={{
+            type: "material-community",
+            name: "numeric",
+            // color: getColorIconMap(formik),
+            onPress: () => selectComponent("SupervisorSeguridad"),
+          }}
+        />
+        <Input
+          value={formatNumber(horashombre)}
+          placeholder="Supervisor"
+          editable={false}
+          // errorMessage={formik.errors.HorasHombre}
+          rightIcon={{
+            type: "material-community",
+            name: "numeric",
+            // color: getColorIconMap(formik),
+            onPress: () => selectComponent("Supervisor"),
+          }}
+        />
+        <Input
+          value={formatNumber(horashombre)}
+          placeholder="Tecnicos"
+          editable={false}
+          // errorMessage={formik.errors.HorasHombre}
+          rightIcon={{
+            type: "material-community",
+            name: "numeric",
+            // color: getColorIconMap(formik),
+            onPress: () => selectComponent("Tecnicos"),
+          }}
+        />
         <Input
           value={formatNumber(horashombre)}
           placeholder="Horas Hombre"

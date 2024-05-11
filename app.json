@@ -15,24 +15,23 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.elviscruz30.teseotracking",
-      "buildNumber": "3"
+      "bundleIdentifier": "com.elviscruz30.mvg",
+      "buildNumber": "1"
     },
     "android": {
-      "package": "com.elviscruz30.teseotracking",
-      "versionCode": 6,
+      "package": "com.elviscruz30.mvg",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/appMVGLogo.png",
         "backgroundColor": "#ffffff"
       }
     },
-
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "55866827-f963-4850-941b-b681a9bb122d"
+        "projectId": "c95bea52-684a-4b7b-9850-d3021eef89a2"
       }
     },
     "runtimeVersion": {
