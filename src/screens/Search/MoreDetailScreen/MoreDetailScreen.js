@@ -277,10 +277,14 @@ function MoreDetailScreenNoRedux(props) {
 
         <View style={[styles.row, styles.center]}>
           <Text style={styles.info}>{"Avance Ejecucion Proyectado:  "}</Text>
-          <Text style={styles.info2}>
-            {AvanceProyected.toFixed(2)}
-            {" %"}
-          </Text>
+          {AvanceProyected > 0 ? (
+            <Text style={styles.info2}>
+              {AvanceProyected.toFixed(2)}
+              {" %"}
+            </Text>
+          ) : (
+            <Text style={styles.info2}>0{" %"}</Text>
+          )}
         </View>
 
         {BarProgress(AvanceProyected)}

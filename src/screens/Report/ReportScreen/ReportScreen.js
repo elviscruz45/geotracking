@@ -191,7 +191,7 @@ const ReportScreenNoRedux = (props) => {
 
           {serviciosActivos && (
             <>
-              <PieChart data={data} />
+              {/* <PieChart data={data} /> */}
               <ServiceList data={data} />
             </>
           )}
@@ -290,7 +290,7 @@ const ReportScreenNoRedux = (props) => {
               userType === "GerenteContratista" ||
               userType === "PlanificadorContratista") && (
               <>
-                <BarChartMontoServicios data={data} />
+                {/* <BarChartMontoServicios data={data} /> */}
                 <MontoServiceList data={data} />
               </>
             )}
@@ -326,7 +326,7 @@ const ReportScreenNoRedux = (props) => {
               userType === "GerenteContratista" ||
               userType === "PlanificadorContratista") && (
               <>
-                <BarChartProceso data={data} />
+                {/* <BarChartProceso data={data} /> */}
                 <MontoEDPList data={data} />
               </>
             )}
