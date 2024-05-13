@@ -3,6 +3,27 @@ export const mineraList = [
     value: "Cerro Verde",
   },
   {
+    value: "Marcobre",
+  },
+  {
+    value: "Hudbay",
+  },
+  {
+    value: "Cemento Sur",
+  },
+  {
+    value: "Komatsu",
+  },
+  {
+    value: "Ferreyros",
+  },
+  {
+    value: "Yura",
+  },
+  {
+    value: "Vulco",
+  },
+  {
     value: "Southern",
   },
   {
@@ -29,7 +50,14 @@ export const mineraList = [
 // the key is the email domain
 export const mineraCorreosList = {
   fmi: "Cerro Verde",
-  southern: "Southern",
+  marcobre: "Marcobre",
+  hudbayminerals: "Hudbay",
+  global: "Komatsu",
+  mail: "Vulco",
+  ferreyros: "Ferreyros",
+  yura: "Yura",
+  cementosur: "Cemento Sur",
+  southernperu: "Southern",
   minsur: "Minsur",
   lasbambas: "Las Bambas",
   antapacay: "Antapacay",
