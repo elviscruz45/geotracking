@@ -61,6 +61,7 @@ function InformationScreen(props) {
         newData.nombrePerfil = props.firebase_user_name || "Anonimo";
         newData.fotoUsuarioPerfil = props.user_photo;
         console.log("como estas 2");
+        console.log("como estas 2.1", props.savePhotoUri);
 
         // upload the photo or an pickimage to firebase Storage
         const snapshot = await uploadImage(props.savePhotoUri);

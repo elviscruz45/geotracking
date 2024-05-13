@@ -1,4 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
+import uuid from "react-native-uuid";
+
 import {
   getStorage,
   ref,
@@ -99,18 +101,22 @@ export const dateFormat = () => {
 };
 
 export const uploadImage = async (uri) => {
+  // const uuid = "asdfdscvcxdre";
+
   const uuid = uuidv4();
 
   const response = await fetch(uri);
+
   const blob = await response.blob();
 
   const storage = getStorage();
+
   const storageRef = ref(storage, `mainImageEvents/${uuid}`);
   return uploadBytesResumable(storageRef, blob);
 };
 
 export const uploadPdf = async (uri, FilenameTitle, formattedDate) => {
-  const uuid = uuidv4();
+  // const uuid = uuidv4();
   const response = await fetch(uri);
   const blob = await response.blob();
   const fileSize = blob.size;
