@@ -202,7 +202,7 @@ const HistoryScreenNoRedux = (props) => {
           </TouchableOpacity>
         </View>
 
-        <PieChart data={data} />
+        {/* <PieChart data={data} /> */}
 
         {serviciosActivos && <ServiceList data={data} />}
         <Text></Text>
