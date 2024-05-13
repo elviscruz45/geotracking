@@ -22,7 +22,7 @@
       "package": "com.elviscruz30.mvg",
       "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/appMVGLogo.png",
+        "foregroundImage": "./assets/appMVGLogoAndroid.png",
         "backgroundColor": "#ffffff"
       }
     },
@@ -39,6 +39,19 @@
     },
     "updates": {
       "url": "https://u.expo.dev/55866827-f963-4850-941b-b681a9bb122d"
-    }
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "newArchEnabled": true
+          },
+          "android": {
+            "newArchEnabled": true
+          }
+        }
+      ]
+    ]
   }
 }

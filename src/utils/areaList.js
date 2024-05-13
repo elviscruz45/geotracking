@@ -15,6 +15,11 @@ export const areaLists = [
     image: require("../../assets/equipmentplant/ImageIcons/c2cr021.jpeg"),
   },
   {
+    value: "Chancado Pebbles",
+    tag: "C1-CH2",
+    image: require("../../assets/equipmentplant/ImageIcons/c2cr021.jpeg"),
+  },
+  {
     value: "Chancado Terciario",
     tag: "C1-CH3",
     image: require("../../assets/equipmentplant/ImageIcons/c2cr3.jpeg"),
@@ -25,13 +30,23 @@ export const areaLists = [
     image: require("../../assets/equipmentplant/ImageIcons/c2sc001.jpeg"),
   },
   {
+    value: "Zaranda SAG",
+    tag: "C1-SC2",
+    image: require("../../assets/equipmentplant/ImageIcons/c2sc001.jpeg"),
+  },
+  {
     value: "Zaranda Molienda",
     tag: "C1-SC2",
     image: require("../../assets/equipmentplant/ImageIcons/c2sc001.jpeg"),
   },
 
   {
-    value: "Molienda",
+    value: "Molienda SAG",
+    tag: "C1-ML1",
+    image: require("../../assets/equipmentplant/ImageIcons/c2ml001.jpeg"),
+  },
+  {
+    value: "Molienda Bolas",
     tag: "C1-ML1",
     image: require("../../assets/equipmentplant/ImageIcons/c2ml001.jpeg"),
   },

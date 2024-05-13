@@ -4,7 +4,7 @@ import {
   compose,
 } from "redux";
 import { Provider } from "react-redux";
-import reduxThunk from "redux-thunk";
+import { thunk } from "redux-thunk";
 import { rootReducers } from "./src/reducers";
 import { LogBox } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
@@ -14,7 +14,7 @@ import Toast from "react-native-toast-message";
 
 // LogBox.ignoreAllLogs();
 
-const middleware = [reduxThunk];
+const middleware = [thunk];
 const composedEnhancers = compose(applyMiddleware(...middleware));
 export const store = createStore(rootReducers, {}, composedEnhancers);
 export default function App() {

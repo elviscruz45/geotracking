@@ -76,7 +76,7 @@ export const CircularProgress = ({
 
   return (
     <>
-      <Svg
+      {/* <Svg
         style={
           Platform.OS === "ios"
             ? { position: "absolute", top: -45, left: -45, zIndex: -100 }
@@ -114,7 +114,7 @@ export const CircularProgress = ({
             },
           }}
         />
-      </Svg>
+      </Svg> */}
       <Avatar
         style={
           Platform.OS === "ios"
@@ -144,6 +144,8 @@ export const CircularProgress = ({
                   width: 80,
                   height: 80,
                   borderRadius: 80,
+                  borderWidth: 0.3,
+
                   // alignSelf: "center",
                 }
               : {
@@ -153,6 +155,8 @@ export const CircularProgress = ({
                   width: 80,
                   height: 80,
                   borderRadius: 80,
+                  borderWidth: 0.3,
+
                   // alignSelf: "center",
                 }
           }
@@ -169,6 +173,8 @@ export const CircularProgress = ({
                   width: 80,
                   height: 80,
                   borderRadius: 80,
+                  borderWidth: 0.3,
+
                   // alignSelf: "center",
                 }
               : {
@@ -178,6 +184,8 @@ export const CircularProgress = ({
                   width: 80,
                   height: 80,
                   borderRadius: 80,
+                  borderWidth: 0.3,
+
                   // alignSelf: "center",
                 }
           }
@@ -194,6 +202,8 @@ export const CircularProgress = ({
                   width: 80,
                   height: 80,
                   borderRadius: 80,
+                  borderWidth: 0.3,
+
                   // alignSelf: "center",
                 }
               : {
@@ -203,6 +213,8 @@ export const CircularProgress = ({
                   width: 80,
                   height: 80,
                   borderRadius: 80,
+                  borderWidth: 0.3,
+
                   // alignSelf: "center",
                 }
           }

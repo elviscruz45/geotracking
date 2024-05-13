@@ -54,15 +54,23 @@ function InformationScreen(props) {
         newData.AITphotoServiceURL = props.actualServiceAIT?.photoServiceURL;
         newData.AITNumero = props.actualServiceAIT?.NumeroAIT;
         newData.AITcompanyName = props.actualServiceAIT?.companyName;
+        console.log("como estas 1");
+
         // send profile information
         newData.emailPerfil = props.email || "Anonimo";
         newData.nombrePerfil = props.firebase_user_name || "Anonimo";
         newData.fotoUsuarioPerfil = props.user_photo;
+        console.log("como estas 2");
 
         // upload the photo or an pickimage to firebase Storage
         const snapshot = await uploadImage(props.savePhotoUri);
+        console.log("como estas 3");
+
         const imagePath = snapshot.metadata.fullPath;
+        console.log("como estas 4");
+
         const imageUrl = await getDownloadURL(ref(getStorage(), imagePath));
+        console.log("como estas 5");
 
         //manage the file updated to ask for aprovals
         let imageUrlPDF;

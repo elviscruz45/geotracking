@@ -4,6 +4,7 @@ import Svg from "react-native-svg";
 import { View } from "react-native";
 import { Image as ImageExpo } from "expo-image";
 import { Platform } from "react-native";
+import { Text } from "react-native";
 
 export const CircularProgress = ({
   imageSource,
@@ -18,7 +19,7 @@ export const CircularProgress = ({
 
   return (
     <>
-      <Svg
+      {/* <Svg
         style={
           Platform.OS === "ios"
             ? { position: "absolute", top: -50, left: -30, zIndex: 100 }
@@ -56,7 +57,7 @@ export const CircularProgress = ({
             },
           }}
         />
-      </Svg>
+      </Svg> */}
       {image ? (
         <ImageExpo
           source={{ uri: image }}
@@ -65,6 +66,7 @@ export const CircularProgress = ({
             width: 80,
             height: 80,
             borderRadius: 80,
+            borderWidth: 0.3,
           }}
         />
       ) : (
@@ -75,6 +77,7 @@ export const CircularProgress = ({
             width: 80,
             height: 80,
             borderRadius: 80,
+            borderWidth: 0.3,
           }}
         />
       )}

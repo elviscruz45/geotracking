@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import { screen } from "../../../utils";
 import { areaLists } from "../../../utils/areaList";
 import { CircularProgress } from "./CircularProgress";
+
 import { saveActualAITServicesFirebaseGlobalState } from "../../../actions/post";
 import { updateAITServicesDATA } from "../../../actions/home";
 import { saveApprovalListnew } from "../../../actions/search";
@@ -66,6 +67,7 @@ function HeaderScreenNoRedux(props) {
           lista.sort((a, b) => {
             return b.LastEventPosted - a.LastEventPosted;
           });
+          console.log(lista);
 
           setData(lista.slice(0, 50));
           props.updateAITServicesDATA(lista);
@@ -125,6 +127,7 @@ function HeaderScreenNoRedux(props) {
                 avance={item.AvanceEjecucion}
                 image={item.photoServiceURL}
               />
+
               {ShortTextComponent(item.NombreServicio)}
             </View>
           </TouchableOpacity>
