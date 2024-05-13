@@ -157,8 +157,7 @@ const ReportScreenNoRedux = (props) => {
           ) : (
             <Text style={styles.company}>{company}</Text>
           )}
-          {(companyName === "INGEPERU" || companyName === "MAESTRANZAPERU") &&
-            company !== "TOTAL CONTRATISTAS" &&
+          {company !== "TOTAL CONTRATISTAS" &&
             (userType === "Gerente" ||
               userType === "Planificador" ||
               userType === "Supervisor" ||

@@ -18,6 +18,7 @@ export const tipoServicioList = [
   {
     value: "IngenieriayFabricacion",
   },
+
   {
     value: "Otro",
   },
@@ -65,6 +66,12 @@ export const Reparacion = [
     value: "Envio de Componentes Terminado",
     progress: 100,
   },
+  {
+    value: "Seguridad",
+  },
+  {
+    value: "Medio Ambiente",
+  },
 ];
 
 export const Fabricacion = [
@@ -95,6 +102,12 @@ export const Fabricacion = [
   {
     value: "Envio de Componentes Terminado",
     progress: 100,
+  },
+  {
+    value: "Seguridad",
+  },
+  {
+    value: "Medio Ambiente",
   },
 ];
 
@@ -166,5 +179,11 @@ export const IngenieriayFabricacion = [
   {
     value: "Envio de Componentes Terminado",
     progress: 100,
+  },
+  {
+    value: "Seguridad",
+  },
+  {
+    value: "Medio Ambiente",
   },
 ];

@@ -1,9 +1,15 @@
 export const TipoFileLists = [
   {
+    value: "Alcance",
+  },
+  {
     value: "Cotizacion",
   },
   {
     value: "PET",
+  },
+  {
+    value: "Seguridad",
   },
   {
     value: "Plano",
@@ -12,9 +18,6 @@ export const TipoFileLists = [
     value: "3D",
   },
 
-  {
-    value: "Alcance",
-  },
   {
     value: "Otro",
   },
