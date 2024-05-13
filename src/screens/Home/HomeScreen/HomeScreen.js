@@ -50,6 +50,7 @@ function HomeScreen(props) {
       const companyName =
         capitalizeFirstLetter(props.email?.match(regex)?.[1]) || "Anonimo";
       const companyNameLowercase = companyName.toLowerCase();
+      console.log("companyNameLowercase", companyNameLowercase);
 
       async function fetchData() {
         let queryRef;
