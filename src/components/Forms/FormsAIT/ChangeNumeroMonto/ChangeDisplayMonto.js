@@ -7,7 +7,6 @@ import Toast from "react-native-toast-message";
 export function ChangeDisplayMonto(props) {
   const { onClose, setMonto, formik } = props;
   const [text, setText] = useState("0");
-  console.log("text", text);
   return (
     <View>
       <View style={styles.content}>

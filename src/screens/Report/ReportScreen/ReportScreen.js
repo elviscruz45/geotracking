@@ -51,7 +51,7 @@ const ReportScreenNoRedux = (props) => {
   //Data about the company belong this event
 
   const regex = /@(.+?)\./i;
-  const companyName = props.email?.match(regex)?.[1].toUpperCase() || "Anonimo"; // console.log("searchResults", searchResults);
+  const companyName = props.email?.match(regex)?.[1].toUpperCase() || "Anonimo";
 
   useEffect(() => {
     if (Array.isArray(props.servicesData)) {

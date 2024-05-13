@@ -1,7 +1,12 @@
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useRef, useState } from "react";
 import { useFormik } from "formik";
-import { Camera, CameraType } from "expo-camera";
+import {
+  Camera,
+  CameraType,
+  CameraView,
+  useCameraPermissions,
+} from "expo-camera";
 import * as ImageManipulator from "expo-image-manipulator";
 import { styles, styles2 } from "./CameraScreen.styles";
 import { Ionicons } from "@expo/vector-icons";
@@ -11,8 +16,8 @@ import { useNavigation } from "@react-navigation/native";
 import { screen } from "../../../utils";
 
 function CameraScreen(props) {
-  const [type, setType] = useState(CameraType.back);
-  const [permission, requestPermission] = Camera.useCameraPermissions();
+  const [type, setType] = useState("back");
+  const [permission, requestPermission] = useCameraPermissions();
   const cameraRef = useRef(null);
   const [capturedImage, setCapturedImage] = useState(null);
   const navigation = useNavigation();
@@ -50,13 +55,14 @@ function CameraScreen(props) {
 
   function toggleCameraType() {
     setType((current) =>
-      current === CameraType.back ? CameraType.front : CameraType.back
+      // current === CameraType.back ? CameraType.front : CameraType.back
+      current === "back" ? "front" : "back"
     );
   }
 
   return (
     <View style={styles2.container}>
-      <Camera style={styles2.camera} type={type} ref={cameraRef}>
+      <CameraView style={styles2.camera} type={type} ref={cameraRef}>
         <View style={styles2.buttonContainer}>
           <TouchableOpacity style={styles2.button} onPress={toggleCameraType}>
             <Ionicons name="camera-reverse-sharp" size={35} color="white" />
@@ -91,7 +97,7 @@ function CameraScreen(props) {
             </View>
           </TouchableOpacity>
         </View>
-      </Camera>
+      </CameraView>
     </View>
   );
 }

@@ -46,6 +46,7 @@
     "react-native-dropdown-select-list": "^2.0.4",
     "react-native-formik": "^1.7.8",
     "react-native-gesture-handler": "^2.16.2",
+    "react-native-get-random-values": "^1.11.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-mock-render": "^0.1.9",
     "react-native-multiple-select": "^0.5.12",

@@ -67,7 +67,6 @@ function HeaderScreenNoRedux(props) {
           lista.sort((a, b) => {
             return b.LastEventPosted - a.LastEventPosted;
           });
-          console.log(lista);
 
           setData(lista.slice(0, 50));
           props.updateAITServicesDATA(lista);
