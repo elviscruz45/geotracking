@@ -3,14 +3,46 @@ export const mineraList = [
     value: "Cerro Verde",
   },
   {
+    value: "Antamina",
+  },
+  {
+    value: "Shougang Hierro",
+  },
+  {
     value: "Marcobre",
   },
   {
     value: "Hudbay",
   },
   {
+    value: "Southern",
+  },
+  {
+    value: "Volcan",
+  },
+  {
+    value: "Chinalco",
+  },
+
+  {
+    value: "Minsur",
+  },
+  {
+    value: "Las Bambas",
+  },
+  {
+    value: "AngloAmerican",
+  },
+  {
+    value: "Antapacay",
+  },
+  {
+    value: "Nexa",
+  },
+  {
     value: "Cemento Sur",
   },
+
   {
     value: "Komatsu",
   },
@@ -24,22 +56,6 @@ export const mineraList = [
     value: "Vulco",
   },
   {
-    value: "Southern",
-  },
-  {
-    value: "Minsur",
-  },
-
-  {
-    value: "Las Bambas",
-  },
-  {
-    value: "Antapacay",
-  },
-  {
-    value: "Constancia",
-  },
-  {
     value: "Interno",
   },
   {
@@ -49,6 +65,12 @@ export const mineraList = [
 
 // the key is the email domain
 export const mineraCorreosList = {
+  shp: "Shougang Hierro",
+  volcan: "Volcan",
+  chinalco: "Chinalco",
+  angloamerican: "AngloAmerican",
+  nexa: "Nexa",
+  antamina: "Antamina",
   fmi: "Cerro Verde",
   marcobre: "Marcobre",
   hudbayminerals: "Hudbay",
@@ -61,7 +83,6 @@ export const mineraCorreosList = {
   minsur: "Minsur",
   lasbambas: "Las Bambas",
   antapacay: "Antapacay",
-  constancia: "Constancia",
   ingeperu: "Interno",
   maestranzaperu: "Interno",
 };

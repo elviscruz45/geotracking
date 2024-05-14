@@ -16,6 +16,8 @@ export const GanttHistorial = (props) => {
     return b.createdAt - a.createdAt;
   });
 
+  console.log("datas", datas);
+
   return (
     <FlatList
       scrollEnabled={false}
@@ -49,8 +51,9 @@ export const GanttHistorial = (props) => {
         const formattedDate = `${day} ${month}`;
 
         //get the company name from the userEmail
-        const regex = /@([a-z]+)\.com/i;
+        const regex = /@(.+?)\./i;
         const matches = item.emailPerfil.match(regex);
+        console.log("matches", matches);
 
         return (
           <View style={{ marginLeft: 15 }}>
@@ -73,7 +76,8 @@ export const GanttHistorial = (props) => {
             <View style={[styles.circle]}>
               {matches[1] !== "ingeperu" && matches[1] !== "maestranzaperu" ? (
                 <ImageExpo
-                  source={require("../../../../assets/smcv2.jpeg")}
+                  // source={require("../../../../assets/smcv2.jpeg")}
+                  source={item.icon}
                   style={{ width: 20, height: 20 }}
                   cachePolicy={"memory-disk"}
                 />
