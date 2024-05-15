@@ -2513,10 +2513,10 @@
     prompts "^2.4.2"
     semver "^7.5.2"
 
-"@react-native-community/datetimepicker@7.7.0":
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-7.7.0.tgz#0d0162b0434c7b35883f8c5af846f35e23d045ec"
-  integrity sha512-nYzZy4DQLRFUzKJShWzRleCaebmCJfZ1lIcFmZgMXJoiVuGJNw3OIGHSWmHhPETh3OhP1RO3to882d7WmDIyrA==
+"@react-native-community/datetimepicker@8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-8.0.1.tgz#047f27566fb21b5095fa54f558bffd8ab6472b46"
+  integrity sha512-4BO0t3geMNNw9cIIm9p9FNUzwMXexdzD4pAH0AaUAycs3BS71HLrX8jHbrI7nzq/+8O7cLAXn5Gudte+YpTV8Q==
   dependencies:
     invariant "^2.2.4"
 
@@ -3381,10 +3381,10 @@ babel-preset-current-node-syntax@^1.0.0:
     "@babel/plugin-syntax-optional-chaining" "^7.8.3"
     "@babel/plugin-syntax-top-level-await" "^7.8.3"
 
-babel-preset-expo@~11.0.5:
-  version "11.0.5"
-  resolved "https://registry.yarnpkg.com/babel-preset-expo/-/babel-preset-expo-11.0.5.tgz#aadc9aec722333a03a5939d9f91dcc51cc42ff85"
-  integrity sha512-IjqR4B7wnBU55pofLeLGjwUGrWJE1buamgzE9CYpYCNicZmJcNjXUcinQiurXCMuClF2hOff3QfZsLxnGj1UaA==
+babel-preset-expo@~11.0.6:
+  version "11.0.6"
+  resolved "https://registry.yarnpkg.com/babel-preset-expo/-/babel-preset-expo-11.0.6.tgz#b1ea2bd9f13338a9f7ca8d7089b5d6d6c7c03f79"
+  integrity sha512-jRi9I5/jT+dnIiNJDjDg+I/pV+AlxrIW/DNbdqYoRWPZA/LHDqD6IJnJXLxbuTcQ+llp+0LWcU7f/kC/PgGpkw==
   dependencies:
     "@babel/plugin-proposal-decorators" "^7.12.9"
     "@babel/plugin-transform-export-namespace-from" "^7.22.11"
@@ -4735,10 +4735,10 @@ expo-build-properties@~0.12.1:
     ajv "^8.11.0"
     semver "^7.6.0"
 
-expo-camera@~15.0.7:
-  version "15.0.7"
-  resolved "https://registry.yarnpkg.com/expo-camera/-/expo-camera-15.0.7.tgz#52513f6ecda87e1d43b2fed842359e3a8dc461e3"
-  integrity sha512-meqiPO+MlQXZwIknaDWmGW5ZA+x24eu1zpGQGAPwhuhH+5dP7sPhVuAYnsoDbswCHcpMiVEHkp5QxtyTrkQo7w==
+expo-camera@~15.0.8:
+  version "15.0.8"
+  resolved "https://registry.yarnpkg.com/expo-camera/-/expo-camera-15.0.8.tgz#ec6b02aee0ae194efa98ee35f09ebc5f7a4479c6"
+  integrity sha512-pWiSBQRKjnenEOwMqbkfY41Jm0Xkt63ODPqQydKOgmFELrsuQjGbRla6QaZ8Eo6hVeuClfyVnUu3sKfnN+CmNA==
   dependencies:
     invariant "^2.2.4"
 
@@ -4776,10 +4776,10 @@ expo-image-loader@~4.7.0:
   resolved "https://registry.yarnpkg.com/expo-image-loader/-/expo-image-loader-4.7.0.tgz#d403106822de80bda12d644c82b7a3b7983c0f0b"
   integrity sha512-cx+MxxsAMGl9AiWnQUzrkJMJH4eNOGlu7XkLGnAXSJrRoIiciGaKqzeaD326IyCTV+Z1fXvIliSgNW+DscvD8g==
 
-expo-image-manipulator@~12.0.4:
-  version "12.0.4"
-  resolved "https://registry.yarnpkg.com/expo-image-manipulator/-/expo-image-manipulator-12.0.4.tgz#59978f1ef69a55afc17c5a07ad302ce6138ec444"
-  integrity sha512-zjVCKum1ydSw9udDB/ZUFSJ3yJhqKeRok5urmO+YWBEwtSHM04Qp0FZ+VHsXDKZmGd2im+2ueQFOuPOyxh2ojw==
+expo-image-manipulator@~12.0.5:
+  version "12.0.5"
+  resolved "https://registry.yarnpkg.com/expo-image-manipulator/-/expo-image-manipulator-12.0.5.tgz#e3dd2810d27025705f73523cd4ba47b0d091a662"
+  integrity sha512-zJ8yINjckYw/yfoSuICt4yJ9xr112+W9e5QVXwK3nCAHr7sv45RQ5sxte0qppf594TPl+UoV6Tjim7WpoKipRQ==
   dependencies:
     expo-image-loader "~4.7.0"
 
@@ -4884,10 +4884,10 @@ expo-updates@~0.25.11:
     ignore "^5.3.1"
     resolve-from "^5.0.0"
 
-expo@~51.0.4:
-  version "51.0.4"
-  resolved "https://registry.yarnpkg.com/expo/-/expo-51.0.4.tgz#e641cc1495705a9573f238f6bc9c3929844066d9"
-  integrity sha512-3DaOnsouiZlDH1k04nvYtfJyLFCj6Po8EL4lqDkLpV8ZXCbA89vo6w/2TFQpk8MpUfbapAlhuyigrnXPTEpRtg==
+expo@~51.0.5:
+  version "51.0.5"
+  resolved "https://registry.yarnpkg.com/expo/-/expo-51.0.5.tgz#f39f7dc6d389f893f29c739ad4c8657aa9dea64d"
+  integrity sha512-i+AfkfToYPFCobX0NUT9PmDtsB3L19vhCB/XUE1Ph6FVrBF6GipkHzTADuRLMaVg5u/2sm/fdzGzBcMjXSHqmA==
   dependencies:
     "@babel/runtime" "^7.20.0"
     "@expo/cli" "0.18.11"
@@ -4895,7 +4895,7 @@ expo@~51.0.4:
     "@expo/config-plugins" "8.0.4"
     "@expo/metro-config" "0.18.3"
     "@expo/vector-icons" "^14.0.0"
-    babel-preset-expo "~11.0.5"
+    babel-preset-expo "~11.0.6"
     expo-asset "~10.0.6"
     expo-file-system "~17.0.1"
     expo-font "~12.0.5"

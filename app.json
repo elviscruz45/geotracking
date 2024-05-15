@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "MVG",
-    "slug": "MVG",
+    "name": "MVGTracking",
+    "slug": "MVG-Tracking",
     "description": "high perfomance for your industry",
-    "version": "3.0.0",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/appMVGLogo.png",
     "userInterfaceStyle": "light",
@@ -24,14 +24,18 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/appMVGLogoAndroid.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "c95bea52-684a-4b7b-9850-d3021eef89a2"
+        "projectId": "31c56131-d9e2-4eaf-976d-ccd8ce91238b"
       }
     },
     "runtimeVersion": {
