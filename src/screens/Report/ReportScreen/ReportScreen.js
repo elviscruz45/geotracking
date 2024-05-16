@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { styles } from "./ReportScreen.styles";
-import { PieChart } from "../RecursosScreen/PieStatus";
-import { BarChartMontoServicios } from "../RecursosScreen/BarChartMontoServicios";
+import { PieChartView } from "./PieStatus";
+import { BarChartMontoServicios } from "./BarChartMontoServicios";
 import { BarChartProceso } from "../RecursosScreen/BarChartProceso";
 import { ServiceList } from "../RecursosScreen/ServiceList";
 import { InactiveServiceList } from "../RecursosScreen/InactiveServiceList";
@@ -190,7 +190,7 @@ const ReportScreenNoRedux = (props) => {
 
           {serviciosActivos && (
             <>
-              {/* <PieChart data={data} /> */}
+              <PieChartView data={data} />
               <ServiceList data={data} />
             </>
           )}

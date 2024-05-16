@@ -15,7 +15,7 @@ export function initialValues() {
     FechaInicio: null,
     FechaFin: null,
     NumeroCotizacion: "",
-    Moneda: "",
+    Moneda: "Soles",
     Monto: "0",
     SupervisorSeguridad: "0",
     Supervisor: "0",
