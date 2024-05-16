@@ -18,6 +18,7 @@ import {
   ContributionGraph,
   StackedBarChart,
 } from "react-native-chart-kit";
+import { pad } from "lodash";
 export const BarChartMontoServicios = (props) => {
   //pie configuration
   const screenWidth = Dimensions.get("window").width;
@@ -34,13 +35,13 @@ export const BarChartMontoServicios = (props) => {
 
   //data for the bar chart
   const { data } = props;
-  console.log("data", data);
 
   let datas;
 
   let sumByTipoServicio;
   if (data) {
     sumByTipoServicio = {
+      "Parada de Planta": 0,
       Reparacion: 0,
       Fabricacion: 0,
       Ingenieria: 0,
@@ -64,7 +65,6 @@ export const BarChartMontoServicios = (props) => {
         sumByTipoServicio[tipoServicio] += parseInt(data[i].Monto);
       }
     }
-    console.log("sumByTipoServicio", sumByTipoServicio);
     //"Parada de Planta"
     datas = [
       {
@@ -148,12 +148,13 @@ export const BarChartMontoServicios = (props) => {
     ],
   };
   return (
+    // <Text>hola</Text>
     <BarChart
       style={graphStyle}
       data={datass}
       width={screenWidth}
-      height={220}
-      yAxisLabel="$"
+      height={320}
+      yAxisLabel="S/."
       chartConfig={chartConfig}
       verticalLabelRotation={30}
     />
@@ -162,8 +163,9 @@ export const BarChartMontoServicios = (props) => {
 
 const graphStyle = {
   marginVertical: 8,
+  paddingRight: 100,
   borderRadius: 16,
-  backgroundColor: "blue",
+  backgroundColor: "black",
 };
 
 const styles = StyleSheet.create({

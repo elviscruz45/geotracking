@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 import { styles } from "./ReportScreen.styles";
 import { PieChartView } from "./PieStatus";
 import { BarChartMontoServicios } from "./BarChartMontoServicios";
-import { BarChartProceso } from "../RecursosScreen/BarChartProceso";
+import { BarChartProceso } from "./BarChartProceso";
 import { ServiceList } from "../RecursosScreen/ServiceList";
 import { InactiveServiceList } from "../RecursosScreen/InactiveServiceList";
 import { MontoEDPList } from "../RecursosScreen/MontoEDPList";
 import { MontoServiceList } from "../RecursosScreen/MontoServiceList";
 import { RecursosHumanos } from "../RecursosScreen/RecursosHumanos";
 import { BarInactiveServices } from "../RecursosScreen/BarInactiveServices";
-import { MontoComprometido } from "../RecursosScreen/MontoComprometido";
+import { MontoComprometido } from "./MontoComprometido";
 import { getExcelReportData } from "../../../utils/excelData";
 import { EstadoServiceList } from "../RecursosScreen/EstadoServiceList";
 import { useNavigation } from "@react-navigation/native";
@@ -289,7 +289,7 @@ const ReportScreenNoRedux = (props) => {
               userType === "GerenteContratista" ||
               userType === "PlanificadorContratista") && (
               <>
-                {/* <BarChartMontoServicios data={data} /> */}
+                <BarChartMontoServicios data={data} />
                 <MontoServiceList data={data} />
               </>
             )}
@@ -325,7 +325,7 @@ const ReportScreenNoRedux = (props) => {
               userType === "GerenteContratista" ||
               userType === "PlanificadorContratista") && (
               <>
-                {/* <BarChartProceso data={data} /> */}
+                <BarChartProceso data={data} />
                 <MontoEDPList data={data} />
               </>
             )}
