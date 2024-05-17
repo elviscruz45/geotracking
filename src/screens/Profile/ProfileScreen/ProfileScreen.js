@@ -167,9 +167,7 @@ function ProfileScreen(props) {
                 </TouchableOpacity>
               );
             }}
-            keyExtractor={(item) =>
-              `${item.fotoPrincipal}-${item.fechaPostFormato}`
-            }
+            keyExtractor={(item, index) => `${index}-${item.fechaPostFormato}`}
           />
         ) : (
           <Text style={{ alignSelf: "center" }}>

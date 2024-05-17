@@ -194,7 +194,7 @@ function FileScreenBare(props) {
             </TouchableOpacity>
           );
         }}
-        keyExtractor={(item) => `${item.FilenameTitle}-${item.pdfPrincipal}`} // Provide a unique key for each item
+        keyExtractor={(item, index) => `${index}-${item.pdfPrincipal}`} // Provide a unique key for each item
       />
     </KeyboardAwareScrollView>
   );

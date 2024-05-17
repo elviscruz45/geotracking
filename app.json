@@ -12,7 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.elviscruz30.mvg",
@@ -42,7 +44,7 @@
       "policy": "sdkVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/55866827-f963-4850-941b-b681a9bb122d"
+      "url": "https://u.expo.dev/31c56131-d9e2-4eaf-976d-ccd8ce91238b"
     },
     "plugins": [
       [

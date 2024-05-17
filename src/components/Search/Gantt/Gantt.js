@@ -131,7 +131,7 @@ export const GanttHistorial = (props) => {
           </View>
         );
       }}
-      keyExtractor={(item) => item.createdAt}
+      keyExtractor={(item, index) => `${index}-${item.createdAt}`}
     />
   );
 };

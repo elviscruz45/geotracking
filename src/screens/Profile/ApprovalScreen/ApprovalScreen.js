@@ -120,7 +120,7 @@ function ApprovalScreenBare(props) {
             </TouchableOpacity>
           );
         }}
-        keyExtractor={(item) => item.date} // Provide a unique key for each item
+        keyExtractor={(item, index) => `${index}-${item.date}`} // Provide a unique key for each item
       />
     </KeyboardAwareScrollView>
   );

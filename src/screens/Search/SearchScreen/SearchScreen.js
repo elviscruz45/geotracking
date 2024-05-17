@@ -177,7 +177,7 @@ function SearchScreenNoRedux(props) {
             </TouchableOpacity>
           );
         }}
-        keyExtractor={(item) => `${item.NumeroAIT}-${item.fechaPostFormato}`}
+        keyExtractor={(item, index) => `${index}-${item.fechaPostFormato}`}
       />
     </View>
   );

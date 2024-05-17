@@ -132,7 +132,7 @@ function HeaderScreenNoRedux(props) {
           </TouchableOpacity>
         );
       }}
-      keyExtractor={(item) => `${item.fechaPostISO}`}
+      keyExtractor={(item, index) => `${index}-${item.fechaPostISO}`}
     />
   );
 }

@@ -377,9 +377,7 @@ function HomeScreen(props) {
               </View>
             );
           }}
-          keyExtractor={(item) =>
-            `${item.fotoPrincipal}-${item.fechaPostFormato}`
-          } // Provide a unique key for each item
+          keyExtractor={(item, index) => `${index}-${item.fechaPostFormato}`} // Provide a unique key for each item
           // onEndReached={() => {
           // }}
           // onEndReached={() => loadMorePosts()}
