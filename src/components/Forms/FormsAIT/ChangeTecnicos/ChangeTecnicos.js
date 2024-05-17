@@ -5,8 +5,8 @@ import { styles } from "./ChangeTecnicos.styles";
 import Toast from "react-native-toast-message";
 
 export function ChangeTecnicos(props) {
-  const { onClose, ChangeTecnicos, formik } = props;
-  const [text, setText] = useState("0");
+  const { onClose, setTecnicos, formik } = props;
+  const [text, setText] = useState("");
 
   return (
     <View>
@@ -41,7 +41,7 @@ export function ChangeTecnicos(props) {
               });
               onClose();
             } else {
-              ChangeTecnicos(text.toString());
+              setTecnicos(text.toString());
               formik.setFieldValue("Tecnicos", text.toString());
 
               onClose();

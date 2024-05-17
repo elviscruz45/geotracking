@@ -6,7 +6,7 @@ import Toast from "react-native-toast-message";
 
 export function ChangeSupervisorSeguridad(props) {
   const { onClose, setSupervisorSeguridad, formik } = props;
-  const [text, setText] = useState("0");
+  const [text, setText] = useState("");
 
   return (
     <View>

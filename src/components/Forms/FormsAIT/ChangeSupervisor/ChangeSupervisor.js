@@ -5,8 +5,8 @@ import { styles } from "./ChangeSupervisor.styles";
 import Toast from "react-native-toast-message";
 
 export function ChangeSupervisor(props) {
-  const { onClose, ChangeSupervisor, formik } = props;
-  const [text, setText] = useState("0");
+  const { onClose, setSupervisor, formik } = props;
+  const [text, setText] = useState("");
 
   return (
     <View>
@@ -41,7 +41,7 @@ export function ChangeSupervisor(props) {
               });
               onClose();
             } else {
-              ChangeSupervisor(text.toString());
+              setSupervisor(text.toString());
               formik.setFieldValue("Supervisor", text.toString());
 
               onClose();
