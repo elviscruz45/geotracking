@@ -16,8 +16,6 @@ export const GanttHistorial = (props) => {
     return b.createdAt - a.createdAt;
   });
 
-  console.log("datas", datas);
-
   return (
     <FlatList
       scrollEnabled={false}
@@ -53,7 +51,6 @@ export const GanttHistorial = (props) => {
         //get the company name from the userEmail
         const regex = /@(.+?)\./i;
         const matches = item.emailPerfil.match(regex);
-        console.log("matches", matches);
 
         return (
           <View style={{ marginLeft: 15 }}>

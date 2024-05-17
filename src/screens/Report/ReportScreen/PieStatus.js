@@ -73,8 +73,6 @@ export const PieChartView = (props) => {
     datainaObject[element.x] = element.y;
   });
 
-  console.log("datainaObject", datainaObject);
-
   const total = datas.reduce((sum, entry) => sum + entry.y, 0);
 
   if (!datas) return null;

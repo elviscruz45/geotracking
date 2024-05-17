@@ -117,15 +117,28 @@ export const uploadImage = async (uri) => {
 };
 
 export const uploadPdf = async (uri, FilenameTitle, formattedDate) => {
-  // const uuid = uuidv4();
-  const response = await fetch(uri);
-  const blob = await response.blob();
-  const fileSize = blob.size;
-
   try {
+    // const uuid = uuidv4();
+    // const response = await fetch(uri);
+    // const blob = await response.blob();
+    // const fileSize = blob.size;
+    const blob = await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+        resolve(xhr.response);
+      };
+      xhr.onerror = function () {
+        reject(new Error("Error converting file URI to Blob"));
+      };
+      xhr.responseType = "blob";
+      xhr.open("GET", uri, true);
+      xhr.send(null);
+    });
+
     if (fileSize > 25 * 1024 * 1024) {
       throw new Error("El archivo excede los 25 MB");
     }
+
     const storage = getStorage();
 
     const storageRef = ref(

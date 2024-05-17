@@ -22,6 +22,7 @@ import {
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import Toast from "react-native-toast-message";
 import * as FileSystem from "expo-file-system";
+import "react-native-get-random-values";
 
 export function AddDocsFormBare(props) {
   const [renderComponent, setRenderComponent] = useState(null);
@@ -73,7 +74,11 @@ export function AddDocsFormBare(props) {
         if (newData.pdfFile) {
           // const snapshotPDF = await uploadPdf(newData.pdfFile);
           // proving
-          snapshotPDF = await uploadPdf(newData.pdfFile, formattedDate);
+          snapshotPDF = await uploadPdf(
+            newData.pdfFile,
+            formattedDate,
+            newData.size
+          );
 
           //proving
 
@@ -113,29 +118,35 @@ export function AddDocsFormBare(props) {
         Toast.show({
           type: "error",
           position: "bottom",
-          text1: "Error al tratar de subir documento",
+          text1: "El archivo excede los 25 MB",
         });
       }
     },
   });
 
-  const uploadPdf = async (uri, formattedDate) => {
+  const uploadPdf = async (uri, formattedDate, size) => {
     try {
-      const uuid = uuidv4();
+      // const uuid = uuidv4();
 
-      const response = await fetch(uri);
+      // const response = await fetch(uri);
+      // const blob = await response.blob();
+      // // const blob = new Blob(response);
+      // const fileSize = blob.size;
 
-      const blob = await response.blob();
-      // const blob = new Blob(response);
+      const blob = await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+          resolve(xhr.response);
+        };
+        xhr.onerror = function () {
+          reject(new Error("Error converting file URI to Blob"));
+        };
+        xhr.responseType = "blob";
+        xhr.open("GET", uri, true);
+        xhr.send(null);
+      });
 
-      const fileSize = blob.size;
-
-      if (fileSize > 25 * 1024 * 1024) {
-        Toast.show({
-          type: "error",
-          position: "bottom",
-          text1: "El archivo excede los 25 MB",
-        });
+      if (size > 25 * 1024 * 1024) {
         throw new Error("El archivo excede los 25 MB");
       }
 
@@ -150,7 +161,7 @@ export function AddDocsFormBare(props) {
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: "Error al tratar de subir documento actual",
+        text1: "El archivo excede los 25 MB",
       });
     }
   };
@@ -172,14 +183,16 @@ export function AddDocsFormBare(props) {
   const pickDocument = async () => {
     try {
       const result = await DocumentPicker.getDocumentAsync({
-        // type: "application/pdf",
+        type: "*/*",
         copyToCacheDirectory: false,
       });
+      console.log("result", result);
 
       if (result.assets) {
         setShortNameFileUpdated(result?.assets[0]?.name);
         formik.setFieldValue("pdfFile", result?.assets[0]?.uri);
         formik.setFieldValue("FilenameTitle", result?.assets[0]?.name);
+        formik.setFieldValue("size", result?.assets[0]?.size);
       } else {
         setShortNameFileUpdated("");
       }

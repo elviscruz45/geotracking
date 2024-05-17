@@ -11,6 +11,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { collection, doc, setDoc } from "firebase/firestore";
 import { update_firebaseProfile } from "../../../actions/profile";
 import { v4 as uuidv4 } from "uuid";
+import "react-native-get-random-values";
 
 function ChangeManPowerBare(props) {
   const { onClose } = props;

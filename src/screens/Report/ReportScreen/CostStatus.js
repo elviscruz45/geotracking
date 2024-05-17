@@ -12,7 +12,6 @@ import {
 } from "react-native-chart-kit";
 export const CostChartView = (props) => {
   const { data } = props;
-  console.log("data", data);
   return (
     <View>
       <Text>Bezier Line Chart</Text>

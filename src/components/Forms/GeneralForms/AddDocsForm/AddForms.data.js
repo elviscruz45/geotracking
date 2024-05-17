@@ -4,6 +4,7 @@ export function initialValues() {
     pdfFile: "",
     FilenameTitle: "",
     tipoFile: "",
+    size: 0,
   };
 }
 

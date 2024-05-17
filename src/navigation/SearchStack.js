@@ -14,6 +14,7 @@ import { DocstoApproveScreen } from "../screens/Search/DocstoApproveScreen/Docst
 import { EditAITScreen } from "../screens/Search/EditAITScreen/EditAITScreen";
 import { AddDocsForm } from "../components/Forms/GeneralForms/AddDocsForm/AddForms";
 import { Platform } from "react-native";
+import "react-native-get-random-values";
 
 function SearchStackBare(props) {
   const Stack = createNativeStackNavigator();

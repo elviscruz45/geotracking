@@ -125,7 +125,6 @@ function ItemScreenNotRedux(props) {
     const companyName =
       capitalizeFirstLetter(props.email?.match(regex)?.[1]) || "Anonimo";
     AITServiceList = props.servicesData;
-    console.log(companyName, "companyName");
 
     let service = AITServiceList.filter(
       (item) => item.idServiciosAIT === Item
