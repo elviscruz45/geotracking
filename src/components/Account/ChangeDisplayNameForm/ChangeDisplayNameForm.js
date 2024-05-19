@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, KeyboardAvoidingView } from "react-native";
 import { Input, Button } from "@rneui/themed";
 import { useFormik } from "formik";
 import { getAuth, updateProfile } from "firebase/auth";
@@ -8,7 +8,7 @@ import { initialValues, validationSchema } from "./ChangeDisplayNameForm.data";
 import { styles } from "./ChangeDisplayNameForm.styles";
 import { connect } from "react-redux";
 import { db } from "../../../utils";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+// import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { collection, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { update_firebaseProfile } from "../../../actions/profile";
 import { update_firebaseUserName } from "../../../actions/profile";
@@ -85,7 +85,7 @@ function ChangeDisplayNameForm(props) {
   });
 
   return (
-    <KeyboardAwareScrollView>
+    <KeyboardAvoidingView>
       <Input
         testID="displayNameform"
         value={formik.values.displayNameform}
@@ -133,7 +133,7 @@ function ChangeDisplayNameForm(props) {
         onPress={formik.handleSubmit}
         loading={formik.isSubmitting}
       />
-    </KeyboardAwareScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
