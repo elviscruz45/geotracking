@@ -27,7 +27,7 @@ export const CircularProgress = ({
   imageSourceDefault,
   imageStyle,
   avance,
-  id,
+  idait,
   image,
   titulo,
 }) => {
@@ -53,7 +53,7 @@ export const CircularProgress = ({
     const blob = await response.blob();
 
     const storage = getStorage();
-    const storageRef = ref(storage, `Serviceavatar/${id}`);
+    const storageRef = ref(storage, `Serviceavatar/${idait}`);
 
     uploadBytesResumable(storageRef, blob).then((snapshot) => {
       updatePhotoUrl(snapshot.metadata.fullPath);
@@ -64,7 +64,7 @@ export const CircularProgress = ({
     const storage = getStorage();
     const imageRef = ref(storage, imagePath);
     const imageUrl = await getDownloadURL(imageRef);
-    const RefFirebaseServiceAIT = doc(db, "ServiciosAIT", id);
+    const RefFirebaseServiceAIT = doc(db, "ServiciosAIT", idait);
 
     const updateDataLasEventPost = {
       photoServiceURL: imageUrl,

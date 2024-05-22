@@ -205,7 +205,7 @@ function ItemScreenNotRedux(props) {
                 imageSourceDefault={imageSource}
                 imageStyle={styles.roundImage}
                 avance={serviceInfo.AvanceEjecucion}
-                id={serviceInfo.idServiciosAIT}
+                idait={serviceInfo.idServiciosAIT}
                 image={serviceInfo.photoServiceURL}
                 titulo={serviceInfo.NombreServicio}
               />
