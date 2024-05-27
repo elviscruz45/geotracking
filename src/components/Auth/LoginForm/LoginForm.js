@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import { Input, Icon, Button } from "@rneui/themed";
 import { useFormik } from "formik";
@@ -13,11 +13,30 @@ import { update_firebaseUserUid } from "../../../actions/auth";
 import { update_firebaseProfile } from "../../../actions/profile";
 import { db } from "../../../utils";
 import { doc, getDoc } from "firebase/firestore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function LoginForm(props) {
   const [showPassword, setShowPassword] = useState(false);
   const navigation = useNavigation();
   const onShowHidePassword = () => setShowPassword((prevState) => !prevState);
+
+  const retrieveData = async () => {
+    try {
+      const emailPersist = (await AsyncStorage.getItem("emailPersist")) ?? "";
+      const passwordPersist =
+        (await AsyncStorage.getItem("passwordPersist")) ?? "";
+
+      formik.setFieldValue("email", JSON.parse(emailPersist));
+      formik.setFieldValue("password", JSON.parse(passwordPersist));
+    } catch (error) {
+      console.log("error", error);
+      // Error retrieving data
+    }
+  };
+
+  useEffect(() => {
+    retrieveData();
+  }, []);
 
   const formik = useFormik({
     initialValues: initialValues(),
@@ -39,6 +58,14 @@ function LoginForm(props) {
         const docSnap = await getDoc(docRef);
 
         props.update_firebaseUserUid(userCredential.user.uid);
+        await AsyncStorage.setItem(
+          "emailPersist",
+          JSON.stringify(formValue.email)
+        );
+        await AsyncStorage.setItem(
+          "passwordPersist",
+          JSON.stringify(formValue.password)
+        );
         if (docSnap?.exists()) {
           props.update_firebaseProfile(docSnap.data());
         } else {

@@ -14,17 +14,18 @@ import { update_firebaseEmail } from "../actions/profile";
 import { update_firebaseUid } from "../actions/profile";
 import { saveActualAITServicesFirebaseGlobalState } from "../actions/post";
 import Toast from "react-native-toast-message";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function HomeStack(props) {
   const Stack = createNativeStackNavigator();
   const navigation = useNavigation();
   const user = getAuth().currentUser;
-  const { uid, photoURL, displayName, email } = user;
+  const { uid, photoURL, displayName, displayNameform, email } = user;
 
   useEffect(() => {
     if (user) {
       props.update_firebasePhoto(photoURL);
-      props.update_firebaseUserName(displayName);
+      props.update_firebaseUserName(displayName ?? displayNameform);
       props.update_firebaseEmail(email);
       props.update_firebaseUid(uid);
     }
