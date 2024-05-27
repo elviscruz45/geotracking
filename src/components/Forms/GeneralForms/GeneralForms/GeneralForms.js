@@ -211,7 +211,7 @@ function GeneralFormsBare(props) {
           etapa === "Cancelacion") && (
           <Input
             value={avance ? `${avance} %` : null}
-            placeholder="Avance del ejecucion"
+            placeholder="Avance de ejecucion (0 a 100)"
             editable={false}
             errorMessage={formik.errors.porcentajeAvance}
             rightIcon={{
