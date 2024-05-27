@@ -5,7 +5,7 @@ import {
   etapaListUsuario,
   etapaListContratista,
   etapaListUsuarioSupervision,
-  etapaListContratistaSupervision,
+  etapaListContratistaPlanificador,
 } from "../../../../utils/etapaList";
 import { connect } from "react-redux";
 
@@ -16,21 +16,24 @@ export const SelectExampleBare = (props) => {
   const regex = /@(.+?)\./i;
 
   const companyName = props.email?.match(regex)?.[1].toUpperCase() || "Anonimo";
+  console.log("companyName", companyName);
+
   const userType = props.profile?.userType;
+  console.log("userType", userType);
+
   const etapaLists =
     companyName !== "INGEPERU" &&
     companyName !== "MAESTRANZAPERU" &&
-    userType !== "Trabajador"
+    userType === "Trabajador"
       ? etapaListUsuario
       : companyName !== "INGEPERU" &&
         companyName !== "MAESTRANZAPERU" &&
-        userType === "Trabajador"
+        userType !== "Trabajador"
       ? etapaListUsuarioSupervision
-      : companyName !== "INGEPERU" &&
-        companyName !== "MAESTRANZAPERU" &&
+      : (companyName === "INGEPERU" || companyName === "MAESTRANZAPERU") &&
         userType === "Trabajador"
-      ? etapaListContratistaSupervision
-      : etapaListContratista;
+      ? etapaListContratista
+      : etapaListContratistaPlanificador;
 
   function saveProperty(itemValue) {
     setText(itemValue);

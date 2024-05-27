@@ -67,8 +67,12 @@ export const etapaListUsuario = [
     value: "Usuario-Aprobacion EDP",
   },
 ];
-
-export const etapaListContratista = [
+export const etapaListUsuarioSupervision = [
+  {
+    value: "Contratista-Avance Ejecucion",
+  },
+];
+export const etapaListContratistaPlanificador = [
   {
     value: "Contratista-Envio Cotizacion",
   },
@@ -104,12 +108,8 @@ export const etapaListContratista = [
     value: "Cancelacion",
   },
 ];
-export const etapaListUsuarioSupervision = [
-  {
-    value: "Contratista-Avance Ejecucion",
-  },
-];
-export const etapaListContratistaSupervision = [
+
+export const etapaListContratista = [
   {
     value: "Contratista-Envio Cotizacion",
   },
