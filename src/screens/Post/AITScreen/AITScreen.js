@@ -56,7 +56,7 @@ function AITNoReduxScreen(props) {
 
           const getDocs1 = await getDocs(queryRef1);
           const getDocs2 =
-            companyName === "ingeperu" || companyName === "maestranzaperu"
+            companyName === "prodise"
               ? await getDocs(queryRef2)
               : null;
           const lista = [];

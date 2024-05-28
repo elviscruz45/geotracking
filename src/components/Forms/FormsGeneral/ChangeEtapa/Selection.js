@@ -22,15 +22,15 @@ export const SelectExampleBare = (props) => {
   console.log("userType", userType);
 
   const etapaLists =
-    companyName !== "INGEPERU" &&
-    companyName !== "MAESTRANZAPERU" &&
+    
+    companyName !== "PRODISE" &&
     userType === "Trabajador"
       ? etapaListUsuario
-      : companyName !== "INGEPERU" &&
-        companyName !== "MAESTRANZAPERU" &&
+      : 
+        companyName !== "PRODISE" &&
         userType !== "Trabajador"
       ? etapaListUsuarioSupervision
-      : (companyName === "INGEPERU" || companyName === "MAESTRANZAPERU") &&
+      : ( companyName === "PRODISE") &&
         userType === "Trabajador"
       ? etapaListContratista
       : etapaListContratistaPlanificador;
