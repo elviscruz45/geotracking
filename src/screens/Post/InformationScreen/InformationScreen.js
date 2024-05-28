@@ -78,6 +78,7 @@ function InformationScreen(props) {
           const imagePathPDF = snapshotPDF.metadata.fullPath;
           imageUrlPDF = await getDownloadURL(ref(getStorage(), imagePathPDF));
         }
+
         //--------Uploading docs to a new collection called "aprovals" to manage doc aprovals
         if (
           newData.aprobacion &&
@@ -144,8 +145,11 @@ function InformationScreen(props) {
 
         // Posting data to Firebase and adding the ID firestore
         const docRef = await addDoc(collection(db, "events"), newData);
+
         newData.idDocFirestoreDB = docRef.id;
+
         const RefFirebase = doc(db, "events", newData.idDocFirestoreDB);
+
         await updateDoc(RefFirebase, newData);
 
         //Modifying the Service State ServiciosAIT considering the LasEventPost events

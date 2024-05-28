@@ -242,7 +242,7 @@ function GeneralFormsBare(props) {
 
         {/* <Text style={styles.subtitleForm}>Opcional</Text> */}
 
-        {( companyName === "Prodise") && (
+        {companyName === "prodise" && (
           <Input
             value={visibilidad}
             placeholder="Visibilidad del evento"
