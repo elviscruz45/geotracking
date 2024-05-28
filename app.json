@@ -5,7 +5,7 @@
     "description": "high perfomance for your industry",
     "version": "1.0.3",
     "orientation": "portrait",
-    "icon": "./assets/appMVGLogo.png",
+    "icon": "./assets/appPRODISELogo.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/prodiseappLogo.png",
@@ -22,7 +22,7 @@
       "package": "com.elviscruz30.mvg",
       "versionCode": 2,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/appMVGLogoAndroid.png",
+        "foregroundImage": "./assets/appPRODISELogoAndroid.png",
         "backgroundColor": "#ffffff"
       },
       "permissions": [
