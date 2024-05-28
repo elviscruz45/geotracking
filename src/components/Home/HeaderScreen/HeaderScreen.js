@@ -22,7 +22,6 @@ function HeaderScreenNoRedux(props) {
     return str?.charAt(0).toUpperCase() + str?.slice(1);
   }
   const regex = /@(.+?)\./i;
-
   useEffect(() => {
     let unsubscribe;
     if (props.email) {
@@ -32,7 +31,7 @@ function HeaderScreenNoRedux(props) {
 
       function fetchData() {
         let queryRef;
-        if (companyName !== "Ingeperu" && companyName !== "Maestranzaperu") {
+        if (companyName !== "Prodise") {
           queryRef = query(
             collection(db, "ServiciosAIT"),
             where(

@@ -83,8 +83,7 @@ export const mineraCorreosList = {
   minsur: "Minsur",
   lasbambas: "Las Bambas",
   antapacay: "Antapacay",
-  ingeperu: "Interno",
-  maestranzaperu: "Interno",
+  prodise: "Interno",
 };
 
 // export const mineraCorreosList2 = {

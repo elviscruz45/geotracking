@@ -28,8 +28,8 @@ export function ProfileStack() {
         headerTitle: () => (
           <TouchableOpacity onPress={() => home_screen()}>
             <Image
-              source={require("../../assets/appMVGLogo.png")}
-              style={{ width: 25, height: 30 }}
+              source={require("../../assets/prodiseappLogo.png")}
+              style={{ width: 125, height: 30 }}
             />
           </TouchableOpacity>
         ),

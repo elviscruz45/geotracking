@@ -51,7 +51,7 @@ function HomeScreen(props) {
 
       async function fetchData() {
         let queryRef;
-        if (companyName !== "Ingeperu" && companyName !== "Maestranzaperu") {
+        if (companyName !== "Prodise") {
           queryRef = query(
             collection(db, "events"),
             limit(20),
@@ -296,8 +296,7 @@ function HomeScreen(props) {
                 </View>
 
                 <View style={[styles.row, styles.center]}>
-                  {(companyName === "Ingeperu" ||
-                    companyName === "Maestranzaperu") && (
+                  {companyName === "Prodise" && (
                     <Text style={{ marginLeft: 5, color: "#5B5B5B" }}>
                       {"Visibilidad:  "}
                       {item.visibilidad}
