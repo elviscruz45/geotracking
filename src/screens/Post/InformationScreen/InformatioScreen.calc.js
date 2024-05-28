@@ -36,9 +36,7 @@ export const useUserData = (email, saveTotalUsers, getTotalUsers) => {
 
           const getDocs1 = await getDocs(queryRef1);
           const getDocs2 =
-            companyName === "ingeperu" || companyName === "maestranzaperu"
-              ? await getDocs(queryRef2)
-              : null;
+            companyName === "prodise" ? await getDocs(queryRef2) : null;
 
           const lista = [];
 

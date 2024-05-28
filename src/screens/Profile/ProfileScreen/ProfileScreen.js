@@ -16,7 +16,6 @@ import { useNavigation } from "@react-navigation/native";
 import { screen } from "../../../utils";
 import { ProfileDateScreen } from "../../../components/Profile/ProfileDateScreen/ProfileDateScreen";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function ProfileScreen(props) {
   function capitalizeFirstLetter(str) {
@@ -42,8 +41,7 @@ function ProfileScreen(props) {
     await signOut(auth);
     props.update_firebaseUserUid("");
     props.update_firebaseProfile("");
-    await AsyncStorage.setItem("userUidPersist", "");
-    await AsyncStorage.setItem("profilePersist", "");
+
   };
   const onCloseOpenModal = () => setShowModal((prevState) => !prevState);
 

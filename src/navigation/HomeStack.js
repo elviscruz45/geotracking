@@ -14,7 +14,6 @@ import { update_firebaseEmail } from "../actions/profile";
 import { update_firebaseUid } from "../actions/profile";
 import { saveActualAITServicesFirebaseGlobalState } from "../actions/post";
 import Toast from "react-native-toast-message";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function HomeStack(props) {
   const Stack = createNativeStackNavigator();

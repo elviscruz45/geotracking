@@ -18,10 +18,7 @@ const MultiSelectExampleBare = (props) => {
             value: `${object.displayNameform}\n(${object.email})`,
             email: object.email,
           };
-          if (
-            objectver2.email.includes("ingeperu") ||
-            objectver2.email.includes("maestranzaperu")
-          ) {
+          if (objectver2.email.includes("prodise")) {
             post_array.push(objectver2);
           }
         });

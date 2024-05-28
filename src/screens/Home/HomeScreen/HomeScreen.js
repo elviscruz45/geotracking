@@ -29,8 +29,6 @@ import { updateAITServicesDATA } from "../../../actions/home";
 import { mineraCorreosList } from "../../../utils/MineraList";
 import Toast from "react-native-toast-message";
 
-// import AsyncStorage from "@react-native-async-storage/async-storage";
-
 function HomeScreen(props) {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

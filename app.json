@@ -3,12 +3,12 @@
     "name": "MVGTracking",
     "slug": "MVG-Tracking",
     "description": "high perfomance for your industry",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/appMVGLogo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/appMVGLogo.png",
+      "image": "./assets/prodiseappLogo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,7 +16,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.elviscruz30.mvg",
-      "buildNumber": "2"
+      "buildNumber": "3"
     },
     "android": {
       "package": "com.elviscruz30.mvg",

@@ -11,24 +11,24 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 //--------------Teso-fmi-prodise--------------
-// const firebaseConfig = {
-//   apiKey: "AIzaSyCV-_gjkUhNKX0x0J0qZRQmhTUsziN7k4I",
-//   authDomain: "teseo-fmi-prodise.firebaseapp.com",
-//   projectId: "teseo-fmi-prodise",
-//   storageBucket: "teseo-fmi-prodise.appspot.com",
-//   messagingSenderId: "629895390761",
-//   appId: "1:629895390761:web:6304c7338934889fac5e38",
-// };
-
-//--------------Teseo-MVG--------------elviscruz45@gmail.com-----
 const firebaseConfig = {
-  apiKey: "AIzaSyAoCOORUHRj93QcflPF2XoGJbA4zljiHTA",
-  authDomain: "teseo-mvg.firebaseapp.com",
-  projectId: "teseo-mvg",
-  storageBucket: "teseo-mvg.appspot.com",
-  messagingSenderId: "603797920691",
-  appId: "1:603797920691:web:d2ffa670c4f4f5b65f09c6",
+  apiKey: "AIzaSyCV-_gjkUhNKX0x0J0qZRQmhTUsziN7k4I",
+  authDomain: "teseo-fmi-prodise.firebaseapp.com",
+  projectId: "teseo-fmi-prodise",
+  storageBucket: "teseo-fmi-prodise.appspot.com",
+  messagingSenderId: "629895390761",
+  appId: "1:629895390761:web:6304c7338934889fac5e38",
 };
+
+// //--------------Teseo-MVG--------------elviscruz45@gmail.com-----
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAoCOORUHRj93QcflPF2XoGJbA4zljiHTA",
+//   authDomain: "teseo-mvg.firebaseapp.com",
+//   projectId: "teseo-mvg",
+//   storageBucket: "teseo-mvg.appspot.com",
+//   messagingSenderId: "603797920691",
+//   appId: "1:603797920691:web:d2ffa670c4f4f5b65f09c6",
+// };
 
 // ---------Prueba------
 

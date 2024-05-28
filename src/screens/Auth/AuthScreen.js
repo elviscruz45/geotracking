@@ -14,10 +14,12 @@ export function AuthScreen(props) {
   return (
     <KeyboardAwareScrollView>
       <View style={styles.image}>
+        <Text></Text>
+        <Text></Text>
         <ImageExpo
           testID="image"
-          source={require("../../../assets/MVG.jpeg")}
-          style={{ width: 120, height: 130 }}
+          source={require("../../../assets/prodiseappLogo.png")}
+          style={{ width: 350, height: 100 }}
           cachePolicy={"memory-disk"}
         />
         <Text></Text>
