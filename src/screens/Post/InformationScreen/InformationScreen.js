@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, KeyboardAvoidingView } from "react-native";
 import { Avatar, Button } from "@rneui/themed";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
@@ -244,7 +244,7 @@ function InformationScreen(props) {
   const imageSource = areaLists[indexareaList]?.image;
 
   return (
-    <KeyboardAwareScrollView
+    <KeyboardAvoidingView
       style={{ backgroundColor: "white" }} // Add backgroundColor here
     >
       <View style={styles.equipments}>
@@ -286,7 +286,7 @@ function InformationScreen(props) {
         onPress={formik.handleSubmit}
         loading={formik.isSubmitting}
       />
-    </KeyboardAwareScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
