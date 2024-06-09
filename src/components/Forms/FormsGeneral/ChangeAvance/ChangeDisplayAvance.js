@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { Input, Button } from "@rneui/themed";
 import { styles } from "./ChangeDisplayAvance.styles";
 import Toast from "react-native-toast-message";
+import { SelectExample } from "./Selection";
 
 export function ChangeDisplayAvance(props) {
   const { onClose, formik, setAvance } = props;
@@ -10,7 +11,18 @@ export function ChangeDisplayAvance(props) {
 
   return (
     <View>
-      <View style={styles.content}>
+      <SelectExample setText={setText} formik={formik} />
+      <Button
+        title="Aceptar"
+        containerStyle={styles.btnContainer}
+        buttonStyle={styles.btn}
+        onPress={() => {
+          setAvance(text.toString());
+          formik.setFieldValue("porcentajeAvance", text.toString());
+          onClose();
+        }}
+      />
+      {/* <View style={styles.content}>
         <Input
           value={text}
           placeholder="Avance de Ejecucion"
@@ -46,7 +58,7 @@ export function ChangeDisplayAvance(props) {
             }
           }}
         />
-      </View>
+      </View> */}
     </View>
   );
 }

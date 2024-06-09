@@ -52,6 +52,8 @@ export function AuthScreen(props) {
         <Text style={styles.btnRegister}>
           Powered by Teseo Software Company
         </Text>
+        <Text style={styles.btnRegister}>Version 1.0.20</Text>
+
         {/* <ImageExpo
           testID="image"
           source={require("../../../assets/appTeseoLogol.png")}

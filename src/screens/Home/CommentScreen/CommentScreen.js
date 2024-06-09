@@ -36,6 +36,7 @@ function CommentScreen(props) {
 
   const [postsComments, setPostsComments] = useState([]);
   const [comment, setComment] = useState("");
+  const [newImages, setNewImages] = useState([]);
 
   const navigation = useNavigation();
   const {
@@ -50,6 +51,7 @@ function CommentScreen(props) {
       (item) => item.idDocFirestoreDB === Item?.idDocFirestoreDB
     );
     setPostsComments(EventServiceITEM[0]?.comentariosUsuarios);
+    setNewImages(EventServiceITEM[0]?.newImages);
   }, [props.totalEventServiceAITLIST]);
 
   //---This is used to get the attached file in the post that contain an attached file---
@@ -227,7 +229,9 @@ function CommentScreen(props) {
         >
           {Item?.titulo}
         </Text>
+
         <Text></Text>
+
         <Text
           style={{
             paddingHorizontal: 5,
@@ -235,6 +239,29 @@ function CommentScreen(props) {
         >
           {Item?.comentarios}
         </Text>
+        <Text></Text>
+        <FlatList
+          style={{
+            backgroundColor: "white",
+            paddingTop: 10,
+            paddingVertical: 10,
+          }}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={newImages}
+          renderItem={({ item }) => {
+            return (
+              <View>
+                <ImageExpo
+                  source={{ uri: item }}
+                  style={styles.postPhoto2}
+                  cachePolicy={"memory-disk"}
+                />
+              </View>
+            );
+          }}
+          keyExtractor={(index) => `${index}`}
+        />
         <Text></Text>
 
         <View style={styles.commentContainer}>

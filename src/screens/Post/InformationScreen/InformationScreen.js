@@ -1,4 +1,4 @@
-import { View, Text, KeyboardAvoidingView } from "react-native";
+import { View, Text, KeyboardAvoidingView, ScrollView } from "react-native";
 import { Avatar, Button } from "@rneui/themed";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
@@ -33,6 +33,7 @@ import { Image as ImageExpo } from "expo-image";
 import Toast from "react-native-toast-message";
 
 function InformationScreen(props) {
+  const [moreImages, setMoreImages] = useState([]);
   const navigation = useNavigation();
   //fetching data from firebase to retrieve all users
   useUserData(props.email, props.saveTotalUsers, props.getTotalUsers);
@@ -62,11 +63,19 @@ function InformationScreen(props) {
 
         // upload the photo or an pickimage to firebase Storage
         const snapshot = await uploadImage(props.savePhotoUri);
-
         const imagePath = snapshot.metadata.fullPath;
-
         const imageUrl = await getDownloadURL(ref(getStorage(), imagePath));
 
+        //upload more Images to firebase Storage
+        newData.newImages = [];
+        for (let i = 0; i < moreImages.length; i++) {
+          const moreSnapshot = await uploadImage(moreImages[i]);
+          const moreImagePath = moreSnapshot.metadata.fullPath;
+          const moreImageUrl = await getDownloadURL(
+            ref(getStorage(), moreImagePath)
+          );
+          newData.newImages.push(moreImageUrl);
+        }
         //manage the file updated to ask for aprovals
         let imageUrlPDF;
         if (newData.pdfFile) {
@@ -176,6 +185,7 @@ function InformationScreen(props) {
           imageUrl: newData.imageUrl ?? "",
           nombrePerfil: newData.nombrePerfil ?? "",
           visibilidad: newData.visibilidad ?? "",
+          newImages: newData.newImages ?? [],
         };
 
         const updateDataLasEventPost = {
@@ -244,7 +254,7 @@ function InformationScreen(props) {
   const imageSource = areaLists[indexareaList]?.image;
 
   return (
-    <KeyboardAvoidingView
+    <KeyboardAwareScrollView
       style={{ backgroundColor: "white" }} // Add backgroundColor here
     >
       <View style={styles.equipments}>
@@ -279,14 +289,15 @@ function InformationScreen(props) {
 
       <TitleForms formik={formik} />
 
-      <GeneralForms formik={formik} />
+      <GeneralForms formik={formik} setMoreImages={setMoreImages} />
+
       <Button
         title="Agregar Evento"
         buttonStyle={styles.addInformation}
         onPress={formik.handleSubmit}
         loading={formik.isSubmitting}
       />
-    </KeyboardAvoidingView>
+    </KeyboardAwareScrollView>
   );
 }
 

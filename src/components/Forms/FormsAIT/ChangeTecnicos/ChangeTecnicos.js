@@ -14,7 +14,7 @@ export function ChangeTecnicos(props) {
         <Input
           value={text}
           testID="ChangeDisplayHH:Input"
-          placeholder="Horas Hombre en Cotizacion"
+          placeholder="# Tecnicos"
           // editable={true}
           keyboardType="numeric"
           onChangeText={(text) => setText(text)}

@@ -31,4 +31,12 @@ export const styles = StyleSheet.create({
   attachedFile: {
     marginLeft: 10,
   },
+  pickImagesButton: {
+    // flexDirection: "row",
+    // justifyContent: "space-between",
+    // alignItems: "center",
+    backgroundColor: "#2A3B76",
+    marginHorizontal: 90,
+    marginVertical: 10,
+  },
 });

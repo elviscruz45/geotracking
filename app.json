@@ -25,6 +25,7 @@
         "foregroundImage": "./assets/appPRODISELogoAndroid.png",
         "backgroundColor": "#ffffff"
       },
+      "softwareKeyboardLayoutMode": "pan",
       "permissions": [
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"

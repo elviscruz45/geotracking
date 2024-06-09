@@ -14,7 +14,7 @@ export function ChangeSupervisor(props) {
         <Input
           value={text}
           testID="ChangeDisplayHH:Input"
-          placeholder="Horas Hombre en Cotizacion"
+          placeholder="# Supervisores"
           // editable={true}
           keyboardType="numeric"
           onChangeText={(text) => setText(text)}

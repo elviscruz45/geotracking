@@ -485,7 +485,7 @@ export function AITForms(props) {
         />
         <Input
           value={formatNumber(supervisorSeguridad)}
-          placeholder="Supervisor Seguridad"
+          placeholder="# Supervisor Seguridad"
           editable={false}
           // errorMessage={formik.errors.HorasHombre}
           rightIcon={{
@@ -497,7 +497,7 @@ export function AITForms(props) {
         />
         <Input
           value={formatNumber(supervisor)}
-          placeholder="Supervisor"
+          placeholder="# Supervisor"
           editable={false}
           // errorMessage={formik.errors.HorasHombre}
           rightIcon={{
@@ -509,7 +509,7 @@ export function AITForms(props) {
         />
         <Input
           value={formatNumber(tecnicos)}
-          placeholder="Tecnicos"
+          placeholder="# Tecnicos"
           editable={false}
           // errorMessage={formik.errors.HorasHombre}
           rightIcon={{
@@ -521,7 +521,7 @@ export function AITForms(props) {
         />
         <Input
           value={formatNumber(horashombre)}
-          placeholder="Horas Hombre"
+          placeholder="# Horas Hombre"
           editable={false}
           // errorMessage={formik.errors.HorasHombre}
           rightIcon={{

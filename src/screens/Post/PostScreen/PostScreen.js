@@ -101,7 +101,6 @@ function PostScreen(props) {
       );
       props.savePhotoUri(resizedPhoto.uri);
       navigation.navigate(screen.post.form);
-
       setEquipment(null);
     }
   };

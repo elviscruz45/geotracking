@@ -1,4 +1,11 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  Button,
+  FlatList,
+} from "react-native";
 import React, { useState } from "react";
 import { styles } from "./GeneralForms.styles";
 import { Input } from "@rneui/themed";
@@ -15,9 +22,12 @@ import { ChangeDisplayVisibility } from "../../FormsGeneral/ChangeVisibility/Cha
 import { connect } from "react-redux";
 import { userTypeList } from "../../../../utils/userTypeList";
 import Toast from "react-native-toast-message";
+import * as ImagePicker from "expo-image-picker";
+import { Image as ImageExpo } from "expo-image";
+import * as ImageManipulator from "expo-image-manipulator";
 
 function GeneralFormsBare(props) {
-  const { formik } = props;
+  const { formik, setMoreImages } = props;
   const [pickedDocument, setPickedDocument] = useState(null);
   const [renderComponent, setRenderComponent] = useState(null);
   const [aprobadores, setAprobadores] = useState(null);
@@ -176,16 +186,47 @@ function GeneralFormsBare(props) {
     onCloseOpenModal();
   };
 
-  const handlesetAditional = () => {
-    if (props.profile?.userType === userTypeList.manager) {
-      setAditional(true);
-    } else {
-      Toast.show({
-        type: "error",
-        position: "bottom",
-        text1: "Solicitar Autorizacion al Gerente de Proyecto",
+  //method to retrieve the picture required in the event post (pick Imagen, take a photo)
+  const [images, setImages] = useState([]);
+  const pickImages = async () => {
+    console.log(images);
+
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      // allowsEditing: true,
+      allowsMultipleSelection: true,
+      selectionLimit: 7,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      const uriImages = [];
+
+      result.assets.map(async (item) => {
+        const resizedPhoto = await ImageManipulator.manipulateAsync(
+          item.uri,
+          [{ resize: { width: 800 } }],
+          { compress: 0.1, format: "jpeg", base64: true }
+        );
+        uriImages.push(resizedPhoto.uri);
       });
+
+      // setImages(result.assets ? [result.assets] : result.assets);
+      setImages(uriImages);
+      setMoreImages(uriImages);
     }
+
+    // const resizedPhoto = await ImageManipulator.manipulateAsync(
+    //   result.assets[0].uri,
+    //   [{ resize: { width: 800 } }],
+    //   { compress: 0.1, format: "jpeg", base64: true }
+    // );
+    // setImages(resizedPhoto.uri ? [resizedPhoto.uri] : resizedPhoto.selected);
+    // props.savePhotoUri(resizedPhoto.uri);
+    // navigation.navigate(screen.post.form);
+    // setEquipment(null);
+    // }
   };
 
   return (
@@ -288,6 +329,38 @@ function GeneralFormsBare(props) {
           />
         )}
       </View>
+      <View style={styles.pickImagesButton}>
+        <Button title="Agregar Imagenes" onPress={pickImages} />
+      </View>
+
+      <FlatList
+        style={{
+          backgroundColor: "white",
+          paddingTop: 10,
+          paddingVertical: 10,
+        }}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        data={images}
+        renderItem={({ item }) => {
+          return (
+            <View>
+              <ImageExpo
+                source={{ uri: item }}
+                style={{
+                  marginLeft: 20,
+                  width: 80,
+                  height: 80,
+                  // borderRadius: 80,
+                  // borderWidth: 0.3,
+                }}
+                cachePolicy={"memory-disk"}
+              />
+            </View>
+          );
+        }}
+        keyExtractor={(index) => `${index}`}
+      />
 
       <Modal show={showModal} close={onCloseOpenModal}>
         {renderComponent}
