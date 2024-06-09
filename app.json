@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "MVGTracking",
-    "slug": "MVG-Tracking",
+    "name": "ProdiceTracking",
+    "slug": "Prodice-Tracking",
     "description": "high perfomance for your industry",
-    "version": "1.0.3",
+    "version": "1.0.20",
     "orientation": "portrait",
     "icon": "./assets/appPRODISELogo.png",
     "userInterfaceStyle": "light",
@@ -15,11 +15,11 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.elviscruz30.mvg",
+      "bundleIdentifier": "com.elviscruz30.prodice",
       "buildNumber": "3"
     },
     "android": {
-      "package": "com.elviscruz30.mvg",
+      "package": "com.elviscruz30.prodice",
       "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/appPRODISELogoAndroid.png",
