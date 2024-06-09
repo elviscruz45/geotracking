@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ProdiceTracking",
-    "slug": "Prodice-Tracking",
+    "name": "ProdiseTracking",
+    "slug": "Prodise-Tracking",
     "description": "high perfomance for your industry",
     "version": "1.0.20",
     "orientation": "portrait",
@@ -15,11 +15,11 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.elviscruz30.prodice",
+      "bundleIdentifier": "com.elviscruz30.prodise",
       "buildNumber": "3"
     },
     "android": {
-      "package": "com.elviscruz30.prodice",
+      "package": "com.elviscruz30.prodise",
       "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/appPRODISELogoAndroid.png",
