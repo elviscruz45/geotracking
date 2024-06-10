@@ -257,46 +257,44 @@ function InformationScreen(props) {
     <KeyboardAwareScrollView
       style={{ backgroundColor: "white" }} // Add backgroundColor here
     >
-      <View style={styles.equipments}>
-        {props.actualServiceAIT?.photoServiceURL ? (
-          <ImageExpo
-            source={{ uri: props.actualServiceAIT?.photoServiceURL }}
-            style={styles.roundImage}
-            cachePolicy={"memory-disk"}
-          />
-        ) : (
-          <ImageExpo
-            source={imageSource}
-            style={styles.roundImage}
-            cachePolicy={"memory-disk"}
-          />
-        )}
-
-        <View>
-          <Text></Text>
-          <Text style={styles.name}>
-            {props.actualServiceAIT?.NombreServicio || "Titulo del Evento"}
-          </Text>
-          <Text style={styles.info}>
-            {"Area: "}
-            {props.actualServiceAIT?.AreaServicio}
-          </Text>
-          <Text style={styles.info}>
-            {"Tipo Servicio:  "} {props.actualServiceAIT?.TipoServicio}
-          </Text>
+      <View>
+        <View style={styles.equipments}>
+          {props.actualServiceAIT?.photoServiceURL ? (
+            <ImageExpo
+              source={{ uri: props.actualServiceAIT?.photoServiceURL }}
+              style={styles.roundImage}
+              cachePolicy={"memory-disk"}
+            />
+          ) : (
+            <ImageExpo
+              source={imageSource}
+              style={styles.roundImage}
+              cachePolicy={"memory-disk"}
+            />
+          )}
+          <View>
+            <Text></Text>
+            <Text style={styles.name}>
+              {props.actualServiceAIT?.NombreServicio || "Titulo del Evento"}
+            </Text>
+            <Text style={styles.info}>
+              {"Area: "}
+              {props.actualServiceAIT?.AreaServicio}
+            </Text>
+            <Text style={styles.info}>
+              {"Tipo Servicio:  "} {props.actualServiceAIT?.TipoServicio}
+            </Text>
+          </View>
         </View>
+        <TitleForms formik={formik} />
+        <GeneralForms formik={formik} setMoreImages={setMoreImages} />
+        <Button
+          title="Agregar Evento"
+          buttonStyle={styles.addInformation}
+          onPress={formik.handleSubmit}
+          loading={formik.isSubmitting}
+        />
       </View>
-
-      <TitleForms formik={formik} />
-
-      <GeneralForms formik={formik} setMoreImages={setMoreImages} />
-
-      <Button
-        title="Agregar Evento"
-        buttonStyle={styles.addInformation}
-        onPress={formik.handleSubmit}
-        loading={formik.isSubmitting}
-      />
     </KeyboardAwareScrollView>
   );
 }

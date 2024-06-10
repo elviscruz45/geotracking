@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     // flexDirection: "row",
     // justifyContent: "space-between",
     // alignItems: "center",
-    backgroundColor: "#2A3B76",
+    // backgroundColor: "#2A3B76",
     marginHorizontal: 90,
     marginVertical: 10,
   },

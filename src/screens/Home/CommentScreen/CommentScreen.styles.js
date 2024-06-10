@@ -84,7 +84,7 @@ export const styles = StyleSheet.create({
   Texticons: { alignItems: "center", marginLeft: 20 },
 
   postPhoto: {
-    height: windowWidth * 0.98,
+    height: windowWidth * 1.4,
     width: windowWidth * 0.98,
 
     marginTop: 0,
@@ -97,7 +97,7 @@ export const styles = StyleSheet.create({
     width: windowWidth * 0.98,
     margin: 5,
     marginTop: 0,
-    // borderRadius: 10,
+    borderRadius: 10,
     // borderWidth: 0.1,
     alignSelf: "center",
   },

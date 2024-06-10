@@ -5,6 +5,7 @@ import {
   Image,
   Button,
   FlatList,
+  KeyboardAvoidingView,
 } from "react-native";
 import React, { useState } from "react";
 import { styles } from "./GeneralForms.styles";
@@ -41,7 +42,8 @@ function GeneralFormsBare(props) {
   const [tipoFile, setTipoFile] = useState(null);
   const [visibilidad, setVisibilidad] = useState(null);
   const [shortNameFileUpdated, setShortNameFileUpdated] = useState("");
-
+  const [images, setImages] = useState([]);
+  console.log("images", images);
   //Data about the company belong this event
   const regex = /@(.+?)\./i;
   const companyName = props.email?.match(regex)?.[1] || "";
@@ -187,10 +189,7 @@ function GeneralFormsBare(props) {
   };
 
   //method to retrieve the picture required in the event post (pick Imagen, take a photo)
-  const [images, setImages] = useState([]);
   const pickImages = async () => {
-    console.log(images);
-
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       // allowsEditing: true,
@@ -199,23 +198,23 @@ function GeneralFormsBare(props) {
       aspect: [4, 3],
       quality: 1,
     });
+    let uriImages = [];
 
     if (!result.canceled) {
-      const uriImages = [];
-
-      result.assets.map(async (item) => {
+      const imageManipulationPromises = result.assets.map(async (item) => {
         const resizedPhoto = await ImageManipulator.manipulateAsync(
           item.uri,
           [{ resize: { width: 800 } }],
           { compress: 0.1, format: "jpeg", base64: true }
         );
-        uriImages.push(resizedPhoto.uri);
+        return resizedPhoto.uri;
       });
 
-      // setImages(result.assets ? [result.assets] : result.assets);
-      setImages(uriImages);
-      setMoreImages(uriImages);
+      uriImages = await Promise.all(imageManipulationPromises);
     }
+    setImages(uriImages);
+    setMoreImages(uriImages);
+    // setImages(result.assets ? [result.assets] : result.assets);
 
     // const resizedPhoto = await ImageManipulator.manipulateAsync(
     //   result.assets[0].uri,
@@ -230,8 +229,11 @@ function GeneralFormsBare(props) {
   };
 
   return (
-    <View>
-      <View style={styles.content}>
+    <>
+      <View
+        style={{ backgroundColor: "white" }} // Add backgroundColor here
+        enableOnAndroid={true}
+      >
         <Input
           value={etapa}
           placeholder="Etapa del Evento"
@@ -328,44 +330,45 @@ function GeneralFormsBare(props) {
             }}
           />
         )}
-      </View>
-      <View style={styles.pickImagesButton}>
-        <Button title="Agregar Imagenes" onPress={pickImages} />
-      </View>
 
-      <FlatList
-        style={{
-          backgroundColor: "white",
-          paddingTop: 10,
-          paddingVertical: 10,
-        }}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        data={images}
-        renderItem={({ item }) => {
-          return (
-            <View>
-              <ImageExpo
-                source={{ uri: item }}
-                style={{
-                  marginLeft: 20,
-                  width: 80,
-                  height: 80,
-                  // borderRadius: 80,
-                  // borderWidth: 0.3,
-                }}
-                cachePolicy={"memory-disk"}
-              />
-            </View>
-          );
-        }}
-        keyExtractor={(index) => `${index}`}
-      />
+        <View style={styles.pickImagesButton}>
+          <Button title="Agregar Imagenes" onPress={pickImages} />
+        </View>
+
+        <FlatList
+          style={{
+            backgroundColor: "white",
+            paddingTop: 10,
+            paddingVertical: 10,
+          }}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={images}
+          renderItem={({ item }) => {
+            return (
+              <View>
+                <ImageExpo
+                  source={{ uri: item }}
+                  style={{
+                    marginLeft: 20,
+                    width: 80,
+                    height: 80,
+                    // borderRadius: 80,
+                    // borderWidth: 0.3,
+                  }}
+                  // cachePolicy={"memory-disk"}
+                />
+              </View>
+            );
+          }}
+          keyExtractor={(index) => `${index}`}
+        />
+      </View>
 
       <Modal show={showModal} close={onCloseOpenModal}>
         {renderComponent}
       </Modal>
-    </View>
+    </>
   );
 }
 
