@@ -18,7 +18,7 @@ export function AuthScreen(props) {
         <Text></Text>
         <ImageExpo
           testID="image"
-          source={require("../../../assets/prodiseappLogo.png")}
+          source={require("../../../assets/southern.jpg")}
           style={{ width: 350, height: 100 }}
           cachePolicy={"memory-disk"}
         />
@@ -42,17 +42,17 @@ export function AuthScreen(props) {
         </Text> */}
       </View>
       <View style={styles.image}>
-        <ImageExpo
+        {/* <ImageExpo
           testID="image"
           source={require("../../../assets/appTeseoLogol.png")}
           style={{ width: 40, height: 45 }}
           cachePolicy={"memory-disk"}
-        />
-        <Text></Text>
+        /> */}
+        {/* <Text></Text>
         <Text style={styles.btnRegister}>
           Powered by Teseo Software Company
         </Text>
-        <Text style={styles.btnRegister}>Version 1.0.20</Text>
+        <Text style={styles.btnRegister}>Version 1.0.20</Text> */}
 
         {/* <ImageExpo
           testID="image"

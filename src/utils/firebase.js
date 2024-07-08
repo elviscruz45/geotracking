@@ -10,15 +10,27 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
-//--------------Teso-fmi-prodise--------------
+//--------------GeoTracking-------jarashirley76@gmail.com-------
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCV-_gjkUhNKX0x0J0qZRQmhTUsziN7k4I",
-  authDomain: "teseo-fmi-prodise.firebaseapp.com",
-  projectId: "teseo-fmi-prodise",
-  storageBucket: "teseo-fmi-prodise.appspot.com",
-  messagingSenderId: "629895390761",
-  appId: "1:629895390761:web:6304c7338934889fac5e38",
+  apiKey: "AIzaSyCcvB3a7O4_9kPv-kVdDMkLN8ntx5-vGBY",
+  authDomain: "geotracking-d71fc.firebaseapp.com",
+  projectId: "geotracking-d71fc",
+  storageBucket: "geotracking-d71fc.appspot.com",
+  messagingSenderId: "505091185715",
+  appId: "1:505091185715:web:a9ded44316fb1e8030d746",
 };
+
+//--------------Teso-fmi-prodise--------------
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCV-_gjkUhNKX0x0J0qZRQmhTUsziN7k4I",
+//   authDomain: "teseo-fmi-prodise.firebaseapp.com",
+//   projectId: "teseo-fmi-prodise",
+//   storageBucket: "teseo-fmi-prodise.appspot.com",
+//   messagingSenderId: "629895390761",
+//   appId: "1:629895390761:web:6304c7338934889fac5e38",
+// };
 
 // //--------------Teseo-MVG--------------elviscruz45@gmail.com-----
 // const firebaseConfig = {

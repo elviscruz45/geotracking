@@ -1,30 +1,28 @@
 {
   "expo": {
-    "name": "ProdiseTracking",
-    "slug": "Prodise-Tracking",
+    "name": "GeoTracking",
+    "slug": "Geo-Tracking",
     "description": "high perfomance for your industry",
     "version": "1.0.20",
     "orientation": "portrait",
-    "icon": "./assets/appPRODISELogo.png",
+    "icon": "./assets/southernLogoVer2.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/prodiseappLogo.png",
+      "image": "./assets/southern.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.elviscruz30.prodise",
+      "bundleIdentifier": "com.elviscruz30.geotraking",
       "buildNumber": "3"
     },
     "android": {
-      "package": "com.elviscruz30.prodise",
+      "package": "com.elviscruz30.geotraking",
       "versionCode": 2,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/appPRODISELogoAndroid.png",
+        "foregroundImage": "./assets/southernLogoVer2.png",
         "backgroundColor": "#ffffff"
       },
       "softwareKeyboardLayoutMode": "pan",
