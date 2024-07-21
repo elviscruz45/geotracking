@@ -28,6 +28,7 @@ function GeneralFormsBare(props) {
   const { formik } = props;
   const [renderComponent, setRenderComponent] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [verprevio, setVerprevio] = useState(true);
 
   //calculo de Ley de Cobre
   let LeyCobre =
@@ -334,13 +335,26 @@ function GeneralFormsBare(props) {
         <Text></Text>
         <Text style={styles.subtitleForm}>Previsualizacion</Text>
         <Text></Text>
+
+        {verprevio && (
+          <Text
+            style={{ marginHorizontal: 10 }}
+            onPress={() => {
+              formik.setFieldValue("previa", previsualizacion);
+              setVerprevio(false);
+            }}
+          >
+            {previsualizacion.length > 0 ? previsualizacion : ""}
+          </Text>
+        )}
         <Input
-          value={previsualizacion.length > 0 ? previsualizacion : ""}
+          value={formik.values.previa}
           inputContainerStyle={styles.textArea2}
-          placeholder="Previsualizacion"
           multiline={true}
           editable={true}
-          // errorMessage={formik.errors.etapa}
+          onChangeText={(text) => {
+            formik.setFieldValue("previa", text);
+          }}
         />
       </View>
       <Modal show={showModal} close={onCloseOpenModal}>

@@ -9,6 +9,7 @@ import {
   where,
   getDocs,
   orderBy,
+  limit,
 } from "firebase/firestore";
 import { db } from "../../../utils";
 import { screen } from "../../../utils";
@@ -38,6 +39,7 @@ function ItemScreenNotRedux(props) {
         const queryRef1 = query(
           collection(db, "events"),
           where("IDSondaje", "==", Item),
+          limit(5),
           orderBy("createdAt", "desc")
         );
         const getDocs1 = await getDocs(queryRef1);
@@ -129,12 +131,25 @@ function ItemScreenNotRedux(props) {
 
           <View style={[styles.row, styles.center]}>
             <View>
+              <Text></Text>
+              <Text></Text>
+              <Text></Text>
+              <Text></Text>
+              <Text></Text>
+              <Text></Text>
+
               <CircularProgress
                 imageStyle={styles.roundImage}
                 titulo={sondaje.NombreServicio}
               />
             </View>
             <TouchableOpacity onPress={() => goToEditAITScreen(sondaje)}>
+              <Text></Text>
+              <Text></Text>
+              <Text></Text>
+              <Text></Text>
+              <Text></Text>
+              <Text></Text>
               <View style={{ marginRight: "2%" }}>
                 <Image
                   source={require("../../../../assets/editIcon2.png")}
@@ -173,6 +188,21 @@ function ItemScreenNotRedux(props) {
               </Text>
               <Text style={styles.info}>
                 {"Sector:  "} {sondaje.Sector}
+              </Text>
+              <Text style={styles.info}>
+                {"Responsable:  "} {sondaje.Responsable}
+              </Text>
+              <Text style={styles.info}>
+                {"Máquina:  "} {sondaje.Maquina}
+              </Text>
+              <Text style={styles.info}>
+                {"Cota:  "} {sondaje.Cota}
+              </Text>
+              <Text style={styles.info}>
+                {"Coordinada 1:  "} {sondaje.Coord1}
+              </Text>
+              <Text style={styles.info}>
+                {"Coordinada 2:  "} {sondaje.Coord2}
               </Text>
             </View>
           </View>
