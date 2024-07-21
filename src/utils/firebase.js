@@ -10,7 +10,19 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
-//--------------GeoTracking-------jarashirley76@gmail.com-------
+// --------------GeoTracking2-------jarashirley76@gmail.com-------
+
+// Your web app's Firebase configuration
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCA5ii92c6MImLwiBHGKsC-HmfVE0Zvdwk",
+//   authDomain: "geotracking2-e976d.firebaseapp.com",
+//   projectId: "geotracking2-e976d",
+//   storageBucket: "geotracking2-e976d.appspot.com",
+//   messagingSenderId: "690889183441",
+//   appId: "1:690889183441:web:33cdca411d7bf8effc35f0",
+// };
+
+// --------------GeoTracking-------jarashirley76@gmail.com-------
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -22,7 +34,7 @@ const firebaseConfig = {
   appId: "1:505091185715:web:a9ded44316fb1e8030d746",
 };
 
-//--------------Teso-fmi-prodise--------------
+// // --------------Teso-fmi-prodise--------------
 // const firebaseConfig = {
 //   apiKey: "AIzaSyCV-_gjkUhNKX0x0J0qZRQmhTUsziN7k4I",
 //   authDomain: "teseo-fmi-prodise.firebaseapp.com",

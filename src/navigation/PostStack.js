@@ -39,8 +39,8 @@ function PostStackBare(props) {
         headerTitle: () => (
           <TouchableOpacity onPress={() => home_screen()}>
             <Image
-              source={require("../../assets/prodiseappLogo.png")}
-              style={{ width: 125, height: 30 }}
+              source={require("../../assets/southern.jpg")}
+              style={{ width: 150, height: 40 }}
             />
           </TouchableOpacity>
         ),

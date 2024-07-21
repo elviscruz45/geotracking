@@ -24,7 +24,6 @@ import {
 import { db } from "../../../utils";
 
 export const CircularProgress = ({
-  imageSourceDefault,
   imageStyle,
   avance,
   idait,
@@ -76,45 +75,6 @@ export const CircularProgress = ({
 
   return (
     <>
-      {/* <Svg
-        style={
-          Platform.OS === "ios"
-            ? { position: "absolute", top: -45, left: -45, zIndex: -100 }
-            : { position: "absolute", top: -41, left: -50, zIndex: -100 }
-        }
-        width="200%"
-        height="200%"
-      >
-        <VictoryPie
-          standalone={false}
-          // animate={{ duration: 1000 }}
-          width={180}
-          height={180}
-          data={data}
-          innerRadius={44}
-          // cornerRadius={80}
-          labels={() => null}
-          style={{
-            data: {
-              fill: ({ datum }) => {
-                const color =
-                  datum.y < 20
-                    ? "limegreen"
-                    : datum.y < 40
-                    ? "limegreen"
-                    : datum.y < 60
-                    ? "limegreen"
-                    : datum.y < 80
-                    ? "limegreen"
-                    : datum.y < 100
-                    ? "green"
-                    : "blue";
-                return datum.x === 1 ? color : "transparent";
-              },
-            },
-          }}
-        />
-      </Svg> */}
       <Avatar
         style={
           Platform.OS === "ios"
@@ -130,7 +90,7 @@ export const CircularProgress = ({
               }
         }
       >
-        <Avatar.Accessory size={30} onPress={changeAvatar} />
+        {/* <Avatar.Accessory size={30} onPress={changeAvatar} /> */}
       </Avatar>
       {image ? (
         <ImageExpo
@@ -161,38 +121,9 @@ export const CircularProgress = ({
                 }
           }
         />
-      ) : imageSourceDefault ? (
-        <ImageExpo
-          source={imageSourceDefault}
-          style={
-            Platform.OS === "ios"
-              ? {
-                  // alignContent: "center",
-                  marginLeft: "5%",
-                  marginTop: "5%",
-                  width: 80,
-                  height: 80,
-                  borderRadius: 80,
-                  borderWidth: 0.3,
-
-                  // alignSelf: "center",
-                }
-              : {
-                  // alignContent: "center",
-                  marginLeft: "0%",
-                  marginTop: "11%",
-                  width: 80,
-                  height: 80,
-                  borderRadius: 80,
-                  borderWidth: 0.3,
-
-                  // alignSelf: "center",
-                }
-          }
-        />
       ) : (
         <ImageExpo
-          source={imageSourceDefault || require("../../../../assets/icon1.png")}
+          source={require("../../../../assets/perforadora.jpg")}
           style={
             Platform.OS === "ios"
               ? {

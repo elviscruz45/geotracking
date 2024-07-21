@@ -4,7 +4,7 @@ import { styles } from "./AddForms.styles";
 import { Input, Button } from "@rneui/themed";
 import * as DocumentPicker from "expo-document-picker";
 import { Modal } from "../../../shared/Modal/Modal";
-import { ChangeDisplayFileTipo } from "../../FormsGeneral/ChangeFIleTipo/ChangeDisplayFileTipo";
+// import { ChangeDisplayFileTipo } from "../../FormsGeneral/ChangeFIleTipo/ChangeDisplayFileTipo";
 import { connect } from "react-redux";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./AddForms.data";

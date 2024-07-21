@@ -31,14 +31,10 @@ function HeaderScreenNoRedux(props) {
 
       function fetchData() {
         let queryRef;
-        if (companyName !== "Prodise") {
+        if (companyName !== "Southernperu") {
           queryRef = query(
-            collection(db, "ServiciosAIT"),
-            where(
-              "AvanceAdministrativoTexto",
-              "!=",
-              "Contratista-Fin servicio"
-            ),
+            collection(db, "Sondaje"),
+
             where(
               "EmpresaMinera",
               "==",
@@ -47,12 +43,7 @@ function HeaderScreenNoRedux(props) {
           );
         } else {
           queryRef = query(
-            collection(db, "ServiciosAIT"),
-            where(
-              "AvanceAdministrativoTexto",
-              "!=",
-              "Contratista-Fin servicio"
-            ),
+            collection(db, "Sondaje"),
             where("companyName", "==", companyName)
           );
         }

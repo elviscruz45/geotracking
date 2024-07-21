@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, TouchableOpacity, FlatList, Text } from "react-native";
+import { View, TouchableOpacity, FlatList, Text, Image } from "react-native";
 import { Button } from "@rneui/themed";
 import { getAuth, signOut } from "firebase/auth";
 import { ConnectedInfoUser } from "../../../components/Account";
@@ -16,6 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 import { screen } from "../../../utils";
 import { ProfileDateScreen } from "../../../components/Profile/ProfileDateScreen/ProfileDateScreen";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { getExcelReportData } from "../../../utils/excelData";
 
 function ProfileScreen(props) {
   function capitalizeFirstLetter(str) {
@@ -32,6 +33,7 @@ function ProfileScreen(props) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [removeFilter, setRemoveFilter] = useState(true);
+  const [data, setData] = useState();
 
   const navigation = useNavigation();
 
@@ -41,7 +43,6 @@ function ProfileScreen(props) {
     await signOut(auth);
     props.update_firebaseUserUid("");
     props.update_firebaseProfile("");
-
   };
   const onCloseOpenModal = () => setShowModal((prevState) => !prevState);
 
@@ -52,53 +53,13 @@ function ProfileScreen(props) {
     setShowModal(true);
   };
 
-  //Changing the value to activate again the filter to rende the posts
-  const filter = (start, end) => {
-    setStartDate(start);
-    setEndDate(end);
-  };
-  const quitfilter = () => {
-    setRemoveFilter((prev) => !prev);
-    setStartDate(null);
-    setEndDate(null);
-  };
-
   useEffect(() => {
-    let q;
-    if (startDate && endDate) {
-      async function fetchData() {
-        q = query(
-          collection(db, "events"),
-          orderBy("createdAt", "desc"),
-          where("createdAt", ">=", startDate),
-          where("createdAt", "<=", endDate),
-          where("emailPerfil", "==", props.email)
-        );
-
-        try {
-          const querySnapshot = await getDocs(q);
-          const lista = [];
-          querySnapshot.forEach((doc) => {
-            lista.push(doc.data());
-          });
-
-          setPost(lista.slice(0, 100));
-        } catch (error) {
-          console.error("Error fetching data: ", error);
-        }
-      }
-
-      fetchData();
-    }
-  }, [startDate, endDate]);
-
-  const comentPost = (item) => {
-    navigation.navigate(screen.home.tab, {
-      screen: screen.home.comment,
-      params: { Item: item },
-    });
-  };
-
+    setData(
+      props.servicesData?.filter(
+        (item) => item.companyName?.toUpperCase() === company
+      )
+    );
+  }, []);
   return (
     <>
       <KeyboardAwareScrollView
@@ -132,50 +93,12 @@ function ProfileScreen(props) {
         <Text></Text>
         <Text></Text>
 
-        <ProfileDateScreen
-          filterButton={filter}
-          quitFilterButton={quitfilter}
-        />
-
-        {post ? (
-          <FlatList
-            data={post}
-            scrollEnabled={false}
-            renderItem={({ item, index }) => {
-              return (
-                <TouchableOpacity onPress={() => comentPost(item)}>
-                  <View>
-                    <View style={styles.equipments2}>
-                      <ImageExpo
-                        source={{ uri: item.fotoPrincipal }}
-                        style={styles.image2}
-                        cachePolicy={"memory-disk"}
-                      />
-                      <View style={{ marginLeft: 5 }}>
-                        <Text style={styles.name2}>
-                          {item.AITNombreServicio}
-                        </Text>
-                        <Text style={styles.name2}>
-                          {"Evento: "}
-                          {item.titulo}
-                        </Text>
-                        <Text style={styles.info2}>{item.comentarios}</Text>
-                        <Text style={styles.info2}>
-                          {item.fechaPostFormato}
-                        </Text>
-                      </View>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              );
-            }}
-            keyExtractor={(item, index) => `${index}-${item.fechaPostFormato}`}
+        <TouchableOpacity onPress={() => getExcelReportData(data)}>
+          <Image
+            source={require("../../../../assets/excel2.png")}
+            style={styles.excel}
           />
-        ) : (
-          <Text style={{ alignSelf: "center" }}>
-            No hay eventos personales entre las fechas dadas
-          </Text>
-        )}
+        </TouchableOpacity>
       </KeyboardAwareScrollView>
       <Modal show={showModal} close={onCloseOpenModal}>
         {renderComponent}

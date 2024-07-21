@@ -150,7 +150,7 @@ export const styles = StyleSheet.create({
     color: "grey",
   },
   textdetail: {
-    width: windowWidth * 0.65,
+    width: windowWidth * 0.6,
 
     marginLeft: 5,
     marginRight: 35,

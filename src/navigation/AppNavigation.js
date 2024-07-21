@@ -26,11 +26,11 @@ export function AppNavigation() {
         component={ConnectedHomeStack}
         options={{ title: "Inicio" }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name={screen.report.tab}
         component={ReportStack}
         options={{ title: "Reportes" }}
-      />
+      /> */}
       <Tab.Screen
         name={screen.post.tab}
         component={PostStack}

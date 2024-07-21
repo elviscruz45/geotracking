@@ -7,76 +7,55 @@ import {
   FlatList,
   KeyboardAvoidingView,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styles } from "./GeneralForms.styles";
 import { Input } from "@rneui/themed";
 import * as DocumentPicker from "expo-document-picker";
 import { Modal } from "../../../shared/Modal/Modal";
-import { ChangeDisplayEtapa } from "../../FormsGeneral/ChangeEtapa/ChangeDisplayEtapa";
-import { ChangeDisplayAvance } from "../../FormsGeneral/ChangeAvance/ChangeDisplayAvance";
-import { ChangeDisplayAprobadores } from "../../FormsGeneral/ChangeAprobadores/ChangeDisplayAprobadores";
-import { ChangeDisplayMonto } from "../../FormsGeneral/ChangeNumeroMonto/ChangeDisplayMonto";
-import { ChangeDisplayFechaFin } from "../../FormsGeneral/ChangeFechaFin/ChangeDisplayFechaFin";
-import { ChangeDisplayHH } from "../../FormsGeneral/ChangeNumeroHH/ChangeDisplayHH";
-import { ChangeDisplayFileTipo } from "../../FormsGeneral/ChangeFIleTipo/ChangeDisplayFileTipo";
-import { ChangeDisplayVisibility } from "../../FormsGeneral/ChangeVisibility/ChangeDisplayVisibility";
+import { ChangeDisplayFechaInicio } from "../../FormsGeneral/ChangeFechaInicio/ChangeDisplayFechaInicio";
+import { ChangeDisplayLitologia } from "../../FormsGeneral/ChangeLitologia/ChangeDisplayLitologia";
+import { ChangeDisplayColor } from "../../FormsGeneral/ChangeColor/ChangeDisplayColor";
+import { ChangeDisplayTextura } from "../../FormsGeneral/ChangeTextura/ChangeDisplayTextura";
+import { ChangeDisplayFraccionamiento } from "../../FormsGeneral/ChangeFraccionamiento/ChangeDisplayFraccionamiento";
+import { ChangeDisplayAlteracion } from "../../FormsGeneral/ChangeAlteracion/ChangeDisplayAlteracion";
+import { ChangeDisplayVenillas } from "../../FormsGeneral/ChangeVenillas/ChangeDisplayVenillas";
+import { ChangeDisplayMineralizacion } from "../../FormsGeneral/ChangeMineralizacion/ChangeDisplayMineralizacion";
+
 import { connect } from "react-redux";
-import { userTypeList } from "../../../../utils/userTypeList";
 import Toast from "react-native-toast-message";
-import * as ImagePicker from "expo-image-picker";
-import { Image as ImageExpo } from "expo-image";
-import * as ImageManipulator from "expo-image-manipulator";
 
 function GeneralFormsBare(props) {
-  const { formik, setMoreImages } = props;
-  const [pickedDocument, setPickedDocument] = useState(null);
+  const { formik } = props;
   const [renderComponent, setRenderComponent] = useState(null);
-  const [aprobadores, setAprobadores] = useState(null);
-  const [etapa, setEtapa] = useState(null);
-  const [avance, setAvance] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [fechafin, setFechafin] = useState(null);
-  const [monto, setMonto] = useState(null);
-  const [horashombre, setHorashombre] = useState(null);
-  const [aditional, setAditional] = useState(false);
-  const [tipoFile, setTipoFile] = useState(null);
-  const [visibilidad, setVisibilidad] = useState(null);
-  const [shortNameFileUpdated, setShortNameFileUpdated] = useState("");
-  const [images, setImages] = useState([]);
-  console.log("images", images);
-  //Data about the company belong this event
-  const regex = /@(.+?)\./i;
-  const companyName = props.email?.match(regex)?.[1] || "";
 
-  // //configuring the name of the pdf file to make it readable
-  // let shortNameFile = "";
+  //calculo de Ley de Cobre
+  let LeyCobre =
+    0.35 *
+    formik.values.porcentajeMin *
+    ((10 - formik.values.calcopiritaX) / 10);
+
+  //previsualizacion
+  previsualizacion = `${formik.values.litologia}, color ${
+    formik.values.color
+  }, de textura ${formik.values.textura} ${
+    formik.values.fraccionamiento
+  } fracturamiento,${formik.values.alteracion},${
+    formik.values.venillas
+  }, mineralizacion total de sulfuros  ${
+    formik.values.porcentajeMin
+  }% principalmente Pirita en diseminado y venillas${LeyCobre}% .Ratio Pirita/Calcopirita (${
+    formik.values.calcopiritaX
+  }/${10 - formik.values.calcopiritaX}) . Ley estimada de CuT ${LeyCobre}% `;
 
   //algorith to pick a pdf File to attach to the event
-  const pickDocument = async () => {
-    try {
-      const result = await DocumentPicker.getDocumentAsync({
-        // type: "application/pdf",
-        copyToCacheDirectory: false,
-      });
-      if (result.assets) {
-        setShortNameFileUpdated(result?.assets[0]?.name);
-        formik.setFieldValue("pdfFile", result?.assets[0]?.uri);
-        formik.setFieldValue("FilenameTitle", result?.assets[0]?.name);
-      } else {
-        setShortNameFileUpdated("");
-      }
-    } catch (err) {
-      Toast.show({
-        type: "error",
-        position: "bottom",
-        text1: "Error al adjuntar el documento",
-      });
-    }
-  };
   const onCloseOpenModal = () => setShowModal((prevState) => !prevState);
 
   ///function to date format
   const formatdate = (item) => {
+    if (item === null) {
+      return "";
+    }
     const date = new Date(item);
     const monthNames = [
       "de enero del",
@@ -102,130 +81,56 @@ function GeneralFormsBare(props) {
     return fechaPostFormato;
   };
 
-  //function to format money
-  const formatNumber = (item) => {
-    const amount = item;
-    const formattedAmount = new Intl.NumberFormat("en-US").format(amount);
-    return formattedAmount;
-  };
-
   const selectComponent = (key) => {
-    if (key === "visibilidad") {
+    if (key === "FechaInicio") {
       setRenderComponent(
-        <ChangeDisplayVisibility
+        <ChangeDisplayFechaInicio onClose={onCloseOpenModal} formik={formik} />
+      );
+    }
+
+    if (key === "litologia") {
+      setRenderComponent(
+        <ChangeDisplayLitologia onClose={onCloseOpenModal} formik={formik} />
+      );
+    }
+
+    if (key === "color") {
+      setRenderComponent(
+        <ChangeDisplayColor onClose={onCloseOpenModal} formik={formik} />
+      );
+    }
+    if (key === "textura") {
+      setRenderComponent(
+        <ChangeDisplayTextura onClose={onCloseOpenModal} formik={formik} />
+      );
+    }
+    if (key === "fraccionamiento") {
+      setRenderComponent(
+        <ChangeDisplayFraccionamiento
           onClose={onCloseOpenModal}
           formik={formik}
-          setVisibilidad={setVisibilidad}
         />
       );
     }
-    if (key === "etapa") {
+    if (key === "alteracion") {
       setRenderComponent(
-        <ChangeDisplayEtapa
-          onClose={onCloseOpenModal}
-          formik={formik}
-          setEtapa={setEtapa}
-          setAprobadores={setAprobadores}
-          etapa={etapa}
-        />
+        <ChangeDisplayAlteracion onClose={onCloseOpenModal} formik={formik} />
       );
     }
-    if (key === "tipoFile") {
+    if (key === "venillas") {
       setRenderComponent(
-        <ChangeDisplayFileTipo
-          onClose={onCloseOpenModal}
-          formik={formik}
-          setTipoFile={setTipoFile}
-        />
+        <ChangeDisplayVenillas onClose={onCloseOpenModal} formik={formik} />
       );
     }
-    if (key === "porcentajeAvance") {
+    if (key === "mineralizacion") {
       setRenderComponent(
-        <ChangeDisplayAvance
+        <ChangeDisplayMineralizacion
           onClose={onCloseOpenModal}
           formik={formik}
-          setAvance={setAvance}
-        />
-      );
-    }
-    if (key === "aprobacion") {
-      setRenderComponent(
-        <ChangeDisplayAprobadores
-          onClose={onCloseOpenModal}
-          formik={formik}
-          setAprobadores={setAprobadores}
-          etapa={etapa}
-        />
-      );
-    }
-    if (key === "MontoModificado") {
-      setRenderComponent(
-        <ChangeDisplayMonto
-          onClose={onCloseOpenModal}
-          formik={formik}
-          setMonto={setMonto}
-        />
-      );
-    }
-    if (key === "NuevaFechaEstimada") {
-      setRenderComponent(
-        <ChangeDisplayFechaFin
-          onClose={onCloseOpenModal}
-          formik={formik}
-          setFechafin={setFechafin}
-        />
-      );
-    }
-    if (key === "HHModificado") {
-      setRenderComponent(
-        <ChangeDisplayHH
-          onClose={onCloseOpenModal}
-          formik={formik}
-          setHorashombre={setHorashombre}
         />
       );
     }
     onCloseOpenModal();
-  };
-
-  //method to retrieve the picture required in the event post (pick Imagen, take a photo)
-  const pickImages = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      // allowsEditing: true,
-      allowsMultipleSelection: true,
-      selectionLimit: 7,
-      aspect: [4, 3],
-      quality: 1,
-    });
-    let uriImages = [];
-
-    if (!result.canceled) {
-      const imageManipulationPromises = result.assets.map(async (item) => {
-        const resizedPhoto = await ImageManipulator.manipulateAsync(
-          item.uri,
-          [{ resize: { width: 800 } }],
-          { compress: 0.1, format: "jpeg", base64: true }
-        );
-        return resizedPhoto.uri;
-      });
-
-      uriImages = await Promise.all(imageManipulationPromises);
-    }
-    setImages(uriImages);
-    setMoreImages(uriImages);
-    // setImages(result.assets ? [result.assets] : result.assets);
-
-    // const resizedPhoto = await ImageManipulator.manipulateAsync(
-    //   result.assets[0].uri,
-    //   [{ resize: { width: 800 } }],
-    //   { compress: 0.1, format: "jpeg", base64: true }
-    // );
-    // setImages(resizedPhoto.uri ? [resizedPhoto.uri] : resizedPhoto.selected);
-    // props.savePhotoUri(resizedPhoto.uri);
-    // navigation.navigate(screen.post.form);
-    // setEquipment(null);
-    // }
   };
 
   return (
@@ -234,137 +139,210 @@ function GeneralFormsBare(props) {
         style={{ backgroundColor: "white" }} // Add backgroundColor here
         enableOnAndroid={true}
       >
+        <Text style={styles.subtitleForm}>General</Text>
+
         <Input
-          value={etapa}
-          placeholder="Etapa del Evento"
+          value={formatdate(formik.values.FechaInicio)}
+          placeholder="Fecha de Inicio"
+          multiline={false}
           editable={false}
-          errorMessage={formik.errors.etapa}
+          // errorMessage={formik.errors.FechaInicio}
           rightIcon={{
             type: "material-community",
             name: "arrow-right-circle-outline",
-            onPress: () => selectComponent("etapa"),
+            onPress: () => {
+              selectComponent("FechaInicio");
+            },
           }}
         />
-        {(etapa === "Contratista-Avance Ejecucion" ||
-          etapa === "Contratista-Solicitud Aprobacion Doc" ||
-          etapa === "Usuario-Aprobacion Doc" ||
-          etapa === "Contratista-Solicitud Ampliacion Servicio" ||
-          etapa === "Usuario-Aprobacion Ampliacion" ||
-          etapa === "Stand by" ||
-          etapa === "Cancelacion") && (
-          <Input
-            value={avance ? `${avance} %` : null}
-            placeholder="Avance de ejecucion (0 a 100)"
-            editable={false}
-            errorMessage={formik.errors.porcentajeAvance}
-            rightIcon={{
-              type: "material-community",
-              name: "arrow-right-circle-outline",
-              onPress: () => selectComponent("porcentajeAvance"),
-            }}
-          />
-        )}
-        {(etapa === "Usuario-Envio Solicitud Servicio" ||
-          etapa === "Contratista-Envio Cotizacion" ||
-          etapa === "Contratista-Solicitud Aprobacion Doc" ||
-          etapa === "Contratista-Solicitud Ampliacion Servicio" ||
-          etapa === "Contratista-Envio EDP") && (
-          <Input
-            value={aprobadores}
-            placeholder="Aprobador"
-            editable={false}
-            multiline={true}
-            errorMessage={formik.errors.aprobacion}
-            rightIcon={{
-              type: "material-community",
-              name: "arrow-right-circle-outline",
-              onPress: () => selectComponent("aprobacion"),
-            }}
-          />
-        )}
 
-        {/* <Text style={styles.subtitleForm}>Opcional</Text> */}
-
-        {companyName === "prodise" && (
-          <Input
-            value={visibilidad}
-            placeholder="Visibilidad del evento"
-            editable={false}
-            // errorMessage={formik.errors.visibilidad}
-            rightIcon={{
-              type: "material-community",
-              name: "arrow-right-circle-outline",
-              onPress: () => selectComponent("visibilidad"),
-            }}
-          />
-        )}
-
-        {(formik.values.etapa === "Usuario-Envio Solicitud Servicio" ||
-          formik.values.etapa === "Contratista-Solicitud Aprobacion Doc" ||
-          formik.values.etapa === "Contratista-Envio Cotizacion") && (
-          <Input
-            value={shortNameFileUpdated}
-            placeholder="Adjuntar PDF"
-            multiline={true}
-            editable={false}
-            rightIcon={{
-              type: "material-community",
-              name: "arrow-right-circle-outline",
-              onPress: () => {
-                pickDocument();
-              },
-            }}
-          />
-        )}
-
-        {shortNameFileUpdated && (
-          <Input
-            value={tipoFile}
-            placeholder="Tipo de Archivo Adjunto"
-            multiline={true}
-            editable={false}
-            rightIcon={{
-              type: "material-community",
-              name: "arrow-right-circle-outline",
-              onPress: () => selectComponent("tipoFile"),
-            }}
-          />
-        )}
-
-        <View style={styles.pickImagesButton}>
-          <Button title="Agregar Imagenes" onPress={pickImages} />
-        </View>
-
-        <FlatList
-          style={{
-            backgroundColor: "white",
-            paddingTop: 10,
-            paddingVertical: 10,
+        <Input
+          value={formik.values.MetrosLogueoInicio}
+          placeholder="Metros Inicio"
+          keyboardType="numeric"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("MetrosLogueoInicio", text);
           }}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          data={images}
-          renderItem={({ item }) => {
-            return (
-              <View>
-                <ImageExpo
-                  source={{ uri: item }}
-                  style={{
-                    marginLeft: 20,
-                    width: 80,
-                    height: 80,
-                    // borderRadius: 80,
-                    // borderWidth: 0.3,
-                  }}
-                  // cachePolicy={"memory-disk"}
-                />
-              </View>
-            );
+
+          // errorMessage={formik.errors.HorasHombre}
+        />
+        <Input
+          value={formik.values.MetrosLogueoFinal}
+          placeholder="Metros Final"
+          keyboardType="numeric"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("MetrosLogueoFinal", text);
           }}
-          keyExtractor={(index) => `${index}`}
+
+          // errorMessage={formik.errors.HorasHombre}
+        />
+
+        <Input
+          value={formik.values.MetrosRecepcionadoInicio}
+          placeholder="Metros Recepcionados Inicial"
+          keyboardType="numeric"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("MetrosRecepcionadoInicio", text);
+          }}
+
+          // errorMessage={formik.errors.HorasHombre}
+        />
+        <Input
+          value={formik.values.MetrosRecepcionadoFinal}
+          placeholder="Metros Recepcionados Final"
+          keyboardType="numeric"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("MetrosRecepcionadoFinal", text);
+          }}
+
+          // errorMessage={formik.errors.HorasHombre}
+        />
+        <Input
+          value={formik.values.CajaLogueoInicio}
+          placeholder="Caja Inicial"
+          keyboardType="numeric"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("CajaLogueoInicio", text);
+          }}
+
+          // errorMessage={formik.errors.HorasHombre}
+        />
+        <Input
+          value={formik.values.CajaLogueoFinal}
+          placeholder="Caja Final"
+          keyboardType="numeric"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("CajaLogueoFinal", text);
+          }}
+
+          // errorMessage={formik.errors.HorasHombre}
+        />
+        <Text></Text>
+        <Text style={styles.subtitleForm}>Descripcion Litologica</Text>
+        <Text></Text>
+
+        <Input
+          value={formik.values.litologia}
+          // inputContainerStyle={styles.textArea}
+          placeholder="Litologia"
+          multiline={true}
+          editable={true}
+          // errorMessage={formik.errors.etapa}
+          rightIcon={{
+            type: "material-community",
+            name: "arrow-right-circle-outline",
+            onPress: () => selectComponent("litologia"),
+          }}
+        />
+
+        <Input
+          value={formik.values.color}
+          // inputContainerStyle={styles.textArea}
+          placeholder="Color"
+          multiline={true}
+          editable={true}
+          // errorMessage={formik.errors.etapa}
+          rightIcon={{
+            type: "material-community",
+            name: "arrow-right-circle-outline",
+            onPress: () => selectComponent("color"),
+          }}
+        />
+
+        <Input
+          value={formik.values.textura}
+          // inputContainerStyle={styles.textArea}
+          placeholder="Textura"
+          multiline={true}
+          editable={true}
+          // errorMessage={formik.errors.etapa}
+          rightIcon={{
+            type: "material-community",
+            name: "arrow-right-circle-outline",
+            onPress: () => selectComponent("textura"),
+          }}
+        />
+
+        <Input
+          value={formik.values.fraccionamiento}
+          // inputContainerStyle={styles.textArea}
+          placeholder="Fraccionamiento"
+          multiline={true}
+          editable={true}
+          // errorMessage={formik.errors.etapa}
+          rightIcon={{
+            type: "material-community",
+            name: "arrow-right-circle-outline",
+            onPress: () => selectComponent("fraccionamiento"),
+          }}
+        />
+        <Input
+          value={formik.values.alteracion}
+          // inputContainerStyle={styles.textArea}
+          placeholder="Alteracion"
+          multiline={true}
+          editable={true}
+          // errorMessage={formik.errors.etapa}
+          rightIcon={{
+            type: "material-community",
+            name: "arrow-right-circle-outline",
+            onPress: () => selectComponent("alteracion"),
+          }}
+        />
+        <Input
+          value={formik.values.venillas}
+          // inputContainerStyle={styles.textArea}
+          placeholder="Venillas"
+          multiline={true}
+          editable={true}
+          // errorMessage={formik.errors.etapa}
+          rightIcon={{
+            type: "material-community",
+            name: "arrow-right-circle-outline",
+            onPress: () => selectComponent("venillas"),
+          }}
+        />
+
+        <Text></Text>
+        <Text style={styles.subtitleForm}>Calculo de mineralizacion</Text>
+        <Text></Text>
+
+        <Input
+          value={formik.values.porcentajeMin}
+          placeholder="Porcentaje de mineralizacion %"
+          keyboardType="numeric"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("porcentajeMin", text);
+          }}
+        />
+        <Input
+          value={formik.values.calcopiritaX}
+          placeholder="Valor de X (0-10)"
+          keyboardType="numeric"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("calcopiritaX", text);
+          }}
+        />
+        <Text></Text>
+        <Text style={styles.subtitleForm}>Previsualizacion</Text>
+        <Text></Text>
+        <Input
+          value={previsualizacion.length > 0 ? previsualizacion : ""}
+          inputContainerStyle={styles.textArea2}
+          placeholder="Previsualizacion"
+          multiline={true}
+          editable={true}
+          // errorMessage={formik.errors.etapa}
         />
       </View>
-
       <Modal show={showModal} close={onCloseOpenModal}>
         {renderComponent}
       </Modal>

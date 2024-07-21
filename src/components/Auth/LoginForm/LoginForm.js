@@ -52,6 +52,7 @@ function LoginForm(props) {
         );
 
         const user_uid = userCredential.user.uid;
+        console.log("user_uid", user_uid);
 
         const docRef = doc(db, "users", user_uid);
         console.log("docRef", docRef);

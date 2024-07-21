@@ -97,7 +97,7 @@ const HistoryScreenNoRedux = (props) => {
         const CompanySelectedHistory = capitalizeFirstLetter(
           company.toLowerCase()
         );
-        if (companyName !== "Prodise") {
+        if (companyName !== "Southernperu") {
           q = query(
             collection(db, "ServiciosAIT"),
             orderBy("createdAt", "desc"),
@@ -151,7 +151,7 @@ const HistoryScreenNoRedux = (props) => {
       >
         <Text></Text>
 
-        {companyName !== "Prodise" ? (
+        {companyName !== "Southernperu" ? (
           <TouchableOpacity onPress={() => update_Data()}>
             <Image
               source={require("../../../../assets/empresa.png")}
@@ -165,7 +165,7 @@ const HistoryScreenNoRedux = (props) => {
           />
         )}
 
-        { companyName === "Prodise" ? (
+        { companyName === "Southernperu" ? (
           <Text style={styles.company}>{companyName}</Text>
         ) : (
           <Text style={styles.company}>{company}</Text>

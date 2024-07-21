@@ -25,74 +25,11 @@ import { areaLists } from "../../../utils/areaList";
 import { saveTotalUsers } from "../../../actions/post";
 import Toast from "react-native-toast-message";
 import { Image as ImageExpo } from "expo-image";
-
+console.log("aaa");
 function AITNoReduxScreen(props) {
   const emptyimage = require("../../../../assets/splash.png");
   const navigation = useNavigation();
-  const [tituloserv, setTituloserv] = useState();
-  const [ait, setAit] = useState();
-  const [tiposerv, setTiposerv] = useState();
-  const [area, setArea] = useState();
 
-  //fetching data from firebase to retrieve all users
-
-  useEffect(() => {
-    // Function to fetch data from Firestore
-    if (props.email) {
-      const companyName = props.email?.match(/@(.+?)\./i)?.[1] || "Anonimo";
-      async function fetchData() {
-        try {
-          const queryRef1 = query(
-            collection(db, "users"),
-            where("companyName", "!=", companyName),
-            orderBy("email", "desc")
-          );
-
-          const queryRef2 = query(
-            collection(db, "users"),
-            where("companyName", "==", companyName),
-            orderBy("email", "desc")
-          );
-
-          const getDocs1 = await getDocs(queryRef1);
-          const getDocs2 =
-            companyName === "prodise"
-              ? await getDocs(queryRef2)
-              : null;
-          const lista = [];
-
-          // Process results from the first query
-          if (getDocs1) {
-            getDocs1.forEach((doc) => {
-              lista.push(doc.data());
-            });
-          }
-
-          // Process results from the second query
-          if (getDocs2) {
-            getDocs2.forEach((doc) => {
-              lista.push(doc.data());
-            });
-          }
-
-          // Save the merged results to the state or do any other necessary operations
-          props.saveTotalUsers(lista);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-          // Handle the error as needed
-        }
-      }
-      // Call the fetchData function when the component mounts
-
-      if (!props.getTotalUsers) {
-        fetchData();
-      }
-    }
-  }, [props.email]);
-
-  // find Index of areaList array where there is the image of the area to render the icon Avatar
-  const IndexObjectImageArea = areaLists.findIndex((obj) => obj.value === area);
-  const imageSource = areaLists[IndexObjectImageArea]?.image || emptyimage;
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
@@ -102,10 +39,13 @@ function AITNoReduxScreen(props) {
     validationSchema: validationSchema(),
     validateOnChange: false,
     onSubmit: async (formValue) => {
+      console.log("abc");
+
       try {
+        console.log("def");
+
         //retrieving data from Formik
         const newData = formValue;
-
         //Data about date time format
         const date = new Date();
         const monthNames = [
@@ -132,8 +72,6 @@ function AITNoReduxScreen(props) {
         newData.fechaPostISO = new Date().toISOString();
         newData.createdAt = new Date();
         newData.LastEventPosted = new Date();
-        newData.NuevaFechaEstimada = 0;
-        newData.fechaFinEjecucion = 0;
 
         //Photo of the service
         newData.photoServiceURL = "";
@@ -146,28 +84,17 @@ function AITNoReduxScreen(props) {
 
         //Data about the company belong this event
         const regex = /@(.+?)\./i;
+
         newData.companyName =
           capitalizeFirstLetter(props.email?.match(regex)?.[1]) || "Anonimo";
-        //Progress of Service
-        newData.AvanceEjecucion = 1;
-        // newData.AvanceAdministrativo = 0;
-        newData.AvanceAdministrativoTexto = "";
-        //Monto and HH updated in the proccess of the service
-        newData.HHModificado = 0;
-        newData.MontoModificado = 0;
-
         //Uploading data to Firebase and adding the ID firestore
-
-        const docRef = await addDoc(collection(db, "ServiciosAIT"), newData);
-        newData.idServiciosAIT = docRef.id;
-        const RefFirebase = doc(db, "ServiciosAIT", newData.idServiciosAIT);
+        const docRef = await addDoc(collection(db, "Sondaje"), newData);
+        newData.idSondaje = docRef.id;
+        const RefFirebase = doc(db, "Sondaje", newData.idSondaje);
         await updateDoc(RefFirebase, newData);
-
         // this hedlps to go to the begining of the process
         navigation.navigate(screen.post.post);
-        // navigation.navigate(screen.home.tab, {
-        //   screen: screen.home.home,
-        // });
+
         Toast.show({
           type: "success",
           position: "bottom",
@@ -188,40 +115,13 @@ function AITNoReduxScreen(props) {
       style={{ backgroundColor: "white" }} // Add backgroundColor here
     >
       <View style={styles.sectionForms}>
-        <ImageExpo
-          source={imageSource}
-          style={styles.roundImage}
-          cachePolicy={"memory-disk"}
-        />
-
-        <View>
-          <Text style={styles.name}>{tituloserv || "Titulo del servicio"}</Text>
-          <Text style={styles.info}>
-            {"AIT: "}
-            {ait}
-          </Text>
-          <Text style={styles.info}>
-            {"Tipo Servicio: "}
-            {tiposerv}
-          </Text>
-
-          <Text style={styles.info}>
-            {"Area: "}
-            {area}
-          </Text>
-        </View>
+        <View></View>
       </View>
       <View style={styles.sectionForms}></View>
 
-      <AITForms
-        formik={formik}
-        setTituloserv={setTituloserv}
-        setAit={setAit}
-        setTiposerv={setTiposerv}
-        setArea={setArea}
-      />
+      <AITForms formik={formik} />
       <Button
-        title="Agregar AIT"
+        title="Agregar Logeo"
         buttonStyle={styles.addInformation}
         onPress={formik.handleSubmit}
         loading={formik.isSubmitting}

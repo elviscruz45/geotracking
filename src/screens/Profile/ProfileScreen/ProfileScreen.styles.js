@@ -18,6 +18,13 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
   },
+  excel: {
+    width: 40,
+    height: 40,
+    alignSelf: "center",
+    flexDirection: "row",
+    // marginLeft: windowWidth * 0.4,
+  },
   roundImageUpload: {
     width: 50,
     height: 50,

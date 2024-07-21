@@ -37,6 +37,14 @@ export const styles = StyleSheet.create({
     margin: 5,
     borderColor: "black",
   },
+  roundImage1: {
+    width: "98%",
+    height: "55%",
+    // borderRadius: 20,
+    // borderWidth: 0.5,
+
+    borderColor: "black",
+  },
   roundImage5: { width: 60, height: 60, borderRadius: 30, marginLeft: 20 },
   textImage: { alignItems: "center" },
   Texticons: { alignItems: "center", marginLeft: 20 },

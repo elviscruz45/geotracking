@@ -71,7 +71,7 @@ export const CircularProgress = ({
         />
       ) : (
         <ImageExpo
-          source={imageSource || require("../../../../assets/icon1.png")}
+          source={imageSource || require("../../../../assets/perforadora.jpg")}
           style={{
             marginLeft: 20,
             width: 80,

@@ -71,7 +71,7 @@ export const GanttHistorial = (props) => {
               </View>
             </View>
             <View style={[styles.circle]}>
-              {matches[1] !== "prodise" ? (
+              {matches[1] !== "southernperu" ? (
                 <ImageExpo
                   // source={require("../../../../assets/smcv2.jpeg")}
                   source={item.icon}
@@ -92,7 +92,7 @@ export const GanttHistorial = (props) => {
 
                 <View style={styles.row}>
                   <ImageExpo
-                    source={{ uri: item.imageUrl }}
+                    source={{ uri: item.fotoUsuarioPerfil }}
                     cachePolicy={"memory-disk"}
                     style={{
                       width: 50,
@@ -101,7 +101,7 @@ export const GanttHistorial = (props) => {
                       marginLeft: 5,
                     }}
                   />
-                  <Text style={styles.textdetail}>{item.description}</Text>
+                  <Text style={styles.textdetail}> {item.previa}</Text>
                 </View>
                 <Text></Text>
                 <View style={styles.rowavanceNombre}>

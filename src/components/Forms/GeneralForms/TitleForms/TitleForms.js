@@ -29,12 +29,12 @@ function TitleFormsBare(props) {
 
   return (
     <View style={styles.equipments}>
-      <Image
+      {/* <Image
         source={{
           uri: props.savePhotoUri,
         }}
         style={styles.postPhoto}
-      />
+      /> */}
       <View>
         <Input
           value={titulo}

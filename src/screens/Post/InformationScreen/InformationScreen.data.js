@@ -1,27 +1,32 @@
+import { color } from "@rneui/base";
 import * as Yup from "yup";
 export function initialValues() {
   return {
-    titulo: "",
-    comentarios: "",
-    visibilidad: "Todos",
-    etapa: "",
-    porcentajeAvance: "0",
-    aprobacion: "",
-    pdfFile: "",
-    FilenameTitle: "",
-    MontoModificado: "0",
-    NuevaFechaEstimada: null,
-    HHModificado: "0",
-    tipoFile: "",
+    FechaInicio: null,
+    MetrosLogueoInicio: null,
+    MetrosLogueoFinal: null,
+    MetrosRecepcionadoInicio: null,
+    MetrosRecepcionadoFinal: null,
+    CajaLogueoInicio: null,
+    CajaLogueoFinal: null,
+    litologia: "",
+    color: "",
+    textura: "",
+    fraccionamiento: "",
+    alteracion: "",
+    venillas: "",
+    mineralizacion: "",
+    porcentajeMin: null,
+    calcopiritaX: null,
+    previa: "",
   };
 }
 
 export function validationSchema() {
   return Yup.object({
-    titulo: Yup.string().required("Campo obligatorio"),
-    comentarios: Yup.string().required("Campo obligatorio"),
-    etapa: Yup.string().required("Campo obligatorio"),
-
+    // titulo: Yup.string().required("Campo obligatorio"),
+    // comentarios: Yup.string().required("Campo obligatorio"),
+    // etapa: Yup.string().required("Campo obligatorio"),
     // porcentajeAvance: Yup.string().required("Campo obligatorio"),
     // aprobacion: Yup.string().required("Campo obligatorio"),
     // pdfFile: Yup.string().required("Campo obligatorio"),

@@ -10,6 +10,12 @@ export const styles = StyleSheet.create({
     padding: 0,
     margin: 0,
   },
+  textArea2: {
+    height: 150,
+    width: "100%",
+    padding: 0,
+    margin: 0,
+  },
   subtitleForm: {
     color: "#2A3B76",
     fontSize: 18,

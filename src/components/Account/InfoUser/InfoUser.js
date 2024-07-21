@@ -116,7 +116,7 @@ function InfoUser(props) {
         <Text> </Text>
         <Text> </Text>
 
-        {(props.profile?.userType === userTypeList.managerContratista ||
+        {/* {(props.profile?.userType === userTypeList.managerContratista ||
           props.profile?.userType === userTypeList.plannerContratista) && (
           <TouchableOpacity
             style={styles.btnContainer4}
@@ -127,10 +127,10 @@ function InfoUser(props) {
               style={styles.roundImageUpload2}
             />
           </TouchableOpacity>
-        )}
+        )} */}
 
         <Text> </Text>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.btnContainer4}
           onPress={() => goToApprovalScreen()}
         >
@@ -139,11 +139,11 @@ function InfoUser(props) {
             source={require("../../../../assets/bell1.png")}
             style={styles.roundImageUpload}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
-        {approvalListPending && (
+        {/* {approvalListPending && (
           <Text style={styles.bellNomber}>{approvalListPending.length}</Text>
-        )}
+        )} */}
       </View>
       <Modal testID="modal" show={showModal} close={onCloseOpenModal}>
         {renderComponent}

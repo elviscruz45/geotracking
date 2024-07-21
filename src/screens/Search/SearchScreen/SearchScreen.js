@@ -71,6 +71,7 @@ function SearchScreenNoRedux(props) {
 
   //this method is used to go to a screen to see the status of the item
   const selectAsset = (idServiciosAIT) => {
+    console.log("idServiciosAIT", idServiciosAIT);
     navigation.navigate(screen.search.tab, {
       screen: screen.search.item,
       params: { Item: idServiciosAIT },
@@ -132,7 +133,7 @@ function SearchScreenNoRedux(props) {
 
           return (
             <TouchableOpacity
-              onPress={() => selectAsset(item.idServiciosAIT)}
+              onPress={() => selectAsset(item.idSondaje)}
               style={{ backgroundColor: "white" }} // Add backgroundColor here
             >
               <View style={styles.equipments}>
@@ -145,13 +146,13 @@ function SearchScreenNoRedux(props) {
                 ) : (
                   <ImageExpo
                     source={
-                      imageSource || require("../../../../assets/icon1.png")
+                      imageSource ||
+                      require("../../../../assets/perforadora.jpg")
                     }
                     style={styles.image}
                     cachePolicy={"memory-disk"}
                   />
                 )}
-
                 <View>
                   <Text style={styles.name}>{item.NombreServicio}</Text>
                   <Text style={styles.info}>

@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   },
   textArea: {
     height: 100,
-    width: windowWidth * 0.55,
+    width: windowWidth * 0.95,
     height: windowWidth * 0.3,
     padding: 0,
     margin: 0,
@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   },
   equipments: {
     flexDirection: "row",
-    margin: 10,
+    // margin: 10,
   },
   postPhoto: {
     // height: 700,

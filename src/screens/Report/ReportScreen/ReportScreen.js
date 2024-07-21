@@ -59,7 +59,7 @@ const ReportScreenNoRedux = (props) => {
         ...new Set(props.servicesData?.map((item) => item.companyName)),
       ]);
     }
-    if (companyName === "PRODISE") {
+    if (companyName === "SOUTHERNPERU") {
       setCompany(companyName);
     }
   }, []);
@@ -122,7 +122,7 @@ const ReportScreenNoRedux = (props) => {
         >
           <Text></Text>
           <View style={{ flexDirection: "row", alignSelf: "center" }}>
-            {companyName !== "PRODISE" ? (
+            {companyName !== "SOUTHERNPERU" ? (
               <TouchableOpacity onPress={() => update_Data()}>
                 <Image
                   source={require("../../../../assets/empresa.png")}
@@ -152,7 +152,7 @@ const ReportScreenNoRedux = (props) => {
               />
             </TouchableOpacity>
           </View>
-          {companyName === "PRODISE" ? (
+          {companyName === "SOUTHERNPERU" ? (
             <Text style={styles.company}>{companyName}</Text>
           ) : (
             <Text style={styles.company}>{company}</Text>

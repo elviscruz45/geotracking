@@ -15,7 +15,6 @@ export function ChangeDisplayFechaFin(props) {
     const currentDate = selectedDate;
     setShow(false);
     setDate(currentDate);
-    setFechafin(currentDate);
     formik.setFieldValue("FechaFin", currentDate);
     onClose();
   };

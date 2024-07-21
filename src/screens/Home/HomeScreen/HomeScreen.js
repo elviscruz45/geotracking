@@ -51,7 +51,7 @@ function HomeScreen(props) {
 
       async function fetchData() {
         let queryRef;
-        if (companyName !== "Prodise") {
+        if (companyName !== "Southernperu") {
           queryRef = query(
             collection(db, "events"),
             limit(20),
@@ -192,26 +192,30 @@ function HomeScreen(props) {
   if (isLoading) {
     return <LoadingSpinner />;
   }
-  if (
-    posts?.length === 0 ||
-    !props.email ||
-    !props.user_photo ||
-    !companyName
-  ) {
+  if (true) {
     return (
       <View
         style={{
+          // alignItems: "center",
           flex: 1,
+          marginLeft: 5,
         }}
       >
-        <HeaderScreen />
-
         <View
           style={{
-            flex: 1,
+            // alignItems: "center",
+            opacity: 0,
+            height: 0,
+          }}
+        >
+          <HeaderScreen />
+        </View>
+        <View
+          style={{
+            // flex: 1,
             backgroundColor: "white",
             // justifyContent: "center",
-            alignItems: "center",
+            // alignItems: "center",
           }}
         >
           <Text
@@ -219,10 +223,60 @@ function HomeScreen(props) {
               fontSize: 50,
               // fontFamily: "Arial",
               color: "#2A3B76",
+
+              textAlign: "center",
             }}
           >
-            Bienvenido
+            Sondajes App
           </Text>
+          <Text></Text>
+          <Text
+            style={{
+              fontSize: 30,
+              // fontFamily: "Arial",
+              color: "#2A3B76",
+            }}
+          >
+            Instrucciones de uso:
+          </Text>
+          <Text></Text>
+
+          <Text
+            style={{
+              fontSize: 20,
+              // fontFamily: "Arial",
+              color: "#2A3B76",
+            }}
+          >
+            1. En la parte superior se encuentran todos los sondeos
+          </Text>
+          <Text
+            style={{
+              fontSize: 20,
+              // fontFamily: "Arial",
+              color: "#2A3B76",
+            }}
+          >
+            2. En el boton de publicar, se crearan nuevos sondeos o se reportara
+            una actualizacion de los mismos
+          </Text>
+          <Text
+            style={{
+              fontSize: 20,
+              // fontFamily: "Arial",
+              color: "#2A3B76",
+            }}
+          >
+            3. En el boton de buscar, se encuentra tambien la lista de todos los
+            sondeos
+          </Text>
+          <Text></Text>
+
+          <ImageExpo
+            source={require("../../../../assets/michiquillay.jpg")}
+            style={styles.roundImage1}
+            cachePolicy={"memory-disk"}
+          />
         </View>
       </View>
     );
@@ -296,7 +350,7 @@ function HomeScreen(props) {
                 </View>
 
                 <View style={[styles.row, styles.center]}>
-                  {companyName === "Prodise" && (
+                  {companyName === "Southernperu" && (
                     <Text style={{ marginLeft: 5, color: "#5B5B5B" }}>
                       {"Visibilidad:  "}
                       {item.visibilidad}

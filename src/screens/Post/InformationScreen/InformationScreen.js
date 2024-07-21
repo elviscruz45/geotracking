@@ -23,20 +23,11 @@ import { areaLists } from "../../../utils/areaList";
 import { TitleForms } from "../../../components/Forms/GeneralForms/TitleForms/TitleForms";
 import { resetPostPerPageHome } from "../../../actions/home";
 import { saveTotalUsers } from "../../../actions/post";
-import {
-  dateFormat,
-  useUserData,
-  uploadPdf,
-  uploadImage,
-} from "./InformatioScreen.calc";
 import { Image as ImageExpo } from "expo-image";
 import Toast from "react-native-toast-message";
 
 function InformationScreen(props) {
-  const [moreImages, setMoreImages] = useState([]);
   const navigation = useNavigation();
-  //fetching data from firebase to retrieve all users
-  useUserData(props.email, props.saveTotalUsers, props.getTotalUsers);
 
   // retrieving data from formik forms ,data from ./InfomartionScreen.data.js
   const formik = useFormik({
@@ -46,185 +37,34 @@ function InformationScreen(props) {
     onSubmit: async (formValue) => {
       try {
         const newData = formValue;
-        newData.fechaPostFormato = dateFormat();
-        //data of the service AIT information
-        newData.AITidServicios = props.actualServiceAIT?.idServiciosAIT;
-        newData.AITNombreServicio = props.actualServiceAIT?.NombreServicio;
-        newData.AITEmpresaMinera = props.actualServiceAIT?.EmpresaMinera;
-        newData.AITAreaServicio = props.actualServiceAIT?.AreaServicio;
-        newData.AITphotoServiceURL = props.actualServiceAIT?.photoServiceURL;
-        newData.AITNumero = props.actualServiceAIT?.NumeroAIT;
-        newData.AITcompanyName = props.actualServiceAIT?.companyName;
+        newData.createdAt = new Date();
 
+        //data of the service AIT information
+        newData.IDSondaje = props.actualServiceAIT?.idSondaje;
+        newData.AITNombreSondaje = props.actualServiceAIT?.NombreServicio;
         // send profile information
         newData.emailPerfil = props.email || "Anonimo";
         newData.nombrePerfil = props.firebase_user_name || "Anonimo";
         newData.fotoUsuarioPerfil = props.user_photo;
-
-        // upload the photo or an pickimage to firebase Storage
-        const snapshot = await uploadImage(props.savePhotoUri);
-        const imagePath = snapshot.metadata.fullPath;
-        const imageUrl = await getDownloadURL(ref(getStorage(), imagePath));
-
-        //upload more Images to firebase Storage
-        newData.newImages = [];
-        for (let i = 0; i < moreImages.length; i++) {
-          const moreSnapshot = await uploadImage(moreImages[i]);
-          const moreImagePath = moreSnapshot.metadata.fullPath;
-          const moreImageUrl = await getDownloadURL(
-            ref(getStorage(), moreImagePath)
-          );
-          newData.newImages.push(moreImageUrl);
-        }
-        //manage the file updated to ask for aprovals
-        let imageUrlPDF;
-        if (newData.pdfFile) {
-          const snapshotPDF = await uploadPdf(
-            newData.pdfFile,
-            newData.FilenameTitle,
-            newData.fechaPostFormato
-          );
-          const imagePathPDF = snapshotPDF.metadata.fullPath;
-          imageUrlPDF = await getDownloadURL(ref(getStorage(), imagePathPDF));
-        }
-
-        //--------Uploading docs to a new collection called "aprovals" to manage doc aprovals
-        if (
-          newData.aprobacion &&
-          (newData.etapa === "Contratista-Solicitud Aprobacion Doc" ||
-            newData.etapa === "Contratista-Envio Cotizacion" ||
-            newData.etapa === "Contratista-Solicitud Ampliacion Servicio" ||
-            newData.etapa === "Contratista-Envio EDP")
-        ) {
-          const regex = /(?<=\()[^)]*(?=\))/g;
-          const matches = newData.aprobacion.match(regex);
-          const docData = {
-            solicitud: newData.etapa,
-            email: newData.emailPerfil,
-            solicitudComentario: newData.comentarios,
-            etapa: newData.etapa,
-            NombreServicio: props.actualServiceAIT?.NombreServicio,
-            NumeroServicio: props.actualServiceAIT?.NumeroAIT,
-            IdAITService: props.actualServiceAIT?.idServiciosAIT,
-            fileName: newData.FilenameTitle,
-            pdfFile: imageUrlPDF ?? "",
-            tipoFile: newData.tipoFile,
-            ApprovalRequestedBy: props.email,
-            ApprovalRequestSentTo: matches,
-            ApprovalPerformed: [],
-            RejectionPerformed: [],
-            date: new Date(),
-            fechaPostFormato: newData.fechaPostFormato,
-            AreaServicio: props.actualServiceAIT?.AreaServicio,
-            photoServiceURL: props.actualServiceAIT?.photoServiceURL,
-            status: "Pendiente",
-            idTimeApproval: new Date().getTime(),
-            companyName: props.actualServiceAIT.companyName,
-          };
-          const docRef = await addDoc(collection(db, "approvals"), docData);
-          docData.idApproval = docRef.id;
-          const RefFirebase = doc(db, "approvals", docData.idApproval);
-          await updateDoc(RefFirebase, docData);
-        }
-        newData.pdfPrincipal = imageUrlPDF || "";
-        //preparing data to upload to  firestore Database
-        newData.fotoPrincipal = imageUrl;
-        newData.createdAt = new Date();
-        newData.likes = [];
-        newData.comentariosUsuarios = [];
-
-        //-------- a default newData porcentajeAvance-------
-        if (
-          newData.etapa === "Usuario-Envio Solicitud Servicio" ||
-          newData.etapa === "Contratista-Envio Cotizacion" ||
-          newData.etapa === "Usuario-Aprobacion Cotizacion" ||
-          newData.etapa === "Contratista-Inicio Servicio"
-        ) {
-          newData.porcentajeAvance = "0";
-        }
-
-        if (
-          newData.etapa === "Contratista-Envio EDP" ||
-          newData.etapa === "Usuario-Aprobacion EDP" ||
-          newData.etapa === "Contratista-Registro de Pago" ||
-          newData.etapa === "Contratista-Fin servicio"
-        ) {
-          newData.porcentajeAvance = "100";
-        }
-
         // Posting data to Firebase and adding the ID firestore
         const docRef = await addDoc(collection(db, "events"), newData);
-
-        newData.idDocFirestoreDB = docRef.id;
-
-        const RefFirebase = doc(db, "events", newData.idDocFirestoreDB);
-
+        newData.IDReporte = docRef.id;
+        const RefFirebase = doc(db, "events", newData.IDReporte);
         await updateDoc(RefFirebase, newData);
 
         //Modifying the Service State ServiciosAIT considering the LasEventPost events
         const RefFirebaseLasEventPostd = doc(
           db,
-          "ServiciosAIT",
-          props.actualServiceAIT?.idServiciosAIT
+          "Sondaje",
+          props.actualServiceAIT?.idSondaje
         );
-        const eventSchema = {
-          idDocFirestoreDB: newData.idDocFirestoreDB ?? "",
-          idDocAITFirestoreDB: props.actualServiceAIT?.idServiciosAIT ?? "",
-          fotoPrincipal: newData.fotoPrincipal ?? "",
-          fotoUsuarioPerfil: newData.fotoUsuarioPerfil ?? "",
-          AITNombreServicio: newData.AITNombreServicio ?? "",
-          titulo: newData.titulo ?? "",
-          comentarios: newData.comentarios ?? "",
-          porcentajeAvance: newData.porcentajeAvance ?? "",
-          AITNumero: newData.AITNumero ?? "",
-          etapa: newData.etapa ?? "",
-          pdfPrincipal: newData?.pdfPrincipal ?? "",
-          fechaPostFormato: newData.fechaPostFormato ?? "",
-          createdAt: newData.createdAt ?? "",
-          emailPerfil: newData.emailPerfil ?? "",
-          imageUrl: newData.imageUrl ?? "",
-          nombrePerfil: newData.nombrePerfil ?? "",
-          visibilidad: newData.visibilidad ?? "",
-          newImages: newData.newImages ?? [],
-        };
-
         const updateDataLasEventPost = {
-          LastEventPosted: newData.createdAt,
-          AvanceEjecucion: newData.porcentajeAvance,
-          AvanceAdministrativoTexto: newData.etapa,
-          events: arrayUnion(eventSchema),
-          fechaFinEjecucion:
-            newData.porcentajeAvance === "100" &&
-            newData.etapa === "Contratista-Avance Ejecucion"
-              ? new Date()
-              : null,
+          MetrosLogueo: newData.MetrosLogueoFinal,
         };
-        if (newData?.MontoModificado) {
-          updateDataLasEventPost.MontoModificado = newData.MontoModificado;
-        }
-        if (newData?.NuevaFechaEstimada) {
-          updateDataLasEventPost.NuevaFechaEstimada =
-            newData.NuevaFechaEstimada;
-        }
-        if (newData?.HHModificado) {
-          updateDataLasEventPost.HHModificado = newData.HHModificado;
-        }
 
-        if (newData?.aprobacion) {
-          updateDataLasEventPost.aprobacion = arrayUnion(newData.aprobacion);
-        }
-        if (imageUrlPDF) {
-          const file = {
-            FilenameTitle: newData.FilenameTitle,
-            pdfPrincipal: imageUrlPDF,
-            tipoFile: newData.tipoFile,
-            email: props.email,
-            fecha: new Date(),
-            fechaPostFormato: dateFormat(),
-            pdfFile: newData.pdfFile,
-          };
-          updateDataLasEventPost.pdfFile = arrayUnion(file);
-        }
+        // if (newData?.HHModificado) {
+        //   updateDataLasEventPost.HHModificado = newData.HHModificado;
+        // }
 
         await updateDoc(RefFirebaseLasEventPostd, updateDataLasEventPost);
 
@@ -277,19 +117,11 @@ function InformationScreen(props) {
             <Text style={styles.name}>
               {props.actualServiceAIT?.NombreServicio || "Titulo del Evento"}
             </Text>
-            <Text style={styles.info}>
-              {"Area: "}
-              {props.actualServiceAIT?.AreaServicio}
-            </Text>
-            <Text style={styles.info}>
-              {"Tipo Servicio:  "} {props.actualServiceAIT?.TipoServicio}
-            </Text>
           </View>
         </View>
-        <TitleForms formik={formik} />
-        <GeneralForms formik={formik} setMoreImages={setMoreImages} />
+        <GeneralForms formik={formik} />
         <Button
-          title="Agregar Evento"
+          title="Agregar Reporte"
           buttonStyle={styles.addInformation}
           onPress={formik.handleSubmit}
           loading={formik.isSubmitting}

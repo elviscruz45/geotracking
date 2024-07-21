@@ -20,17 +20,12 @@ function PostScreen(props) {
   const navigation = useNavigation();
   const [equipment, setEquipment] = useState(null);
   const [AIT, setAIT] = useState(null);
+  const [logueo, setLogueo] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [posts, setPosts] = useState([]);
   const [searchResults, setSearchResults] = useState(null);
-  //Data about the company belong this event
-  function capitalizeFirstLetter(str) {
-    return str?.charAt(0).toUpperCase() + str?.slice(1);
-  }
 
-  const regex = /@(.+?)\./i;
-  const companyName =
-    capitalizeFirstLetter(props.email?.match(regex)?.[1]) || "Anonimo";
+  console.log("oaaaa", logueo);
 
   //retrieving serviceAIT list data from firebase
   useEffect(() => {
@@ -52,12 +47,7 @@ function PostScreen(props) {
     } else {
       const result = posts.filter((item) => {
         const re = new RegExp(searchText, "ig");
-        return (
-          re.test(item.NumeroAIT) ||
-          re.test(item.NombreServicio) ||
-          re.test(item.companyName) ||
-          re.test(item.EmpresaMinera)
-        );
+        return re.test(item.NumeroAIT) || re.test(item.NombreServicio);
       });
       setSearchResults(result.slice(0, 50));
     }
@@ -65,10 +55,10 @@ function PostScreen(props) {
 
   //method to retrieve the picture required in the event post (pick Imagen, take a photo)
   const pickImage = async (AITServiceNumber) => {
-    if (!equipment) {
+    if (!logueo) {
       Toast.show({
         type: "error",
-        text1: "Escoge un servicio para continuar",
+        text1: "Escoge un logueo para continuar",
         visibilityTime: 2000,
         autoHide: true,
         topOffset: 30,
@@ -76,51 +66,37 @@ function PostScreen(props) {
       });
       return;
     }
-    if (!equipment) return;
+    if (!logueo) return;
 
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 4],
-      quality: 1,
-    });
-    if (result.canceled) {
-      Toast.show({
-        type: "error",
-        text1: "No se ha seleccionado ninguna imagen",
-        visibilityTime: 2000,
-        autoHide: true,
-        topOffset: 30,
-        bottomOffset: 40,
-      });
-    } else {
-      const resizedPhoto = await ImageManipulator.manipulateAsync(
-        result.assets[0].uri,
-        [{ resize: { width: 800 } }],
-        { compress: 0.1, format: "jpeg", base64: true }
-      );
-      props.savePhotoUri(resizedPhoto.uri);
-      navigation.navigate(screen.post.form);
-      setEquipment(null);
-    }
-  };
-  // go to another screen to take a photo before put data to the form
-  const camera = (AITServiceNumber) => {
-    if (!equipment) {
-      Toast.show({
-        type: "error",
-        text1: "Escoge un servicio para continuar",
-        visibilityTime: 2000,
-        autoHide: true,
-        topOffset: 30,
-        bottomOffset: 40,
-      });
-      return;
-    }
-    if (!equipment) return;
-    navigation.navigate(screen.post.camera);
-    setEquipment(null);
-    setAIT(null);
+    navigation.navigate(screen.post.form);
+
+    // let result = await ImagePicker.launchImageLibraryAsync({
+    //   mediaTypes: ImagePicker.MediaTypeOptions.All,
+    //   allowsEditing: true,
+    //   aspect: [4, 4],
+    //   quality: 1,
+    // });
+
+    // if (result.canceled) {
+    //   Toast.show({
+    //     type: "error",
+    //     text1: "No se ha seleccionado ningun logueo",
+    //     visibilityTime: 2000,
+    //     autoHide: true,
+    //     topOffset: 30,
+    //     bottomOffset: 40,
+    //   });
+    //   setLogueo(null);
+    // } else {
+    //   const resizedPhoto = await ImageManipulator.manipulateAsync(
+    //     result.assets[0].uri,
+    //     [{ resize: { width: 800 } }],
+    //     { compress: 0.1, format: "jpeg", base64: true }
+    //   );
+    //   props.savePhotoUri(resizedPhoto.uri);
+    //   navigation.navigate(screen.post.form);
+    //   setEquipment(null);
+    // }
   };
 
   //Addin a new Service asigned called AIT
@@ -132,41 +108,11 @@ function PostScreen(props) {
   };
 
   const selectAsset = (AIT) => {
-    const area = AIT.AreaServicio;
-    const indexareaList = areaLists.findIndex((item) => item.value === area);
-    const imageSource = areaLists[indexareaList]?.image;
-    const imageUpdated = AIT.photoServiceURL;
-    if (imageUpdated) {
-      setEquipment({ uri: imageUpdated });
-    } else {
-      setEquipment(imageSource);
-    }
+    console.log("asfasfas", AIT);
     setAIT(AIT);
+    setLogueo(AIT);
     props.saveActualServiceAIT(AIT);
   };
-
-  // if (!AIT) {
-  //   return (
-  //     <View
-  //       style={{
-  //         flex: 1,
-  //         backgroundColor: "white",
-  //         justifyContent: "center",
-  //         alignItems: "center",
-  //       }}
-  //     >
-  //       <Text
-  //         style={{
-  //           fontSize: 50,
-  //           // fontFamily: "Arial",
-  //           color: "#2A3B76",
-  //         }}
-  //       >
-  //         Bienvenido
-  //       </Text>
-  //     </View>
-  //   );
-  // }
 
   return (
     <KeyboardAwareScrollView
@@ -174,7 +120,7 @@ function PostScreen(props) {
       style={{ backgroundColor: "white" }}
     >
       <SearchBar
-        placeholder="Buscar AIT o nombre del servicio"
+        placeholder="Buscar Numero de Logueo"
         value={searchText}
         onChangeText={(text) => setSearchText(text)}
         lightTheme={true}
@@ -183,34 +129,6 @@ function PostScreen(props) {
 
       {props.firebase_user_name && (
         <View style={styles.equipments2}>
-          {/* <View>
-            <ImageExpo
-              source={
-                { uri: props.user_photo } ??
-                require("../../../../assets/splash.png")
-              }
-              style={styles.roundImage}
-              cachePolicy={"memory-disk"}
-            />
-            <View>
-              <Text style={styles.name}>
-                {props.firebase_user_name || "Anónimo"}
-              </Text>
-              <Text style={styles.info}>{props.email}</Text>
-            </View>
-          </View>
-          <View>
-            <Icon
-              // reverse
-              type="material-community"
-              name="arrow-right-bold"
-              color="#384967"
-              size={25}
-              containerStyle={styles.btnContainer1}
-              // onPress={() => goToEdit(item, index)}
-            />
-          </View> */}
-
           <View>
             <ImageExpo
               source={equipment ?? emptyimage}
@@ -219,12 +137,10 @@ function PostScreen(props) {
             />
 
             <View>
+              <Text style={styles.name2}>Logueo</Text>
               <Text style={styles.name2}>
-                {equipment ? AIT?.NombreServicio : "Escoge El Servicio"}
+                {logueo ? logueo?.NombreServicio : "Numero de Logueo"}
               </Text>
-              {/* <Text style={styles.info}>
-                {equipment ? `Serv:${AIT?.NumeroAIT}` : "de la lista"}
-              </Text> */}
             </View>
           </View>
         </View>
@@ -251,12 +167,12 @@ function PostScreen(props) {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.btnContainer3}
-            onPress={() => camera(AIT?.TipoServicio)}
+            // onPress={() => camera(AIT?.TipoServicio)}
           >
-            <Image
+            {/* <Image
               source={require("../../../../assets/TakePhoto2.png")}
               style={styles.roundImageUpload}
-            />
+            /> */}
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.btnContainer4}
@@ -294,7 +210,8 @@ function PostScreen(props) {
                 ) : (
                   <ImageExpo
                     source={
-                      imageSource || require("../../../../assets/icon1.png")
+                      imageSource ||
+                      require("../../../../assets/perforadora.jpg")
                     }
                     style={styles.image}
                     cachePolicy={"memory-disk"}
@@ -303,24 +220,15 @@ function PostScreen(props) {
 
                 <View>
                   <Text style={styles.name}>{item.NombreServicio}</Text>
-                  <Text style={styles.info}>
+                  {/* <Text style={styles.info}>
                     {"Codigo Servicio: "}
                     {item.NumeroAIT}
-                  </Text>
+                  </Text> */}
+
                   <Text style={styles.info}>
-                    {"Tipo: "}
-                    {item.TipoServicio}
-                  </Text>
-                  <Text style={styles.info}>
-                    {"Empresa Minera: "}
+                    {"Sector: "}
                     {item.EmpresaMinera}
                   </Text>
-                  {companyName !== item.companyName && (
-                    <Text style={styles.info}>
-                      {"Empresa: "}
-                      {item.companyName}
-                    </Text>
-                  )}
                 </View>
               </View>
             </TouchableOpacity>
