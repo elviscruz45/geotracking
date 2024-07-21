@@ -24,75 +24,20 @@ import { saveTotalUsers } from "../../../actions/post";
 import Toast from "react-native-toast-message";
 
 function EditAITNoReduxScreen(props) {
+  const emptyimage = require("../../../../assets/splash.png");
   const navigation = useNavigation();
-  const [tituloserv, setTituloserv] = useState();
-  const [ait, setAit] = useState();
-  const [tiposerv, setTiposerv] = useState();
-  const [area, setArea] = useState();
-  //Retrieve data Item that comes from the previous screen to render the Updated Status
-
   const {
     route: {
       params: { Item },
     },
   } = props;
-
-  //fetching data from firebase to retrieve all users
-  useEffect(() => {
-    // Function to fetch data from Firestore
-    if (props.email) {
-      const companyName = props.email?.match(/@(.+?)\./i)?.[1] || "Anonimo";
-      async function fetchData() {
-        try {
-          const queryRef1 = query(
-            collection(db, "users"),
-            where("companyName", "!=", companyName),
-            orderBy("email", "desc")
-          );
-
-          const queryRef2 = query(
-            collection(db, "users"),
-            where("companyName", "==", companyName),
-            orderBy("email", "desc")
-          );
-
-          const getDocs1 = await getDocs(queryRef1);
-          const getDocs2 =
-            companyName === "southernperu"
-              ? await getDocs(queryRef2)
-              : null;
-          const lista = [];
-
-          // Process results from the first query
-          if (getDocs1) {
-            getDocs1.forEach((doc) => {
-              lista.push(doc.data());
-            });
-          }
-
-          // Process results from the second query
-          if (getDocs2) {
-            getDocs2.forEach((doc) => {
-              lista.push(doc.data());
-            });
-          }
-          // Save the merged results to the state or do any other necessary operations
-          props.saveTotalUsers(lista);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-          // Handle the error as needed
-        }
-      }
-      if (!props.getTotalUsers) {
-        fetchData();
-      }
-    }
-    // Call the fetchData function when the component mounts
-  }, [props.email]);
+  function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
   const formik = useFormik({
     initialValues: initialValues(),
-    // validationSchema: validationSchema(),
+    validationSchema: validationSchema(),
     validateOnChange: false,
     onSubmit: async (formValue) => {
       try {
@@ -100,51 +45,11 @@ function EditAITNoReduxScreen(props) {
         const newData = formValue;
 
         //Modifying the Service State ServiciosAIT considering the LasEventPost events
-        const RefFirebaseLasEventPostd = doc(
-          db,
-          "ServiciosAIT",
-          Item.idServiciosAIT
-        );
+        const RefFirebaseLasEventPostd = doc(db, "Sondaje", Item.idSondaje);
         const updateDataLasEventPost = {};
 
         if (newData?.NombreServicio) {
           updateDataLasEventPost.NombreServicio = newData.NombreServicio;
-        }
-        if (newData?.NumeroAIT) {
-          updateDataLasEventPost.NumeroAIT = newData.NumeroAIT;
-        }
-        if (newData?.EmpresaMinera) {
-          updateDataLasEventPost.EmpresaMinera = newData.EmpresaMinera;
-        }
-        if (newData?.AreaServicio) {
-          updateDataLasEventPost.AreaServicio = newData.AreaServicio;
-        }
-        if (newData?.TipoServicio) {
-          updateDataLasEventPost.TipoServicio = newData.TipoServicio;
-        }
-        if (newData?.ResponsableEmpresaUsuario) {
-          updateDataLasEventPost.ResponsableEmpresaUsuario =
-            newData.ResponsableEmpresaUsuario;
-        }
-        if (newData?.ResponsableEmpresaUsuario2) {
-          updateDataLasEventPost.ResponsableEmpresaUsuario2 =
-            newData.ResponsableEmpresaUsuario2;
-        }
-        if (newData?.ResponsableEmpresaUsuario3) {
-          updateDataLasEventPost.ResponsableEmpresaUsuario3 =
-            newData.ResponsableEmpresaUsuario3;
-        }
-        if (newData?.ResponsableEmpresaContratista) {
-          updateDataLasEventPost.ResponsableEmpresaContratista =
-            newData.ResponsableEmpresaContratista;
-        }
-        if (newData?.ResponsableEmpresaContratista2) {
-          updateDataLasEventPost.ResponsableEmpresaContratista2 =
-            newData.ResponsableEmpresaContratista2;
-        }
-        if (newData?.ResponsableEmpresaContratista3) {
-          updateDataLasEventPost.ResponsableEmpresaContratista3 =
-            newData.ResponsableEmpresaContratista3;
         }
         if (newData?.FechaInicio) {
           updateDataLasEventPost.FechaInicio = newData.FechaInicio;
@@ -152,27 +57,50 @@ function EditAITNoReduxScreen(props) {
         if (newData?.FechaFin) {
           updateDataLasEventPost.FechaFin = newData.FechaFin;
         }
-        if (newData?.NumeroCotizacion) {
-          updateDataLasEventPost.NumeroCotizacion = newData.NumeroCotizacion;
+        if (newData?.Estado) {
+          updateDataLasEventPost.Estado = newData.Estado;
         }
-        if (newData?.Moneda) {
-          updateDataLasEventPost.Moneda = newData.Moneda;
+        if (newData?.ProgEjecutado) {
+          updateDataLasEventPost.ProgEjecutado = newData.ProgEjecutado;
         }
-        if (newData?.Monto) {
-          updateDataLasEventPost.Monto = newData.Monto;
+        if (newData?.ProgProgramado) {
+          updateDataLasEventPost.ProgProgramado = newData.ProgProgramado;
         }
-        if (newData?.SupervisorSeguridad) {
-          updateDataLasEventPost.SupervisorSeguridad =
-            newData.SupervisorSeguridad;
+        if (newData?.Cobertura) {
+          updateDataLasEventPost.Cobertura = newData.Cobertura;
         }
-        if (newData?.Supervisor) {
-          updateDataLasEventPost.Supervisor = newData.Supervisor;
+        if (newData?.LogueadoPor) {
+          updateDataLasEventPost.LogueadoPor = newData.LogueadoPor;
         }
-        if (newData?.Tecnicos) {
-          updateDataLasEventPost.Tecnicos = newData.Tecnicos;
+        if (newData?.MetrosLogueo) {
+          updateDataLasEventPost.MetrosLogueo = newData.MetrosLogueo;
         }
-        if (newData?.HorasHombre) {
-          updateDataLasEventPost.HorasHombre = newData.HorasHombre;
+        if (newData?.Sector) {
+          updateDataLasEventPost.Sector = newData.Sector;
+        }
+        if (newData?.Coord1) {
+          updateDataLasEventPost.Coord1 = newData.Coord1;
+        }
+        if (newData?.Coord2) {
+          updateDataLasEventPost.Coord2 = newData.Coord2;
+        }
+        if (newData?.Azimut) {
+          updateDataLasEventPost.Azimut = newData.Azimut;
+        }
+        if (newData?.Dip) {
+          updateDataLasEventPost.Dip = newData.Dip;
+        }
+        if (newData?.Cota) {
+          updateDataLasEventPost.Cota = newData.Cota;
+        }
+        if (newData?.Maquina) {
+          updateDataLasEventPost.Maquina = newData.Maquina;
+        }
+        if (newData?.Responsable) {
+          updateDataLasEventPost.Responsable = newData.Responsable;
+        }
+        if (newData?.Taladro) {
+          updateDataLasEventPost.Taladro = newData.Taladro;
         }
 
         await updateDoc(RefFirebaseLasEventPostd, updateDataLasEventPost);
@@ -201,33 +129,16 @@ function EditAITNoReduxScreen(props) {
       style={{ backgroundColor: "white" }} // Add backgroundColor here
     >
       <Text></Text>
-      <View style={{ alignSelf: "center" }}>
-        <Text style={styles.name}>{tituloserv || Item.NombreServicio}</Text>
-        <Text style={styles.info}>
-          {"Numero Servicio: "}
-          {ait || Item.NumeroAIT}
-        </Text>
-        <Text style={styles.info}>
-          {"Tipo Servicio: "}
-          {tiposerv || Item.TipoServicio}
-        </Text>
+      <Text style={styles.name}>{Item.NombreServicio}</Text>
 
-        <Text style={styles.info}>
-          {"Area: "}
-          {area || Item.AreaServicio}
-        </Text>
+      <View style={styles.sectionForms}>
+        <View></View>
       </View>
       <View style={styles.sectionForms}></View>
 
-      <AITForms
-        formik={formik}
-        setTituloserv={setTituloserv}
-        setAit={setAit}
-        setTiposerv={setTiposerv}
-        setArea={setArea}
-      />
+      <AITForms formik={formik} />
       <Button
-        title="Actualizar AIT"
+        title="Agregar Logeo"
         buttonStyle={styles.addInformation}
         onPress={formik.handleSubmit}
         loading={formik.isSubmitting}

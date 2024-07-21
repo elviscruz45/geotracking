@@ -110,6 +110,14 @@ function ItemScreenNotRedux(props) {
     return formattedDate;
   };
 
+  // go to edit screen
+  const goToEditAITScreen = (item) => {
+    navigation.navigate(screen.search.tab, {
+      screen: screen.search.editAIT,
+      params: { Item: item },
+    });
+  };
+
   if (sondaje) {
     return (
       <>
@@ -126,6 +134,14 @@ function ItemScreenNotRedux(props) {
                 titulo={sondaje.NombreServicio}
               />
             </View>
+            <TouchableOpacity onPress={() => goToEditAITScreen(sondaje)}>
+              <View style={{ marginRight: "2%" }}>
+                <Image
+                  source={require("../../../../assets/editIcon2.png")}
+                  style={styles.editIcon}
+                />
+              </View>
+            </TouchableOpacity>
             <Text> </Text>
             <View style={{ marginLeft: 0 }}>
               <Text style={styles.name}>{sondaje.NombreServicio}</Text>
@@ -137,7 +153,6 @@ function ItemScreenNotRedux(props) {
                 {"Pro Programado:  "} {sondaje.ProgProgramado}
                 {" metros "}
               </Text>
-
               <Text style={styles.info}>
                 {"Prog Ejecutado:  "} {sondaje.ProgEjecutado}
                 {" metros "}

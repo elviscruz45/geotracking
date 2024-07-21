@@ -15,7 +15,35 @@ export const GanttHistorial = (props) => {
   const dataSorted = datas?.sort((a, b) => {
     return b.createdAt - a.createdAt;
   });
-
+  const formatDate = (dateInput) => {
+    const { seconds, nanoseconds } = dateInput || {
+      seconds: 0,
+      nanoseconds: 0,
+    };
+    const milliseconds = seconds * 1000 + nanoseconds / 1000000;
+    const date = new Date(milliseconds);
+    const monthNames = [
+      "ene.",
+      "feb.",
+      "mar.",
+      "abr.",
+      "may.",
+      "jun.",
+      "jul.",
+      "ago.",
+      "sep.",
+      "oct.",
+      "nov.",
+      "dic.",
+    ];
+    const day = date.getDate();
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const formattedDate = `${day} ${month} ${year}`;
+    return formattedDate;
+  };
   return (
     <FlatList
       scrollEnabled={false}
@@ -87,43 +115,68 @@ export const GanttHistorial = (props) => {
               )}
             </View>
             <View style={styles.details}>
-              <TouchableOpacity onPress={() => comentPost(item)}>
-                <Text style={styles.titledetails}>{item.title}</Text>
+              <Text style={styles.titledetails}>{item.title}</Text>
 
-                <View style={styles.row}>
-                  <ImageExpo
-                    source={{ uri: item.fotoUsuarioPerfil }}
-                    cachePolicy={"memory-disk"}
-                    style={{
-                      width: 50,
-                      height: 50,
-                      borderRadius: 25,
-                      marginLeft: 5,
-                    }}
-                  />
-                  <Text style={styles.textdetail}> {item.previa}</Text>
-                </View>
-                <Text></Text>
-                <View style={styles.rowavanceNombre}>
-                  <Text style={styles.avanceNombre}> Etapa: </Text>
+              <View style={styles.row}>
+                <ImageExpo
+                  source={{ uri: item.fotoUsuarioPerfil }}
+                  cachePolicy={"memory-disk"}
+                  style={{
+                    width: 50,
+                    height: 50,
+                    borderRadius: 25,
+                    marginLeft: 5,
+                  }}
+                />
+                <Text style={styles.textdetail}>{item.previa}</Text>
+              </View>
+              <Text></Text>
+              <View style={styles.rowavanceNombre}>
+                <Text style={styles.avanceNombre}> Logueo Inicial: </Text>
 
-                  <Text style={styles.detail}> {item.etapa}</Text>
-                </View>
-                <View style={styles.rowavanceNombre}>
-                  <Text style={styles.avanceNombre}> Avance Ejecucion: </Text>
+                <Text style={styles.detail}>
+                  {item.MetrosLogueoInicio} metros
+                </Text>
+              </View>
+              <View style={styles.rowavanceNombre}>
+                <Text style={styles.avanceNombre}> Logueo Final: </Text>
 
-                  <Text style={styles.detail}> {item.porcentajeAvance}%</Text>
-                </View>
-                <View style={styles.rowavanceNombre}>
-                  <Text style={styles.avanceNombre}> Autor: </Text>
-                  <Text style={styles.detail}> {item.nombrePerfil}</Text>
-                </View>
-                {item?.pdfFile && (
-                  <View style={styles.rowavanceNombre}>
-                    <Icon type="material-community" name="paperclip" />
-                  </View>
-                )}
-              </TouchableOpacity>
+                <Text style={styles.detail}>
+                  {item.MetrosLogueoFinal} metros
+                </Text>
+              </View>
+              <View style={styles.rowavanceNombre}>
+                <Text style={styles.avanceNombre}> Recepcionado Inicial: </Text>
+
+                <Text style={styles.detail}>
+                  {item.MetrosRecepcionadoInicio} metros
+                </Text>
+              </View>
+              <View style={styles.rowavanceNombre}>
+                <Text style={styles.avanceNombre}> Recepcionado Final: </Text>
+
+                <Text style={styles.detail}>
+                  {item.MetrosRecepcionadoFinal} metros
+                </Text>
+              </View>
+              <View style={styles.rowavanceNombre}>
+                <Text style={styles.avanceNombre}> Cajas Inicial: </Text>
+
+                <Text style={styles.detail}>{item.CajaLogueoInicio}</Text>
+              </View>
+              <View style={styles.rowavanceNombre}>
+                <Text style={styles.avanceNombre}> Cajas Final: </Text>
+
+                <Text style={styles.detail}>{item.CajaLogueoFinal}</Text>
+              </View>
+              <View style={styles.rowavanceNombre}>
+                <Text style={styles.avanceNombre}> Autor: </Text>
+                <Text style={styles.detail}> {item.nombrePerfil}</Text>
+              </View>
+              <View style={styles.rowavanceNombre}>
+                <Text style={styles.avanceNombre}> Fecha: </Text>
+                <Text style={styles.detail}> {formatDate(item.createdAt)}</Text>
+              </View>
             </View>
           </View>
         );

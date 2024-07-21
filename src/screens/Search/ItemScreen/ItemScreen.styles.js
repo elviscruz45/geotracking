@@ -27,6 +27,21 @@ export const styles = StyleSheet.create({
     // alignSelf: "stretch",
     // flexGrow: 0,
   },
+  editIcon: {
+    // flexDirection: "row",
+    // alignItems: "center",
+    // marginRight: windowWidth * 0.1,
+    // marginLeft: windowWidth * 0.1,
+    // paddingHorizontal: 15,
+    marginTop: 10,
+    width: 25,
+    height: 25,
+    alignSelf: "flex-end",
+    // marginRight: 10,
+    // marginTop: windowHeight * 0.01,
+    zIndex: 1000,
+    position: "absolute",
+  },
   containerTypes1: {
     flexDirection: "row", // Set direction to row for horizontal layout
     // justifyContent: "space-between", // Optional: adjust spacing between items

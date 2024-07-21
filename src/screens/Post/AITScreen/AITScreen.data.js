@@ -11,6 +11,14 @@ export function initialValues() {
     LogueadoPor: "",
     MetrosLogueo: "",
     Sector: "",
+    Coord1: "",
+    Coord2: "",
+    Azimut: "",
+    Dip: "",
+    Cota: "",
+    Maquina: "",
+    Responsable: "",
+    Taladro: "",
   };
 }
 

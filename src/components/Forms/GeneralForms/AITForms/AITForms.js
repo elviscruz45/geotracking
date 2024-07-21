@@ -269,6 +269,70 @@ export function AITForms(props) {
             },
           }}
         />
+        <Input
+          value={formik.values.Coord1}
+          placeholder="Coord1"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("Coord1", text);
+          }}
+        />
+        <Input
+          value={formik.values.Coord2}
+          placeholder="Coord2"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("Coord2", text);
+          }}
+        />
+        <Input
+          value={formik.values.Azimut}
+          placeholder="Azimut"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("Azimut", text);
+          }}
+        />
+        <Input
+          value={formik.values.Dip}
+          placeholder="Dip"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("Dip", text);
+          }}
+        />
+        <Input
+          value={formik.values.Cota}
+          placeholder="Cota"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("Cota", text);
+          }}
+        />
+        <Input
+          value={formik.values.Maquina}
+          placeholder="Maquina"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("Maquina", text);
+          }}
+        />
+        <Input
+          value={formik.values.Responsable}
+          placeholder="Responsable"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("Responsable", text);
+          }}
+        />
+        <Input
+          value={formik.values.Taladro}
+          placeholder="Taladro"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("Taladro", text);
+          }}
+        />
       </View>
 
       <Modal show={showModal} close={onCloseOpenModal}>

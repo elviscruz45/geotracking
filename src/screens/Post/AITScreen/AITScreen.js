@@ -25,7 +25,6 @@ import { areaLists } from "../../../utils/areaList";
 import { saveTotalUsers } from "../../../actions/post";
 import Toast from "react-native-toast-message";
 import { Image as ImageExpo } from "expo-image";
-console.log("aaa");
 function AITNoReduxScreen(props) {
   const emptyimage = require("../../../../assets/splash.png");
   const navigation = useNavigation();
@@ -91,6 +90,7 @@ function AITNoReduxScreen(props) {
         const docRef = await addDoc(collection(db, "Sondaje"), newData);
         newData.idSondaje = docRef.id;
         const RefFirebase = doc(db, "Sondaje", newData.idSondaje);
+
         await updateDoc(RefFirebase, newData);
         // this hedlps to go to the begining of the process
         navigation.navigate(screen.post.post);
