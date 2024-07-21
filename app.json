@@ -12,7 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.elviscruz30.geotraking",
@@ -36,14 +38,14 @@
     },
     "extra": {
       "eas": {
-        "projectId": "0b4bd57a-d7a4-4dc3-a395-29a686bfbd46"
+        "projectId": "dcc3154d-485c-457a-8495-5126a1df9eb5"
       }
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/0b4bd57a-d7a4-4dc3-a395-29a686bfbd46"
+      "url": "https://u.expo.dev/dcc3154d-485c-457a-8495-5126a1df9eb5"
     },
     "plugins": [
       [

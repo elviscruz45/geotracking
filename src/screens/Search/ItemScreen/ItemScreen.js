@@ -79,6 +79,36 @@ function ItemScreenNotRedux(props) {
 
     fetchDocuments();
   }, [Item]);
+  ///function to date format
+  const formatDate = (dateInput) => {
+    const { seconds, nanoseconds } = dateInput || {
+      seconds: 0,
+      nanoseconds: 0,
+    };
+    const milliseconds = seconds * 1000 + nanoseconds / 1000000;
+    const date = new Date(milliseconds);
+    const monthNames = [
+      "ene.",
+      "feb.",
+      "mar.",
+      "abr.",
+      "may.",
+      "jun.",
+      "jul.",
+      "ago.",
+      "sep.",
+      "oct.",
+      "nov.",
+      "dic.",
+    ];
+    const day = date.getDate();
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const formattedDate = `${day} ${month} ${year} `;
+    return formattedDate;
+  };
 
   if (sondaje) {
     return (
@@ -101,7 +131,33 @@ function ItemScreenNotRedux(props) {
               <Text style={styles.name}>{sondaje.NombreServicio}</Text>
 
               <Text style={styles.info}>
-                {"Tipo:  "} {sondaje.TipoServicio}
+                {"Fecha Inicio:  "} {formatDate(sondaje.FechaInicio)}
+              </Text>
+              <Text style={styles.info}>
+                {"Pro Programado:  "} {sondaje.ProgProgramado}
+                {" metros "}
+              </Text>
+
+              <Text style={styles.info}>
+                {"Prog Ejecutado:  "} {sondaje.ProgEjecutado}
+                {" metros "}
+              </Text>
+
+              <Text style={styles.info}>
+                {"Cobertura:  "} {sondaje.Cobertura}
+              </Text>
+
+              <Text style={styles.info}>
+                {"Logueado por:  "} {sondaje.LogueadoPor}
+              </Text>
+              <Text style={styles.info}>
+                {"Estado:  "} {sondaje.Estado}
+              </Text>
+              <Text style={styles.info}>
+                {"Metros Logueo:  "} {sondaje.MetrosLogueo}
+              </Text>
+              <Text style={styles.info}>
+                {"Sector:  "} {sondaje.Sector}
               </Text>
             </View>
           </View>
