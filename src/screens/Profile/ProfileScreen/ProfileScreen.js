@@ -93,7 +93,9 @@ function ProfileScreen(props) {
         <Text></Text>
         <Text></Text>
 
-        <TouchableOpacity onPress={() => getExcelReportData(data)}>
+        <TouchableOpacity
+          onPress={() => getExcelReportData(props.totalEventServiceAITLIST)}
+        >
           <Image
             source={require("../../../../assets/excel2.png")}
             style={styles.excel}

@@ -400,3 +400,5 @@ const mapStateToProps = (reducers) => {
 };
 
 export const ReportScreen = connect(mapStateToProps, {})(ReportScreenNoRedux);
+
+

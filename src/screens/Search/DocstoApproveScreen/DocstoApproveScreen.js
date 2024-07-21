@@ -13,7 +13,6 @@ import { styles } from "./DocstoApproveScreen.styles";
 import { connect } from "react-redux";
 import { update_firebaseUserUid } from "../../../actions/auth";
 import { useNavigation } from "@react-navigation/native";
-
 import { update_firebaseProfile } from "../../../actions/profile";
 import {
   arrayUnion,

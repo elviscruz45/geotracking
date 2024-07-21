@@ -54,21 +54,13 @@ function HomeScreen(props) {
         if (companyName !== "Southernperu") {
           queryRef = query(
             collection(db, "events"),
-            limit(20),
-            where("visibilidad", "==", "Todos"),
-            where(
-              "AITEmpresaMinera",
-              "==",
-              mineraCorreosList[companyNameLowercase]
-            ),
-
+            limit(25),
             orderBy("createdAt", "desc")
           );
         } else {
           queryRef = query(
             collection(db, "events"),
-            limit(10),
-            where("AITcompanyName", "==", companyName),
+            limit(25),
             orderBy("createdAt", "desc")
           );
         }
@@ -91,33 +83,6 @@ function HomeScreen(props) {
 
       fetchData();
 
-      return () => {
-        if (unsubscribe) {
-          unsubscribe();
-        }
-      };
-    }
-  }, [props.email]);
-
-  useEffect(() => {
-    let unsubscribe;
-    if (props.email) {
-      function fetchData() {
-        let queryRef = query(
-          collection(db, "approvals"),
-          orderBy("date", "desc"),
-          where("ApprovalRequestSentTo", "array-contains", props.email),
-          limit(25)
-        );
-        unsubscribe = onSnapshot(queryRef, (ItemFirebase) => {
-          const lista = [];
-          ItemFirebase.forEach((doc) => {
-            lista.push(doc.data());
-          });
-          props.saveApprovalListnew(lista);
-        });
-      }
-      fetchData();
       return () => {
         if (unsubscribe) {
           unsubscribe();
