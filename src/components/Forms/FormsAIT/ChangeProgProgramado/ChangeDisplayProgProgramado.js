@@ -5,7 +5,7 @@ import { styles } from "./ChangeDisplayProgProgramado.styles";
 import Toast from "react-native-toast-message";
 
 export function ChangeDisplayProgProgramado(props) {
-  const { onClose, setMonto, formik } = props;
+  const { onClose, formik } = props;
   const [text, setText] = useState("0");
   return (
     <View>
@@ -41,8 +41,7 @@ export function ChangeDisplayProgProgramado(props) {
 
               onClose();
             } else {
-              setMonto(text.toString());
-              formik.setFieldValue("Monto", text.toString());
+              formik.setFieldValue("ProgProgramado", text.toString());
 
               onClose();
             }

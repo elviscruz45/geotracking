@@ -76,7 +76,7 @@ function AITNoReduxScreen(props) {
         newData.photoServiceURL = "";
         //Data about information profile and company
         newData.emailPerfil = props.email || "Anonimo";
-        newData.nombrePerfil = props.firebase_user_name || "Anonimo";
+        newData.nombrePerfil = "";
 
         //Data gattered from events
         newData.events = [];
@@ -121,7 +121,7 @@ function AITNoReduxScreen(props) {
 
       <AITForms formik={formik} />
       <Button
-        title="Agregar Logeo"
+        title="Crear"
         buttonStyle={styles.addInformation}
         onPress={formik.handleSubmit}
         loading={formik.isSubmitting}

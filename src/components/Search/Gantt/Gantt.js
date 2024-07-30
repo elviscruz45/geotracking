@@ -132,14 +132,14 @@ export const GanttHistorial = (props) => {
               </View>
               <Text></Text>
               <View style={styles.rowavanceNombre}>
-                <Text style={styles.avanceNombre}> Logueo Inicial: </Text>
+                <Text style={styles.avanceNombre}> Ejecutado Inicial: </Text>
 
                 <Text style={styles.detail}>
                   {item.MetrosLogueoInicio} metros
                 </Text>
               </View>
               <View style={styles.rowavanceNombre}>
-                <Text style={styles.avanceNombre}> Logueo Final: </Text>
+                <Text style={styles.avanceNombre}> Ejecutado Final: </Text>
 
                 <Text style={styles.detail}>
                   {item.MetrosLogueoFinal} metros

@@ -158,12 +158,23 @@ export function AITForms(props) {
       <View style={styles.content}>
         <Input
           value={formik.values.Sondaje}
-          placeholder="Sondaje"
+          placeholder="Número de Sondaje"
           // multiline={true}
           editable={true}
           // errorMessage={formik.errors.EmpresaMinera}
           onChangeText={(text) => {
             formik.setFieldValue("NombreServicio", text);
+          }}
+        />
+        <Input
+          value={formik.values.Estado}
+          placeholder="Estado"
+          editable={false}
+          // errorMessage={formik.errors.TipoServicio}
+          rightIcon={{
+            type: "material-community",
+            name: "arrow-right-circle-outline",
+            onPress: () => selectComponent("Estado"),
           }}
         />
         <Input
@@ -180,21 +191,22 @@ export function AITForms(props) {
             },
           }}
         />
-
         <Input
-          value={formik.values.Estado}
-          placeholder="Estado"
+          value={formatNumber(formik.values.ProgProgramado)}
+          placeholder="Programado"
           editable={false}
-          // errorMessage={formik.errors.TipoServicio}
+          // errorMessage={formik.errors.HorasHombre}
           rightIcon={{
             type: "material-community",
-            name: "arrow-right-circle-outline",
-            onPress: () => selectComponent("Estado"),
+            name: "numeric",
+            // color: getColorIconMap(formik),
+            onPress: () => selectComponent("ProgProgramado"),
           }}
         />
+
         <Input
           value={formatNumber(formik.values.ProgEjecutado)}
-          placeholder="Prog Ejecutado"
+          placeholder="Ejecutado"
           editable={false}
           // errorMessage={formik.errors.HorasHombre}
           rightIcon={{
@@ -205,15 +217,74 @@ export function AITForms(props) {
           }}
         />
         <Input
-          value={formatNumber(formik.values.ProgProgramado)}
-          placeholder="Prog Programado"
-          editable={false}
-          // errorMessage={formik.errors.HorasHombre}
-          rightIcon={{
-            type: "material-community",
-            name: "numeric",
-            // color: getColorIconMap(formik),
-            onPress: () => selectComponent("ProgProgramado"),
+          value={formik.values.Maquina}
+          placeholder="Maquina"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("Maquina", text);
+          }}
+        />
+        <Input
+          value={formik.values.Sector}
+          placeholder="Sector"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("Sector", text);
+          }}
+          // errorMessage={formik.errors.TipoServicio}
+          // rightIcon={{
+          //   type: "material-community",
+          //   name: "arrow-right-circle-outline",
+          //   onPress: () => selectComponent("Sector"),
+          // }}
+        />
+        <Input
+          value={formik.values.Coord1}
+          placeholder="Coordenada Este"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("Coord1", text);
+          }}
+        />
+        <Input
+          value={formik.values.Coord2}
+          placeholder="Coordenada Norte"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("Coord2", text);
+          }}
+        />
+        <Input
+          value={formik.values.Cota}
+          placeholder="Cota"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("Cota", text);
+          }}
+        />
+
+        <Input
+          value={formik.values.Azimut}
+          placeholder="Azimut"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("Azimut", text);
+          }}
+        />
+        <Input
+          value={formik.values.Dip}
+          placeholder="Dip"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("Dip", text);
+          }}
+        />
+        <Input
+          value={formik.values.LogueadoPor}
+          placeholder="Logueado por"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("LogueadoPor", text);
           }}
         />
         <Input
@@ -241,23 +312,10 @@ export function AITForms(props) {
             onPress: () => selectComponent("MetrosLogueo"),
           }}
         />
-        <Input
-          value={formik.values.Sector}
-          placeholder="Sector"
-          editable={true}
-          onChangeText={(text) => {
-            formik.setFieldValue("Sector", text);
-          }}
-          // errorMessage={formik.errors.TipoServicio}
-          // rightIcon={{
-          //   type: "material-community",
-          //   name: "arrow-right-circle-outline",
-          //   onPress: () => selectComponent("Sector"),
-          // }}
-        />
+
         <Input
           value={formatdate(formik.values.FechaFin)}
-          placeholder="Opcional* Fecha de Fin"
+          placeholder="Fecha de Fin"
           multiline={true}
           editable={false}
           // errorMessage={formik.errors.FechaInicio}
@@ -269,68 +327,13 @@ export function AITForms(props) {
             },
           }}
         />
-        <Input
-          value={formik.values.Coord1}
-          placeholder="Coord1"
-          editable={true}
-          onChangeText={(text) => {
-            formik.setFieldValue("Coord1", text);
-          }}
-        />
-        <Input
-          value={formik.values.Coord2}
-          placeholder="Coord2"
-          editable={true}
-          onChangeText={(text) => {
-            formik.setFieldValue("Coord2", text);
-          }}
-        />
-        <Input
-          value={formik.values.Azimut}
-          placeholder="Azimut"
-          editable={true}
-          onChangeText={(text) => {
-            formik.setFieldValue("Azimut", text);
-          }}
-        />
-        <Input
-          value={formik.values.Dip}
-          placeholder="Dip"
-          editable={true}
-          onChangeText={(text) => {
-            formik.setFieldValue("Dip", text);
-          }}
-        />
-        <Input
-          value={formik.values.Cota}
-          placeholder="Cota"
-          editable={true}
-          onChangeText={(text) => {
-            formik.setFieldValue("Cota", text);
-          }}
-        />
-        <Input
-          value={formik.values.Maquina}
-          placeholder="Maquina"
-          editable={true}
-          onChangeText={(text) => {
-            formik.setFieldValue("Maquina", text);
-          }}
-        />
+
         <Input
           value={formik.values.Responsable}
           placeholder="Responsable"
           editable={true}
           onChangeText={(text) => {
             formik.setFieldValue("Responsable", text);
-          }}
-        />
-        <Input
-          value={formik.values.Taladro}
-          placeholder="Taladro"
-          editable={true}
-          onChangeText={(text) => {
-            formik.setFieldValue("Taladro", text);
           }}
         />
       </View>

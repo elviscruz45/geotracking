@@ -59,7 +59,7 @@ function InformationScreen(props) {
           props.actualServiceAIT?.idSondaje
         );
         const updateDataLasEventPost = {
-          MetrosLogueo: newData.MetrosLogueoFinal,
+          ProgEjecutado: newData.MetrosLogueoFinal,
         };
 
         // if (newData?.HHModificado) {

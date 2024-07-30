@@ -160,49 +160,58 @@ function ItemScreenNotRedux(props) {
             <Text> </Text>
             <View style={{ marginLeft: 0 }}>
               <Text style={styles.name}>{sondaje.NombreServicio}</Text>
-
-              <Text style={styles.info}>
-                {"Fecha Inicio:  "} {formatDate(sondaje.FechaInicio)}
-              </Text>
-              <Text style={styles.info}>
-                {"Pro Programado:  "} {sondaje.ProgProgramado}
-                {" metros "}
-              </Text>
-              <Text style={styles.info}>
-                {"Prog Ejecutado:  "} {sondaje.ProgEjecutado}
-                {" metros "}
-              </Text>
-
-              <Text style={styles.info}>
-                {"Cobertura:  "} {sondaje.Cobertura}
-              </Text>
-
-              <Text style={styles.info}>
-                {"Logueado por:  "} {sondaje.LogueadoPor}
-              </Text>
               <Text style={styles.info}>
                 {"Estado:  "} {sondaje.Estado}
               </Text>
               <Text style={styles.info}>
-                {"Metros Logueo:  "} {sondaje.MetrosLogueo}
+                {"Fecha Inicio:  "} {formatDate(sondaje.FechaInicio)}
               </Text>
+              <Text style={styles.info}>
+                {"Programado:  "} {sondaje.ProgProgramado}
+                {" metros "}
+              </Text>
+              <Text style={styles.info}>
+                {"Ejecutado:  "} {sondaje.ProgEjecutado}
+                {" metros "}
+              </Text>
+
+              <Text style={styles.info}>
+                {"Máquina:  "} {sondaje.Maquina}
+              </Text>
+
               <Text style={styles.info}>
                 {"Sector:  "} {sondaje.Sector}
               </Text>
+
               <Text style={styles.info}>
-                {"Responsable:  "} {sondaje.Responsable}
+                {"Coordenada Este:  "} {sondaje.Coord1}
               </Text>
               <Text style={styles.info}>
-                {"Máquina:  "} {sondaje.Maquina}
+                {"Coordenada Norte:  "} {sondaje.Coord2}
               </Text>
               <Text style={styles.info}>
                 {"Cota:  "} {sondaje.Cota}
               </Text>
               <Text style={styles.info}>
-                {"Coordinada 1:  "} {sondaje.Coord1}
+                {"Azimut:  "} {sondaje.Azimut}
               </Text>
               <Text style={styles.info}>
-                {"Coordinada 2:  "} {sondaje.Coord2}
+                {"Dip:  "} {sondaje.Dip}
+              </Text>
+              <Text style={styles.info}>
+                {"Logueado por:  "} {sondaje.LogueadoPor}
+              </Text>
+              <Text style={styles.info}>
+                {"Cobertura:  "} {sondaje.Cobertura}
+              </Text>
+              <Text style={styles.info}>
+                {"Metros Logueo:  "} {sondaje.MetrosLogueo}
+              </Text>
+              <Text style={styles.info}>
+                {"Fecha Final:  "} {formatDate(sondaje.FechaFinal)}
+              </Text>
+              <Text style={styles.info}>
+                {"Responsable:  "} {sondaje.Responsable}
               </Text>
             </View>
           </View>

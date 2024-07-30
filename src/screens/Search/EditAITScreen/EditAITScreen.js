@@ -138,7 +138,7 @@ function EditAITNoReduxScreen(props) {
 
       <AITForms formik={formik} />
       <Button
-        title="Agregar Logeo"
+        title="Actualizar"
         buttonStyle={styles.addInformation}
         onPress={formik.handleSubmit}
         loading={formik.isSubmitting}

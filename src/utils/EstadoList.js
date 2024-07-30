@@ -1,6 +1,6 @@
 export const EstadoList = [
   {
-    value: "En Proceso",
+    value: "Perforando",
   },
   {
     value: "Finalizado",
