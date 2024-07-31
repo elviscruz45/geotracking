@@ -19,6 +19,8 @@ export function initialValues() {
     Maquina: "",
     Responsable: "P. Liendo/E. Oviedo",
     Taladro: "",
+    FechaUltimaActualizacion: null,
+    FechaUltimaActualizacionFormat: "",
   };
 }
 

@@ -220,14 +220,17 @@ function PostScreen(props) {
 
                 <View>
                   <Text style={styles.name}>{item.NombreServicio}</Text>
-                  {/* <Text style={styles.info}>
-                    {"Codigo Servicio: "}
-                    {item.NumeroAIT}
-                  </Text> */}
-
                   <Text style={styles.info}>
-                    {"Sector: "}
-                    {item.EmpresaMinera}
+                    {"Estado: "}
+                    {item.Estado}
+                  </Text>
+                  <Text style={styles.info}>
+                    {"Metros Perforados: "}
+                    {item.ProgEjecutado}
+                  </Text>
+                  <Text style={styles.info}>
+                    {"Ultima actualización: "}
+                    {item.FechaUltimaActualizacionFormat}
                   </Text>
                 </View>
               </View>

@@ -26,6 +26,33 @@ import { saveTotalUsers } from "../../../actions/post";
 import { Image as ImageExpo } from "expo-image";
 import Toast from "react-native-toast-message";
 
+///function to date format
+const formatdate = () => {
+  const date = new Date();
+  const monthNames = [
+    "de enero del",
+    "de febrero del",
+    "de marzo del",
+    "de abril del",
+    "de mayo del",
+    "de junio del",
+    "de julio del",
+    "de agosto del",
+    "de septiembre del",
+    "de octubre del",
+    "de noviembre del",
+    "de diciembre del",
+  ];
+  const day = date.getDate();
+  const month = monthNames[date.getMonth()];
+  const year = date.getFullYear();
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+  const formattedDate = `${day} ${month} ${year} `;
+  const fechaPostFormato = formattedDate;
+  return fechaPostFormato;
+};
+
 function InformationScreen(props) {
   const navigation = useNavigation();
 
@@ -60,6 +87,8 @@ function InformationScreen(props) {
         );
         const updateDataLasEventPost = {
           ProgEjecutado: newData.MetrosLogueoFinal,
+          FechaUltimaActualizacion: new Date(),
+          FechaUltimaActualizacionFormat: formatdate(),
         };
 
         // if (newData?.HHModificado) {

@@ -9,6 +9,10 @@ import { connect } from "react-redux";
 import { EquipmentListUpper } from "../../../actions/home";
 import { areaLists } from "../../../utils/areaList";
 
+function convertFirestoreTimestamp(timestamp) {
+  return new Date(timestamp?.seconds * 1000 + timestamp?.nanoseconds / 1000000);
+}
+
 function SearchScreenNoRedux(props) {
   let AITServiceList;
   const [data, setData] = useState(null);
@@ -34,10 +38,14 @@ function SearchScreenNoRedux(props) {
     AITServiceList = props.servicesData;
     if (Array.isArray(AITServiceList)) {
       let AITServiceListSorted = AITServiceList.sort((a, b) => {
-        return b.createdAt - a.createdAt;
+        const dateA = convertFirestoreTimestamp(a?.FechaUltimaActualizacion);
+        console.log("dateAaaa", dateA);
+        const dateB = convertFirestoreTimestamp(b?.FechaUltimaActualizacion);
+        return dateB - dateA;
       });
       setData(AITServiceListSorted);
       setSearchResults(AITServiceListSorted?.slice(0, 100));
+      console.log("AITServiceListSorted", AITServiceListSorted);
     }
   }, [props.servicesData]);
 
@@ -64,6 +72,8 @@ function SearchScreenNoRedux(props) {
 
   useEffect(() => {
     if (!data && !searchResults) {
+      AITServiceList = props.servicesData;
+      console.log("AITServiceList", AITServiceList);
       setData(props.servicesData);
       setSearchResults(props.servicesData?.slice(0, 100));
     }
@@ -71,7 +81,6 @@ function SearchScreenNoRedux(props) {
 
   //this method is used to go to a screen to see the status of the item
   const selectAsset = (idServiciosAIT) => {
-    console.log("idServiciosAIT", idServiciosAIT);
     navigation.navigate(screen.search.tab, {
       screen: screen.search.item,
       params: { Item: idServiciosAIT },
@@ -123,13 +132,6 @@ function SearchScreenNoRedux(props) {
             (item) => item.value === area
           );
           const imageSource = areaLists[indexareaList]?.image;
-          // the algorithm to retrieve the amount with format
-          const formattedAmount = new Intl.NumberFormat("en-US", {
-            style: "decimal",
-            useGrouping: true,
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          }).format(item.Monto);
 
           return (
             <TouchableOpacity
@@ -156,17 +158,18 @@ function SearchScreenNoRedux(props) {
                 <View>
                   <Text style={styles.name}>{item.NombreServicio}</Text>
                   <Text style={styles.info}>
-                    {"Codigo Servicio: "}
-                    {item.NumeroAIT}
+                    {"Estado: "}
+                    {item.Estado}
                   </Text>
                   <Text style={styles.info}>
-                    {"Tipo: "}
-                    {item.TipoServicio}
+                    {"Metros Perforados: "}
+                    {item.ProgEjecutado}
                   </Text>
                   <Text style={styles.info}>
-                    {"Empresa Minera: "}
-                    {item.EmpresaMinera}
+                    {"Ultima actualización: "}
+                    {item.FechaUltimaActualizacionFormat}
                   </Text>
+
                   {companyName !== item.companyName && (
                     <Text style={styles.info}>
                       {"Empresa: "}

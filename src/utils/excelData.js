@@ -4,8 +4,6 @@ import { Buffer } from "buffer";
 import * as Sharing from "expo-sharing";
 
 export const getExcelReportData = async (datas = []) => {
-  console.log("datas", datas);
-
   const post_array = [];
 
   datas.forEach((data) => {
