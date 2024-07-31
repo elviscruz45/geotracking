@@ -17,7 +17,7 @@ export function initialValues() {
     Dip: "",
     Cota: "",
     Maquina: "",
-    Responsable: "",
+    Responsable: "P. Liendo/E. Oviedo",
     Taladro: "",
   };
 }

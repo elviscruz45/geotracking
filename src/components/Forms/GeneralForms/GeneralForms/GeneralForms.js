@@ -31,23 +31,24 @@ function GeneralFormsBare(props) {
   const [verprevio, setVerprevio] = useState(true);
 
   //calculo de Ley de Cobre
-  let LeyCobre =
+  let LeyCobre = (
     0.35 *
     formik.values.porcentajeMin *
-    ((10 - formik.values.calcopiritaX) / 10);
+    ((10 - formik.values.calcopiritaX) / 10)
+  ).toFixed(2);
 
   //previsualizacion
-  previsualizacion = `${formik.values.litologia}, color ${
+  previsualizacion = `${formik.values.litologia} de color ${
     formik.values.color
-  }, de textura ${formik.values.textura} ${
+  }, con textura ${formik.values.textura} y ${
     formik.values.fraccionamiento
-  } fracturamiento,${formik.values.alteracion},${
-    formik.values.venillas
-  }, mineralizacion total de sulfuros  ${
+  } fracturamiento, presenta alteracion ${
+    formik.values.alteracion
+  }, se observa ${formik.values.venillas}. Mineralización total de sulfuros ${
     formik.values.porcentajeMin
-  }% principalmente Pirita en diseminado y venillas${LeyCobre}% .Ratio Pirita/Calcopirita (${
-    formik.values.calcopiritaX
-  }/${10 - formik.values.calcopiritaX}) . Ley estimada de CuT ${LeyCobre}% `;
+  }%, principalmente pirita y calcopirita en diseminado y venillas. Ratio Pirita/Calcopirita (${
+    10 - formik.values.calcopiritaX
+  }/${formik.values.calcopiritaX}). Ley estimada de CuT ${LeyCobre}% `;
 
   //algorith to pick a pdf File to attach to the event
   const onCloseOpenModal = () => setShowModal((prevState) => !prevState);
@@ -159,7 +160,7 @@ function GeneralFormsBare(props) {
 
         <Input
           value={formik.values.MetrosLogueoInicio}
-          placeholder="Metros Inicio"
+          placeholder="Metros Perforados Inicial"
           keyboardType="numeric"
           editable={true}
           onChangeText={(text) => {
@@ -170,7 +171,7 @@ function GeneralFormsBare(props) {
         />
         <Input
           value={formik.values.MetrosLogueoFinal}
-          placeholder="Metros Final"
+          placeholder="Metros Perforados Final"
           keyboardType="numeric"
           editable={true}
           onChangeText={(text) => {
@@ -273,7 +274,7 @@ function GeneralFormsBare(props) {
         <Input
           value={formik.values.fraccionamiento}
           // inputContainerStyle={styles.textArea}
-          placeholder="Fraccionamiento"
+          placeholder="Fracturamiento"
           multiline={true}
           editable={true}
           // errorMessage={formik.errors.etapa}
@@ -286,7 +287,7 @@ function GeneralFormsBare(props) {
         <Input
           value={formik.values.alteracion}
           // inputContainerStyle={styles.textArea}
-          placeholder="Alteracion"
+          placeholder="Alteración"
           multiline={true}
           editable={true}
           // errorMessage={formik.errors.etapa}
@@ -325,7 +326,7 @@ function GeneralFormsBare(props) {
         />
         <Input
           value={formik.values.calcopiritaX}
-          placeholder="Valor de X (0-10)"
+          placeholder="Valor de Calcopirita (0-10)"
           keyboardType="numeric"
           editable={true}
           onChangeText={(text) => {

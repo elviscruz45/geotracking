@@ -185,9 +185,10 @@ function HomeScreen(props) {
         >
           <Text
             style={{
-              fontSize: 50,
+              fontSize: 40,
               // fontFamily: "Arial",
               color: "#2A3B76",
+              fontWeight: "bold",
 
               textAlign: "center",
             }}
@@ -213,7 +214,7 @@ function HomeScreen(props) {
               color: "#2A3B76",
             }}
           >
-            1. En la parte superior se encuentran todos los sondeos
+            1. En el botón Buscar encuentran todos los sondajes.
           </Text>
           <Text
             style={{
@@ -222,8 +223,8 @@ function HomeScreen(props) {
               color: "#2A3B76",
             }}
           >
-            2. En el boton de publicar, se crearan nuevos sondeos o se reportara
-            una actualizacion de los mismos
+            2. En el botón de Publicar, se crearan nuevos sondajes o se
+            reportará una actualización de los mismos.
           </Text>
           <Text
             style={{
@@ -232,8 +233,8 @@ function HomeScreen(props) {
               color: "#2A3B76",
             }}
           >
-            3. En el boton de buscar, se encuentra tambien la lista de todos los
-            sondeos
+            3. En el botón de Perfil, se encuentra el botón para exportar toda
+            la base de datos.
           </Text>
           <Text></Text>
 

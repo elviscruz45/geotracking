@@ -1,15 +1,15 @@
 export const litologia = [
   {
-    value: "Porfido Cuarcifero",
+    value: "Porfido Cuarcífero",
   },
   {
-    value: "Porfido Feldespatico",
+    value: "Porfido Feldespático",
   },
   {
     value: "Cuarcita",
   },
   {
-    value: "Horfels",
+    value: "Hornfels",
   },
   {
     value: "Skarn",
@@ -51,10 +51,10 @@ export const textura = [
     value: "de grano medio y porfiritica con fenocristales de cuarzo",
   },
   {
-    value: "porfiritica parcialmente obliterada",
+    value: "porfirítica parcialmente obliterada",
   },
   {
-    value: "porfiritica fuertemente obliterada",
+    value: "porfirítica fuertemente obliterada",
   },
   {
     value: "granoblástica",
@@ -78,24 +78,24 @@ export const fraccionamiento = [
 
 export const alteracion = [
   {
-    value: "Sericita y arcillas reemplaza feldespatos y plagioclasas",
+    value: "de sericita y arcillas reemplazando feldespatos y plagioclasas",
   },
   {
-    value: "Sericita y arcillas en intersticios y fracturas",
+    value: "de sericita y arcillas en intersticios y fracturas",
   },
   {
-    value: "Potasica",
+    value: "potásica",
   },
   {
-    value: "Cloritica",
+    value: "clorítica",
   },
 ];
 export const venillas = [
   {
-    value: "venillas sinuosas tipo A",
+    value: "venillas sinuosas de cuarzo tipo A",
   },
   {
-    value: "venillas rectas tipo B",
+    value: "venillas rectas de cuarzo tipo B",
   },
   {
     value: "venillas de pirita tipo DL",
