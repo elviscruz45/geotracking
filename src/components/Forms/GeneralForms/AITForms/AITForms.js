@@ -141,7 +141,7 @@ export function AITForms(props) {
     }
     if (key === "MetrosLogueo") {
       setRenderComponent(
-        <ChangeDisplayMonto onClose={onCloseOpenModal} formik={formik} />
+        <ChangeDisplayMetrosLogueo onClose={onCloseOpenModal} formik={formik} />
       );
     }
     if (key === "Sector") {
