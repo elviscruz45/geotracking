@@ -120,7 +120,7 @@ function PostScreen(props) {
       style={{ backgroundColor: "white" }}
     >
       <SearchBar
-        placeholder="Buscar Numero de Logueo"
+        placeholder="Buscar Sondaje"
         value={searchText}
         onChangeText={(text) => setSearchText(text)}
         lightTheme={true}
