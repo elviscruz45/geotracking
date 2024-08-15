@@ -15,6 +15,7 @@ import { EditAITScreen } from "../screens/Search/EditAITScreen/EditAITScreen";
 import { AddDocsForm } from "../components/Forms/GeneralForms/AddDocsForm/AddForms";
 import { Platform } from "react-native";
 import "react-native-get-random-values";
+import { EditLogueoScreen } from "../screens/Search/EditLogueoScreen/EditLogueoScreen";
 
 function SearchStackBare(props) {
   const Stack = createNativeStackNavigator();
@@ -120,7 +121,11 @@ function SearchStackBare(props) {
         component={EditAITScreen}
         options={{ title: " " }}
       />
-
+      <Stack.Screen
+        name={screen.search.editLogueo}
+        component={EditLogueoScreen}
+        options={{ title: " " }}
+      />
       <Stack.Screen
         name={screen.search.addDocs}
         component={AddDocsForm}

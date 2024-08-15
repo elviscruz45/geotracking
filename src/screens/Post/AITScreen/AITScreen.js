@@ -38,10 +38,8 @@ function AITNoReduxScreen(props) {
     validationSchema: validationSchema(),
     validateOnChange: false,
     onSubmit: async (formValue) => {
-      console.log("abc");
 
       try {
-        console.log("def");
 
         //retrieving data from Formik
         const newData = formValue;

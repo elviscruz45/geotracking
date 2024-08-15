@@ -9,7 +9,7 @@ export const getExcelReportData = async (datas = []) => {
   datas.forEach((data) => {
     const table = {
       //Datos principales del servicio
-      FechaInicio: data.FechaInicio, //ok
+      // FechaInicio: data.FechaInicio, //ok
       ID: data.AITNombreSondaje,
       FECHA_DE_PERFORACION: formatDate(data.createdAt?.toDate().getTime()), //ok
       DE: data.MetrosLogueoInicio, //ok

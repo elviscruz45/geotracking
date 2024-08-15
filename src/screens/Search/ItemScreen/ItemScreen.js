@@ -20,6 +20,7 @@ import { areaLists } from "../../../utils/areaList";
 import { CircularProgress } from "./CircularProgress";
 import { GanttHistorial } from "../../../components/Search/Gantt/Gantt";
 import Toast from "react-native-toast-message";
+import { Image as ImageExpo } from "expo-image";
 
 function ItemScreenNotRedux(props) {
   const [sondaje, setSondaje] = useState();

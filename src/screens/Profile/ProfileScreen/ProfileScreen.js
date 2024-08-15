@@ -81,7 +81,6 @@ function ProfileScreen(props) {
               titleStyle={styles.btnTextStyle}
               onPress={() => update_Data()}
             />
-
             <Button
               title="Cerrar "
               buttonStyle={styles.btncerrarStyles}

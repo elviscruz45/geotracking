@@ -10,6 +10,7 @@ const homeStack = {
 const searchStack = {
   tab: "SearchTab",
   search: "Search",
+  editLogueo: "Logueo",
   item: "Item",
   moreDetail: "MoreDetail",
   pdf: "Pdf",

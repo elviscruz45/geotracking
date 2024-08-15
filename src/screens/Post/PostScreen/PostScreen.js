@@ -25,8 +25,6 @@ function PostScreen(props) {
   const [posts, setPosts] = useState([]);
   const [searchResults, setSearchResults] = useState(null);
 
-  console.log("oaaaa", logueo);
-
   //retrieving serviceAIT list data from firebase
   useEffect(() => {
     let servicesList = props.servicesData;
@@ -69,34 +67,6 @@ function PostScreen(props) {
     if (!logueo) return;
 
     navigation.navigate(screen.post.form);
-
-    // let result = await ImagePicker.launchImageLibraryAsync({
-    //   mediaTypes: ImagePicker.MediaTypeOptions.All,
-    //   allowsEditing: true,
-    //   aspect: [4, 4],
-    //   quality: 1,
-    // });
-
-    // if (result.canceled) {
-    //   Toast.show({
-    //     type: "error",
-    //     text1: "No se ha seleccionado ningun logueo",
-    //     visibilityTime: 2000,
-    //     autoHide: true,
-    //     topOffset: 30,
-    //     bottomOffset: 40,
-    //   });
-    //   setLogueo(null);
-    // } else {
-    //   const resizedPhoto = await ImageManipulator.manipulateAsync(
-    //     result.assets[0].uri,
-    //     [{ resize: { width: 800 } }],
-    //     { compress: 0.1, format: "jpeg", base64: true }
-    //   );
-    //   props.savePhotoUri(resizedPhoto.uri);
-    //   navigation.navigate(screen.post.form);
-    //   setEquipment(null);
-    // }
   };
 
   //Addin a new Service asigned called AIT
@@ -107,11 +77,12 @@ function PostScreen(props) {
     setAIT(null);
   };
 
-  const selectAsset = (AIT) => {
-    console.log("asfasfas", AIT);
-    setAIT(AIT);
-    setLogueo(AIT);
-    props.saveActualServiceAIT(AIT);
+  const selectAsset = async (AIT) => {
+    await setAIT(AIT);
+    await setLogueo(AIT);
+    await props.saveActualServiceAIT(AIT);
+
+    pickImage(AIT?.TipoServicio);
   };
 
   return (
@@ -130,15 +101,15 @@ function PostScreen(props) {
       {props.firebase_user_name && (
         <View style={styles.equipments2}>
           <View>
-            <ImageExpo
+            {/* <ImageExpo
               source={equipment ?? emptyimage}
               style={styles.roundImage}
               cachePolicy={"memory-disk"}
-            />
+            /> */}
 
             <View>
               <Text style={styles.name2}>Logueo</Text>
-              <Text style={styles.name2}>
+              <Text style={styles.name3}>
                 {logueo ? logueo?.NombreServicio : "Numero de Logueo"}
               </Text>
             </View>
@@ -158,7 +129,7 @@ function PostScreen(props) {
         >
           <TouchableOpacity
             style={styles.btnContainer2}
-            onPress={() => pickImage(AIT?.TipoServicio)}
+            // onPress={() => pickImage(AIT?.TipoServicio)}
           >
             <Image
               source={require("../../../../assets/AddImage.png")}

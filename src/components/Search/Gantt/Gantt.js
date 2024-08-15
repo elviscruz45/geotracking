@@ -5,16 +5,33 @@ import {
   View,
   FlatList,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { Image as ImageExpo } from "expo-image";
 import { styles } from "./Gantt.styles";
 import { Icon } from "@rneui/themed";
+import { screen } from "../../../utils";
+import { useNavigation } from "@react-navigation/native";
+import { db } from "../../../utils";
+import {
+  collection,
+  doc,
+  addDoc,
+  updateDoc,
+  arrayUnion,
+  getDoc,
+  deleteDoc,
+} from "firebase/firestore";
+import Toast from "react-native-toast-message";
 
 export const GanttHistorial = (props) => {
   const { datas, comentPost } = props;
   const dataSorted = datas?.sort((a, b) => {
     return b.createdAt - a.createdAt;
   });
+
+  const navigation = useNavigation();
+
   const formatDate = (dateInput) => {
     const { seconds, nanoseconds } = dateInput || {
       seconds: 0,
@@ -44,6 +61,45 @@ export const GanttHistorial = (props) => {
     const formattedDate = `${day} ${month} ${year}`;
     return formattedDate;
   };
+
+  //Delete function
+  const docDelete = async (idDoc) => {
+    Alert.alert(
+      "Eliminar Evento",
+      "Estas Seguro que desear Eliminar el evento?",
+      [
+        {
+          text: "Cancelar",
+          style: "cancel",
+        },
+        {
+          text: "Aceptar",
+          onPress: async () => {
+            //delete the doc from events collections
+            // navigation.navigate(screen.home.home);
+            await deleteDoc(doc(db, "events", idDoc));
+            navigation.navigate(screen.search.search);
+
+            Toast.show({
+              type: "success",
+              position: "bottom",
+              text1: "Se ha eliminado correctamente",
+            });
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  };
+
+  // go to edit screen
+  const goToEditLogueoScreen = (item) => {
+    navigation.navigate(screen.search.tab, {
+      screen: screen.search.editLogueo,
+      params: { Item: item },
+    });
+  };
+
   return (
     <FlatList
       scrollEnabled={false}
@@ -89,12 +145,24 @@ export const GanttHistorial = (props) => {
                     style={[
                       styles.time,
                       styles.timeStyle,
-                      { textAlign: "center", marginTop: 15, marginLeft: -5 },
+                      { textAlign: "center", marginTop: 10, marginLeft: -5 },
                     ]}
                     allowFontScaling={true}
                   >
                     {formattedDate}
                   </Text>
+                  <View>
+                    <TouchableOpacity
+                      onPress={() => goToEditLogueoScreen(item)}
+                    >
+                      <View style={{ marginRight: "5%" }}>
+                        <ImageExpo
+                          source={require("../../../../assets/editIcon2.png")}
+                          style={styles.editIcon}
+                        />
+                      </View>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
             </View>
@@ -114,6 +182,7 @@ export const GanttHistorial = (props) => {
                 />
               )}
             </View>
+
             <View style={styles.details}>
               <Text style={styles.titledetails}>{item.title}</Text>
 
@@ -130,7 +199,9 @@ export const GanttHistorial = (props) => {
                 />
                 <Text style={styles.textdetail}>{item.previa}</Text>
               </View>
+
               <Text></Text>
+
               <View style={styles.rowavanceNombre}>
                 <Text style={styles.avanceNombre}> Ejecutado Inicial: </Text>
 
@@ -178,6 +249,22 @@ export const GanttHistorial = (props) => {
                 <Text style={styles.detail}> {formatDate(item.createdAt)}</Text>
               </View>
             </View>
+            <TouchableOpacity
+              onPress={() => docDelete(item.IDReporte)}
+              style={{
+                marginRight: "5%",
+              }}
+            >
+              <ImageExpo
+                source={require("../../../../assets/deleteIcon.png")}
+                style={styles.roundImage10}
+                cachePolicy={"memory-disk"}
+              />
+            </TouchableOpacity>
+            <Text></Text>
+            <Text></Text>
+            <Text></Text>
+            {/* <View style={{ width: 2 }}></View> */}
           </View>
         );
       }}

@@ -39,13 +39,11 @@ function SearchScreenNoRedux(props) {
     if (Array.isArray(AITServiceList)) {
       let AITServiceListSorted = AITServiceList.sort((a, b) => {
         const dateA = convertFirestoreTimestamp(a?.FechaUltimaActualizacion);
-        console.log("dateAaaa", dateA);
         const dateB = convertFirestoreTimestamp(b?.FechaUltimaActualizacion);
         return dateB - dateA;
       });
       setData(AITServiceListSorted);
       setSearchResults(AITServiceListSorted?.slice(0, 100));
-      console.log("AITServiceListSorted", AITServiceListSorted);
     }
   }, [props.servicesData]);
 

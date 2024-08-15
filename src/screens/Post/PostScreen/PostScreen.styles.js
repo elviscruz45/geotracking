@@ -206,6 +206,13 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
     alignContent: "center",
   },
+  name3: {
+    fontWeight: "bold",
+    fontSize: 20,
+
+    alignSelf: "center",
+    alignContent: "center",
+  },
   info: {
     color: "#828282",
     paddingRight: 100,

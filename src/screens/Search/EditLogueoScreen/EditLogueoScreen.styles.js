@@ -86,7 +86,6 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     marginRight: "30%",
     textAlign: "center",
-    fontSize: 30,
   },
   info: {
     color: "#828282",
