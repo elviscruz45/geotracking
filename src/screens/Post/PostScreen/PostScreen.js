@@ -52,7 +52,7 @@ function PostScreen(props) {
   }, [searchText, posts]);
 
   //method to retrieve the picture required in the event post (pick Imagen, take a photo)
-  const pickImage = async (AITServiceNumber) => {
+  const pickImage = async (AIT) => {
     if (!logueo) {
       Toast.show({
         type: "error",
@@ -65,7 +65,6 @@ function PostScreen(props) {
       return;
     }
     if (!logueo) return;
-
     navigation.navigate(screen.post.form);
   };
 
@@ -81,8 +80,7 @@ function PostScreen(props) {
     await setAIT(AIT);
     await setLogueo(AIT);
     await props.saveActualServiceAIT(AIT);
-
-    pickImage(AIT?.TipoServicio);
+    pickImage(AIT);
   };
 
   return (
@@ -113,9 +111,22 @@ function PostScreen(props) {
                 {logueo ? logueo?.NombreServicio : "Numero de Logueo"}
               </Text>
             </View>
+            <Text></Text>
+
+            <TouchableOpacity
+              style={styles.btnContainer4}
+              onPress={() => addAIT()}
+            >
+              <Image
+                source={require("../../../../assets/newService7.png")}
+                style={styles.roundImageUpload}
+              />
+            </TouchableOpacity>
+            <Text style={{ textAlign: "center" }}>Crear Sondaje</Text>
           </View>
         </View>
       )}
+
       {props.firebase_user_name && (
         <View
           style={{
@@ -131,10 +142,10 @@ function PostScreen(props) {
             style={styles.btnContainer2}
             // onPress={() => pickImage(AIT?.TipoServicio)}
           >
-            <Image
+            {/* <Image
               source={require("../../../../assets/AddImage.png")}
               style={styles.roundImageUpload}
-            />
+            /> */}
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.btnContainer3}
@@ -145,7 +156,7 @@ function PostScreen(props) {
               style={styles.roundImageUpload}
             /> */}
           </TouchableOpacity>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.btnContainer4}
             onPress={() => addAIT()}
           >
@@ -153,7 +164,7 @@ function PostScreen(props) {
               source={require("../../../../assets/newService7.png")}
               style={styles.roundImageUpload}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       )}
       <FlatList

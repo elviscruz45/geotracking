@@ -34,8 +34,8 @@ function GeneralFormsBare(props) {
   let LeyCobre = (
     0.35 *
     formik.values.porcentajeMin *
-    ((10 - formik.values.calcopiritaX) / 10)
-  ).toFixed(2);
+    (formik.values.calcopiritaX / 10)
+  ).toFixed(3);
 
   //previsualizacion
   previsualizacion = `${formik.values.litologia} de color ${

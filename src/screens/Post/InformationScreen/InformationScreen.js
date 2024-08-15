@@ -117,6 +117,15 @@ function InformationScreen(props) {
     },
   });
 
+  useEffect(() => {
+    if (props.actualServiceAIT) {
+      formik.setFieldValue(
+        "MetrosLogueoInicio",
+        props.actualServiceAIT?.ProgEjecutado
+      );
+    }
+  }, [props.actualServiceAIT]);
+
   //algorith to retrieve image source that
   const area = props.actualServiceAIT?.AreaServicio;
   const indexareaList = areaLists.findIndex((item) => item.value === area);
