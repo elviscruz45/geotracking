@@ -82,6 +82,34 @@ function EditLogueoScreenBare(props) {
           updateDataLasEventPost.CajaLogueoFinal = newData.CajaLogueoFinal;
         }
 
+        if (newData?.litologia) {
+          updateDataLasEventPost.litologia = newData.litologia;
+        }
+        if (newData?.color) {
+          updateDataLasEventPost.color = newData.color;
+        }
+        if (newData?.textura) {
+          updateDataLasEventPost.textura = newData.textura;
+        }
+        if (newData?.fraccionamiento) {
+          updateDataLasEventPost.fraccionamiento = newData.fraccionamiento;
+        }
+        if (newData?.alteracion) {
+          updateDataLasEventPost.alteracion = newData.alteracion;
+        }
+        if (newData?.venillas) {
+          updateDataLasEventPost.venillas = newData.venillas;
+        }
+        if (newData?.mineralizacion) {
+          updateDataLasEventPost.mineralizacion = newData.mineralizacion;
+        }
+        if (newData?.porcentajeMin) {
+          updateDataLasEventPost.porcentajeMin = newData.porcentajeMin;
+        }
+        if (newData?.calcopiritaX) {
+          updateDataLasEventPost.calcopiritaX = newData.calcopiritaX;
+        }
+
         if (newData?.previa) {
           updateDataLasEventPost.previa = newData.previa;
         }

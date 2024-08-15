@@ -212,18 +212,140 @@ function GeneralFormsBare(props) {
         />
 
         <Text></Text>
-        <Text style={styles.subtitleForm}>Previsualizacion</Text>
+        <Text style={styles.subtitleForm}>Descripcion Litologica</Text>
         <Text></Text>
 
         <Input
-          value={formik.values.previa}
-          inputContainerStyle={styles.textArea2}
+          value={formik.values.litologia}
+          // inputContainerStyle={styles.textArea}
+          placeholder="Litologia"
           multiline={true}
           editable={true}
-          onChangeText={(text) => {
-            formik.setFieldValue("previa", text);
+          // errorMessage={formik.errors.etapa}
+          rightIcon={{
+            type: "material-community",
+            name: "arrow-right-circle-outline",
+            onPress: () => selectComponent("litologia"),
           }}
         />
+
+        <Input
+          value={formik.values.color}
+          // inputContainerStyle={styles.textArea}
+          placeholder="Color"
+          multiline={true}
+          editable={true}
+          // errorMessage={formik.errors.etapa}
+          rightIcon={{
+            type: "material-community",
+            name: "arrow-right-circle-outline",
+            onPress: () => selectComponent("color"),
+          }}
+        />
+
+        <Input
+          value={formik.values.textura}
+          // inputContainerStyle={styles.textArea}
+          placeholder="Textura"
+          multiline={true}
+          editable={true}
+          // errorMessage={formik.errors.etapa}
+          rightIcon={{
+            type: "material-community",
+            name: "arrow-right-circle-outline",
+            onPress: () => selectComponent("textura"),
+          }}
+        />
+
+        <Input
+          value={formik.values.fraccionamiento}
+          // inputContainerStyle={styles.textArea}
+          placeholder="Fracturamiento"
+          multiline={true}
+          editable={true}
+          // errorMessage={formik.errors.etapa}
+          rightIcon={{
+            type: "material-community",
+            name: "arrow-right-circle-outline",
+            onPress: () => selectComponent("fraccionamiento"),
+          }}
+        />
+        <Input
+          value={formik.values.alteracion}
+          // inputContainerStyle={styles.textArea}
+          placeholder="Alteración"
+          multiline={true}
+          editable={true}
+          // errorMessage={formik.errors.etapa}
+          rightIcon={{
+            type: "material-community",
+            name: "arrow-right-circle-outline",
+            onPress: () => selectComponent("alteracion"),
+          }}
+        />
+        <Input
+          value={formik.values.venillas}
+          // inputContainerStyle={styles.textArea}
+          placeholder="Venillas"
+          multiline={true}
+          editable={true}
+          // errorMessage={formik.errors.etapa}
+          rightIcon={{
+            type: "material-community",
+            name: "arrow-right-circle-outline",
+            onPress: () => selectComponent("venillas"),
+          }}
+        />
+
+        <Text></Text>
+        <Text style={styles.subtitleForm}>Calculo de mineralizacion</Text>
+        <Text></Text>
+
+        <Input
+          value={formik.values.porcentajeMin}
+          placeholder="Porcentaje de mineralizacion %"
+          keyboardType="numeric"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("porcentajeMin", text);
+          }}
+        />
+        <Input
+          value={formik.values.calcopiritaX}
+          placeholder="Valor de Calcopirita (0-10)"
+          keyboardType="numeric"
+          editable={true}
+          onChangeText={(text) => {
+            formik.setFieldValue("calcopiritaX", text);
+          }}
+        />
+
+        <Text></Text>
+        <Text style={styles.subtitleForm}>Previsualizacion</Text>
+        <Text></Text>
+
+        {verprevio && (
+          <Text
+            style={{ marginHorizontal: 10 }}
+            onPress={() => {
+              formik.setFieldValue("previa", previsualizacion);
+              setVerprevio(false);
+            }}
+          >
+            {previsualizacion.length > 0 ? previsualizacion : ""}
+          </Text>
+        )}
+        {!verprevio && (
+          <Input
+            value={formik.values.previa}
+            inputContainerStyle={styles.textArea2}
+            multiline={true}
+            editable={true}
+            onChangeText={(text) => {
+              formik.setFieldValue("previa", text);
+            }}
+          />
+        )}
       </View>
       <Modal show={showModal} close={onCloseOpenModal}>
         {renderComponent}
