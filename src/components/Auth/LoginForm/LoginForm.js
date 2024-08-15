@@ -52,14 +52,10 @@ function LoginForm(props) {
         );
 
         const user_uid = userCredential.user.uid;
-        console.log("user_uid", user_uid);
 
         const docRef = doc(db, "users", user_uid);
-        console.log("docRef", docRef);
 
         const docSnap = await getDoc(docRef);
-        console.log("docSnap", docSnap);
-        console.log("docSnap111", docSnap.data());
 
         props.update_firebaseUserUid(userCredential.user.uid);
         await AsyncStorage.setItem(

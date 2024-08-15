@@ -18,10 +18,8 @@ export const SelectExampleBare = (props) => {
   const regex = /@(.+?)\./i;
 
   const companyName = props.email?.match(regex)?.[1].toUpperCase() || "Anonimo";
-  console.log("companyName", companyName);
 
   const userType = props.profile?.userType;
-  console.log("userType", userType);
 
   function saveProperty(itemValue) {
     setText(itemValue);

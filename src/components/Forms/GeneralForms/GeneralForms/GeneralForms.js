@@ -50,6 +50,10 @@ function GeneralFormsBare(props) {
     10 - formik.values.calcopiritaX
   }/${formik.values.calcopiritaX}). Ley estimada de CuT ${LeyCobre}% `;
 
+  useEffect(() => {
+    formik.setFieldValue("previa", previsualizacion);
+  }, [previsualizacion]);
+
   //algorith to pick a pdf File to attach to the event
   const onCloseOpenModal = () => setShowModal((prevState) => !prevState);
 
@@ -348,15 +352,17 @@ function GeneralFormsBare(props) {
             {previsualizacion.length > 0 ? previsualizacion : ""}
           </Text>
         )}
-        <Input
-          value={formik.values.previa}
-          inputContainerStyle={styles.textArea2}
-          multiline={true}
-          editable={true}
-          onChangeText={(text) => {
-            formik.setFieldValue("previa", text);
-          }}
-        />
+        {!verprevio && (
+          <Input
+            value={formik.values.previa}
+            inputContainerStyle={styles.textArea2}
+            multiline={true}
+            editable={true}
+            onChangeText={(text) => {
+              formik.setFieldValue("previa", text);
+            }}
+          />
+        )}
       </View>
       <Modal show={showModal} close={onCloseOpenModal}>
         {renderComponent}

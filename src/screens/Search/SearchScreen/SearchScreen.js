@@ -71,7 +71,6 @@ function SearchScreenNoRedux(props) {
   useEffect(() => {
     if (!data && !searchResults) {
       AITServiceList = props.servicesData;
-      console.log("AITServiceList", AITServiceList);
       setData(props.servicesData);
       setSearchResults(props.servicesData?.slice(0, 100));
     }

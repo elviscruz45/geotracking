@@ -36,7 +36,6 @@ function GeneralFormsBare(props) {
     formik.values.porcentajeMin *
     ((10 - formik.values.calcopiritaX) / 10)
   ).toFixed(2);
-
   //previsualizacion
   previsualizacion = `${formik.values.litologia} de color ${
     formik.values.color
@@ -50,38 +49,23 @@ function GeneralFormsBare(props) {
     10 - formik.values.calcopiritaX
   }/${formik.values.calcopiritaX}). Ley estimada de CuT ${LeyCobre}% `;
 
+  useEffect(() => {
+    if (
+      formik.values.litologia ||
+      formik.values.color ||
+      formik.values.textura ||
+      formik.values.fraccionamiento ||
+      formik.values.alteracion ||
+      formik.values.venillas ||
+      formik.values.porcentajeMin ||
+      formik.values.calcopiritaX
+    ) {
+      formik.setFieldValue("previa", previsualizacion);
+    }
+  }, [previsualizacion]);
+
   //algorith to pick a pdf File to attach to the event
   const onCloseOpenModal = () => setShowModal((prevState) => !prevState);
-
-  ///function to date format
-  const formatdate = (item) => {
-    if (item === null) {
-      return "";
-    }
-    const date = new Date(item);
-    const monthNames = [
-      "de enero del",
-      "de febrero del",
-      "de marzo del",
-      "de abril del",
-      "de mayo del",
-      "de junio del",
-      "de julio del",
-      "de agosto del",
-      "de septiembre del",
-      "de octubre del",
-      "de noviembre del",
-      "de diciembre del",
-    ];
-    const day = date.getDate();
-    const month = monthNames[date.getMonth()];
-    const year = date.getFullYear();
-    const hour = date.getHours();
-    const minute = date.getMinutes();
-    const formattedDate = `${day} ${month} ${year} `;
-    const fechaPostFormato = formattedDate;
-    return fechaPostFormato;
-  };
 
   const selectComponent = (key) => {
     if (key === "FechaInicio") {

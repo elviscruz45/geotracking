@@ -40,7 +40,6 @@ import { areaLists } from "../../../utils/areaList";
 function EditLogueoScreenBare(props) {
   const navigation = useNavigation();
 
-  console.log(props.route.params.Item.IDReporte);
 
   // retrieving data from formik forms ,data from ./InfomartionScreen.data.js
   const formik = useFormik({

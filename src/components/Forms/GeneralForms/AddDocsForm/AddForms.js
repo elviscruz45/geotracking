@@ -186,7 +186,6 @@ export function AddDocsFormBare(props) {
         type: "*/*",
         copyToCacheDirectory: false,
       });
-      console.log("result", result);
 
       if (result.assets) {
         setShortNameFileUpdated(result?.assets[0]?.name);
