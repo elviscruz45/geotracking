@@ -35,7 +35,7 @@ function GeneralFormsBare(props) {
     0.35 *
     formik.values.porcentajeMin *
     (formik.values.calcopiritaX / 10)
-  ).toFixed(3);
+  ).toFixed(1);
 
   //previsualizacion
   previsualizacion = `${formik.values.litologia} de color ${
@@ -48,7 +48,7 @@ function GeneralFormsBare(props) {
     formik.values.porcentajeMin
   }%, principalmente pirita y calcopirita en diseminado y venillas. Ratio Pirita/Calcopirita (${
     10 - formik.values.calcopiritaX
-  }/${formik.values.calcopiritaX}). Ley estimada de CuT ${LeyCobre}% `;
+  }/${formik.values.calcopiritaX}). Ley estimada de ${LeyCobre}% CuT.`;
 
   useEffect(() => {
     formik.setFieldValue("previa", previsualizacion);

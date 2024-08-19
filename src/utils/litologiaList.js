@@ -74,11 +74,18 @@ export const fraccionamiento = [
   {
     value: "fuerte",
   },
+  {
+    value: "zona de falla con fuerte",
+  },
+  {
+    value: "fuertemente fallado",
+  },
 ];
 
 export const alteracion = [
   {
-    value: "de sericita y arcillas reemplazando feldespatos y plagioclasas",
+    value:
+      "sericítica con ocurrencia de arcillas reemplazando feldespatos y plagioclasas",
   },
   {
     value: "de sericita y arcillas en intersticios y fracturas",
@@ -89,6 +96,10 @@ export const alteracion = [
   {
     value: "clorítica",
   },
+  {
+    value:
+      "argílica con contenido de arcillas y óxidos en un  %, principalmente jarosita, goethita y hematita con un ratio de (x/y/z).",
+  },
 ];
 export const venillas = [
   {
@@ -98,11 +109,12 @@ export const venillas = [
     value: "venillas rectas de cuarzo tipo B",
   },
   {
-    value: "venillas de pirita tipo DL",
+    value: "venillas rectas de cuarzo con sutura de pirita tipo B",
   },
   {
-    value: "venillas de pirita tipo D",
+    value: "venillas de pirita tipo DL",
   },
+
   {
     value: "venillas de pirita con halos de sericita tipo D",
   },
