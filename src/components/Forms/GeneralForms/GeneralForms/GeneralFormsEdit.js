@@ -47,7 +47,7 @@ function GeneralFormsBare(props) {
     formik.values.porcentajeMin
   }%, principalmente pirita y calcopirita en diseminado y venillas. Ratio Pirita/Calcopirita (${
     10 - formik.values.calcopiritaX
-  }/${formik.values.calcopiritaX}). Ley estimada de CuT ${LeyCobre}% `;
+  }/${formik.values.calcopiritaX}). Ley estimada de ${LeyCobre}% CuT. `;
 
   useEffect(() => {
     if (
