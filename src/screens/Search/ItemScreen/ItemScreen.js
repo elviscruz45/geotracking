@@ -40,7 +40,7 @@ function ItemScreenNotRedux(props) {
         const queryRef1 = query(
           collection(db, "events"),
           where("IDSondaje", "==", Item),
-          limit(5),
+          limit(1000),
           orderBy("createdAt", "desc")
         );
         const getDocs1 = await getDocs(queryRef1);
