@@ -1,9 +1,9 @@
 export const litologia = [
   {
-    value: "Porfido Cuarcífero",
+    value: "Pórfido Cuarcífero",
   },
   {
-    value: "Porfido Feldespático",
+    value: "Pórfido Feldespático",
   },
   {
     value: "Cuarcita",
@@ -91,7 +91,7 @@ export const alteracion = [
     value: "de sericita y arcillas en intersticios y fracturas",
   },
   {
-    value: "potásica",
+    value: "potásica descrita por biotita secundaria y magnetita diseminada",
   },
   {
     value: "clorítica",

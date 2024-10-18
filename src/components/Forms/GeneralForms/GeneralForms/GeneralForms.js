@@ -42,7 +42,7 @@ function GeneralFormsBare(props) {
     formik.values.color
   }, con textura ${formik.values.textura} y ${
     formik.values.fraccionamiento
-  } fracturamiento, presenta alteracion ${
+  } fracturamiento, presenta alteración ${
     formik.values.alteracion
   }, se observa ${formik.values.venillas}. Mineralización total de sulfuros ${
     formik.values.porcentajeMin
