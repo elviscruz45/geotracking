@@ -83,6 +83,8 @@ function SearchScreenNoRedux(props) {
       params: { Item: idServiciosAIT },
     });
   };
+
+  console.log("holaaaa", props?.servicesData);
   if (props.servicesData?.length === 0 || !props.email || !data) {
     return (
       <View

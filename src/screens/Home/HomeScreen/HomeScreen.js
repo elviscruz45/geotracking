@@ -108,6 +108,11 @@ function HomeScreen(props) {
       showsVerticalScrollIndicator={false}
     >
       <Text></Text>
+
+      <HeaderScreen />
+      <Text></Text>
+      <Text></Text>
+
       <Image
         source={require("../../../../assets/empresa.png")}
         style={styles.roundImageUpload}
