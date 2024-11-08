@@ -1,5 +1,13 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { Text, View, FlatList, TouchableOpacity, Linking } from "react-native";
+import {
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+  Linking,
+  ScrollView,
+  Image,
+} from "react-native";
 import { connect } from "react-redux";
 import { Icon } from "@rneui/themed";
 import { styles } from "./HomeScreen.styles";
@@ -91,317 +99,241 @@ function HomeScreen(props) {
     }
   }, [props.email]);
 
-  const loadMorePosts = () => {
-    props.resetPostPerPageHome(props.postPerPage);
-  };
-
-  //---This is used to get the attached file in the post that contain an attached file---
-  const uploadFile = useCallback(async (uri) => {
-    try {
-      const supported = await Linking.canOpenURL(uri);
-      if (supported) {
-        await Linking.openURL(uri);
-      } else {
-        Toast.show({
-          type: "error",
-          position: "top",
-          text1: "Unable to open PDF document",
-        });
-      }
-    } catch (error) {
-      Toast.show({
-        type: "error",
-        position: "top",
-        text1: "Error opening PDF document",
-      });
-    }
-  }, []);
-
-  //---activate like/unlike Post using useCallback--------
-  const likePost = useCallback(
-    async (item) => {
-      const postRef = doc(db, "events", item.idDocFirestoreDB);
-
-      if (item.likes?.includes(props.email)) {
-        await updateDoc(postRef, {
-          likes: arrayRemove(props.email),
-        });
-      } else {
-        await updateDoc(postRef, {
-          likes: arrayUnion(props.email),
-        });
-      }
-    },
-    [props.email]
-  );
-
-  //--To goes to comment screen using callBack-----
-  const commentPost = useCallback(
-    (item) => {
-      navigation.navigate(screen.home.tab, {
-        screen: screen.home.comment,
-        params: { Item: item },
-      });
-    },
-    [navigation]
-  );
-
-  // goToServiceInfo
-  const goToServiceInfo = (item) => {
-    navigation.navigate(screen.search.tab, {
-      screen: screen.search.item,
-      params: { Item: item.AITidServicios },
-    });
-  };
-
   if (isLoading) {
     return <LoadingSpinner />;
   }
-  if (true) {
-    return (
-      <View
-        style={{
-          // alignItems: "center",
-          flex: 1,
-          marginLeft: 5,
-        }}
-      >
-        <View
-          style={{
-            // alignItems: "center",
-            opacity: 0,
-            height: 0,
-          }}
-        >
-          <HeaderScreen />
+  return (
+    <ScrollView
+      style={{ backgroundColor: "white" }}
+      showsVerticalScrollIndicator={false}
+    >
+      <Text></Text>
+      <Image
+        source={require("../../../../assets/empresa.png")}
+        style={styles.roundImageUpload}
+      />
+
+      <Text style={styles.company}>Reporte General</Text>
+
+      {/*
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+        <View style={styles.iconMinMax}>
+          <View style={styles.container22}>
+            <Text style={styles.titleText}>Servicios Activos Asignados</Text>
+          </View>
+          <TouchableOpacity onPress={() => setServiciosActivos(true)}>
+            <Image
+              source={require("../../../../assets/plus3.png")}
+              style={styles.roundImageUploadmas}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => setServiciosActivos(false)}>
+            <Image
+              source={require("../../../../assets/minus3.png")}
+              style={styles.roundImageUploadmas}
+            />
+          </TouchableOpacity>
         </View>
-        <View
-          style={{
-            // flex: 1,
-            backgroundColor: "white",
-            // justifyContent: "center",
-            // alignItems: "center",
-          }}
+
+        {serviciosActivos && (
+          <>
+            <PieChartView data={data} />
+            <ServiceList data={data} />
+          </>
+        )}
+        <Text></Text>
+        <Text></Text>
+
+        <View style={styles.iconMinMax}>
+          <View style={styles.container22}>
+            <Text style={styles.titleText}>Estado de Servicios Activos</Text>
+          </View>
+          <TouchableOpacity onPress={() => setEstadoServicios(true)}>
+            <Image
+              source={require("../../../../assets/plus3.png")}
+              style={styles.roundImageUploadmas}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => setEstadoServicios(false)}>
+            <Image
+              source={require("../../../../assets/minus3.png")}
+              style={styles.roundImageUploadmas}
+            />
+          </TouchableOpacity>
+        </View>
+        {estadoServicios && <EstadoServiceList data={data} />}
+        <Text></Text>
+
+        <Text></Text>
+        <View style={styles.iconMinMax}>
+          <View style={styles.container22}>
+            <Text style={styles.titleText}>Servicios Inactivos</Text>
+          </View>
+          <TouchableOpacity onPress={() => setServiciosInactivos(true)}>
+            <Image
+              source={require("../../../../assets/plus3.png")}
+              style={styles.roundImageUploadmas}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => setServiciosInactivos(false)}>
+            <Image
+              source={require("../../../../assets/minus3.png")}
+              style={styles.roundImageUploadmas}
+            />
+          </TouchableOpacity>
+        </View>
+        <Text></Text>
+
+        {serviciosInactivos && (
+          <>
+            <Text style={{ margin: 10 }}>
+              <BarInactiveServices
+                data={data}
+                titulo={"Stand by"}
+                unidad={"servicios"}
+              />
+            </Text>
+            <Text style={{ marginLeft: 10 }}>
+              <BarInactiveServices
+                data={data}
+                titulo={"Cancelacion"}
+                unidad={"servicios"}
+              />
+            </Text>
+            <InactiveServiceList data={data} />
+          </>
+        )}
+        <Text></Text>
+
+        {(userType === "Gerente" ||
+          userType === "Planificador" ||
+          userType === "GerenteContratista" ||
+          userType === "PlanificadorContratista") && (
+          <View style={styles.iconMinMax}>
+            <View style={styles.container22}>
+              <Text style={styles.titleText}>Monto Servicios</Text>
+            </View>
+            <TouchableOpacity onPress={() => setMontoServicios(true)}>
+              <Image
+                source={require("../../../../assets/plus3.png")}
+                style={styles.roundImageUploadmas}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => setMontoServicios(false)}>
+              <Image
+                source={require("../../../../assets/minus3.png")}
+                style={styles.roundImageUploadmas}
+              />
+            </TouchableOpacity>
+          </View>
+        )}
+        {montoServicios &&
+          (userType === "Gerente" ||
+            userType === "Planificador" ||
+            userType === "GerenteContratista" ||
+            userType === "PlanificadorContratista") && (
+            <>
+              <BarChartMontoServicios data={data} />
+              <MontoServiceList data={data} />
+            </>
+          )}
+        <Text></Text>
+
+        <Text></Text>
+        {(userType === "Gerente" ||
+          userType === "Planificador" ||
+          userType === "GerenteContratista" ||
+          userType === "PlanificadorContratista") && (
+          <View style={styles.iconMinMax}>
+            <View style={styles.container22}>
+              <Text style={styles.titleText}>Monto Estado de Pago</Text>
+            </View>
+            <TouchableOpacity onPress={() => setMontoEDP(true)}>
+              <Image
+                source={require("../../../../assets/plus3.png")}
+                style={styles.roundImageUploadmas}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => setMontoEDP(false)}>
+              <Image
+                source={require("../../../../assets/minus3.png")}
+                style={styles.roundImageUploadmas}
+              />
+            </TouchableOpacity>
+          </View>
+        )}
+        {montoEDP &&
+          (userType === "Gerente" ||
+            userType === "Planificador" ||
+            userType === "GerenteContratista" ||
+            userType === "PlanificadorContratista") && (
+            <>
+              <BarChartProceso data={data} />
+              <MontoEDPList data={data} />
+            </>
+          )}
+
+        <Text></Text>
+
+        <Text></Text>
+
+        {(userType === "Gerente" ||
+          userType === "Planificador" ||
+          userType === "GerenteContratista" ||
+          userType === "PlanificadorContratista") && (
+          <View style={styles.iconMinMax}>
+            <View style={styles.container22}>
+              <Text style={styles.titleText}>Montos Comprometidos</Text>
+            </View>
+            <TouchableOpacity onPress={() => setComprometido(true)}>
+              <Image
+                source={require("../../../../assets/plus3.png")}
+                style={styles.roundImageUploadmas}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => setComprometido(false)}>
+              <Image
+                source={require("../../../../assets/minus3.png")}
+                style={styles.roundImageUploadmas}
+              />
+            </TouchableOpacity>
+          </View>
+        )}
+
+        {comprometido &&
+          (userType === "Gerente" ||
+            userType === "Planificador" ||
+            userType === "GerenteContratista" ||
+            userType === "PlanificadorContratista") && (
+            <MontoComprometido data={data} />
+          )}
+        <Text></Text>
+
+        <TouchableOpacity
+          onPress={
+            userType === "Gerente" ||
+            userType === "Planificador" ||
+            userType === "GerenteContratista" ||
+            userType === "PlanificadorContratista"
+              ? () => getExcelReportData(data)
+              : () => userTypeWarn()
+          }
         >
-          <Text
-            style={{
-              fontSize: 40,
-              // fontFamily: "Arial",
-              color: "#2A3B76",
-              fontWeight: "bold",
-
-              textAlign: "center",
-            }}
-          >
-            Sondajes App
-          </Text>
-          <Text></Text>
-          <Text
-            style={{
-              fontSize: 30,
-              // fontFamily: "Arial",
-              color: "#2A3B76",
-            }}
-          >
-            Instrucciones de uso:
-          </Text>
-          <Text></Text>
-
-          <Text
-            style={{
-              fontSize: 20,
-              // fontFamily: "Arial",
-              color: "#2A3B76",
-            }}
-          >
-            1. En el botón Buscar encuentran todos los sondajes.
-          </Text>
-          <Text
-            style={{
-              fontSize: 20,
-              // fontFamily: "Arial",
-              color: "#2A3B76",
-            }}
-          >
-            2. En el botón de Publicar, se crearan nuevos sondajes o se
-            reportará una actualización de los mismos.
-          </Text>
-          <Text
-            style={{
-              fontSize: 20,
-              // fontFamily: "Arial",
-              color: "#2A3B76",
-            }}
-          >
-            3. En el botón de Perfil, se encuentra el botón para exportar toda
-            la base de datos.
-          </Text>
-          <Text></Text>
-
-          <ImageExpo
-            source={require("../../../../assets/michiquillay.jpg")}
-            style={styles.roundImage1}
-            cachePolicy={"memory-disk"}
+          <Image
+            source={require("../../../../assets/excel2.png")}
+            style={styles.excel}
           />
-        </View>
-      </View>
-    );
-  } else {
-    return (
-      <>
-        <FlatList
-          data={posts}
-          ListHeaderComponent={<HeaderScreen />}
-          scrollEnabled={true}
-          showsVerticalScrollIndicator={false}
-          style={{ backgroundColor: "white" }}
-          renderItem={({ item }) => {
-            //the algoritm to retrieve the image source to render the icon
-            const area = item.AITAreaServicio;
-            const indexareaList = areaLists.findIndex(
-              (item) => item.value === area
-            );
-            const imageSource =
-              areaLists[indexareaList]?.image ??
-              require("../../../../assets/icon1.png");
-
-            return (
-              <View
-                style={{
-                  // margin: 2,
-                  borderBottomWidth: 5,
-                  borderBottomColor: "#f0f8ff",
-                  paddingVertical: 10,
-                }}
-              >
-                <View style={[styles.row, styles.center]}>
-                  <View style={[styles.row, styles.center]}>
-                    <TouchableOpacity
-                      style={[styles.row, styles.center]}
-                      onPress={() => goToServiceInfo(item)}
-                    >
-                      {item.AITphotoServiceURL ? (
-                        <ImageExpo
-                          source={{ uri: item.AITphotoServiceURL }}
-                          style={styles.roundImage}
-                          cachePolicy={"memory-disk"}
-                        />
-                      ) : (
-                        <ImageExpo
-                          source={imageSource}
-                          style={styles.roundImage}
-                          cachePolicy={"memory-disk"}
-                        />
-                      )}
-                      <Text style={styles.NombreServicio}>
-                        {item.AITNombreServicio}
-                      </Text>
-                    </TouchableOpacity>
-
-                    <ImageExpo
-                      source={{ uri: item.fotoUsuarioPerfil }}
-                      style={styles.roundImage}
-                      cachePolicy={"memory-disk"}
-                    />
-                    <Text style={styles.NombrePerfilCorto}>
-                      {item.nombrePerfil}
-                    </Text>
-                  </View>
-                </View>
-                <View style={[styles.row, styles.center]}>
-                  <Text style={{ marginLeft: 5, color: "#5B5B5B" }}>
-                    {"Empresa Minera:  "}
-                    {item.AITEmpresaMinera}
-                  </Text>
-                </View>
-
-                <View style={[styles.row, styles.center]}>
-                  {companyName === "Southernperu" && (
-                    <Text style={{ marginLeft: 5, color: "#5B5B5B" }}>
-                      {"Visibilidad:  "}
-                      {item.visibilidad}
-                    </Text>
-                  )}
-                </View>
-                <Text style={{ marginLeft: 5, color: "#5B5B5B" }}>
-                  {"Fecha:  "}
-                  {item.fechaPostFormato}
-                </Text>
-                <Text></Text>
-                <View style={styles.equipments}>
-                  <TouchableOpacity onPress={() => commentPost(item)}>
-                    <ImageExpo
-                      source={{ uri: item.fotoPrincipal }}
-                      style={styles.postPhoto}
-                      cachePolicy={"memory-disk"}
-                    />
-                  </TouchableOpacity>
-
-                  <View>
-                    <Text style={styles.textAreaTitle}>
-                      {/* {"Evento: "} */}
-                      {item.titulo}
-                    </Text>
-                    <Text></Text>
-                    <Text style={styles.textAreaComment} selectable={true}>
-                      {item.comentarios}
-                    </Text>
-                  </View>
-                </View>
-                <View style={styles.rowlikes}>
-                  <View style={styles.likeComment}>
-                    <TouchableOpacity
-                      onPress={() => likePost(item)}
-                      style={{ flexDirection: "row", alignItems: "center" }}
-                    >
-                      <Icon
-                        type="material-community"
-                        name={
-                          item.likes?.includes(props.email)
-                            ? "thumb-up"
-                            : "thumb-up-outline"
-                        }
-                      />
-
-                      <Text> {item.likes.length} Revisado</Text>
-                    </TouchableOpacity>
-                  </View>
-                  <View style={styles.likeComment}>
-                    <TouchableOpacity
-                      onPress={() => commentPost(item)}
-                      style={{ flexDirection: "row", alignItems: "center" }}
-                    >
-                      <Icon
-                        type="material-community"
-                        name="comment-processing-outline"
-                      />
-                      <Text>
-                        {item?.comentariosUsuarios?.length} Comentarios
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                  {item.pdfPrincipal && (
-                    <TouchableOpacity
-                      onPress={() => uploadFile(item.pdfPrincipal)}
-                      style={{ flexDirection: "row", alignItems: "center" }}
-                    >
-                      <Icon type="material-community" name="paperclip" />
-                      <Text>Pdf File</Text>
-                    </TouchableOpacity>
-                  )}
-                </View>
-              </View>
-            );
-          }}
-          keyExtractor={(item, index) => `${index}-${item.fechaPostFormato}`} // Provide a unique key for each item
-          // onEndReached={() => {
-          // }}
-          // onEndReached={() => loadMorePosts()}
-          // onEndReachedThreshold={0.1}
-        />
-      </>
-    );
-  }
+        </TouchableOpacity> */}
+    </ScrollView>
+  );
 }
 
 const mapStateToProps = (reducers) => {

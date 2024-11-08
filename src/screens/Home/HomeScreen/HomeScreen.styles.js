@@ -1,115 +1,87 @@
 import { StyleSheet, Dimensions } from "react-native";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
-
 export const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-  },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
   },
-  containerFlatListView1: {
-    borderBottomWidth: 2,
-    borderBottomColor: "#8CBBF1",
-    margin: 2,
+  chartContainer: {
+    width: 200, // Adjust the width as needed
+    height: 220, // Adjust the height as needed
+    margin: 0,
+    alignItems: "center",
   },
   row: {
     flexDirection: "row",
   },
-  rowlikes: {
-    flexDirection: "row",
-    margin: 10,
-  },
-  center: {
-    alignItems: "center",
-    justifyContent: "space-between",
-    margin: 0,
-  },
-  roundImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    borderWidth: 0.5,
-    margin: 5,
-    borderColor: "black",
-  },
-  roundImage1: {
-    width: "98%",
-    height: "55%",
-    // borderRadius: 20,
-    // borderWidth: 0.5,
-
-    borderColor: "black",
-  },
-  roundImage5: { width: 60, height: 60, borderRadius: 30, marginLeft: 20 },
-  textImage: { alignItems: "center" },
-  Texticons: { alignItems: "center", marginLeft: 20 },
-
-  postPhoto: {
-    height: windowWidth * 0.48,
-    width: windowWidth * 0.48,
-    marginTop: 0,
-    borderRadius: 5,
-    borderWidth: 0.1,
-  },
-  textAreaTitle: {
-    width: windowWidth * 0.45,
-    marginLeft: 10,
+  title: {
+    fontSize: 24,
     fontWeight: "bold",
-    fontSize: 18,
-  },
-  textAreaComment: {
-    width: windowWidth * 0.45,
-    marginLeft: 10,
-    fontSize: 14,
-  },
-  NombreServicio: {
-    // maxWidth: windowWidth * 0.48,
-    width: windowWidth * 0.4,
-    // color: true ? "black" : "red",
-  },
-  NombrePerfilCorto: {
-    width: windowWidth * 0.33,
-  },
-  container2: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  image2: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    margin: 5,
-  },
-  equipments: {
-    flexDirection: "row",
-    margin: 5,
+    marginBottom: 10,
   },
 
-  textAreaCommentplus: {
-    width: windowWidth * 0.6,
-    marginLeft: 10,
+  subtitle: {
+    fontSize: 18,
+    fontWeight: "bold",
     fontWeight: "300",
   },
-
-  textAreaTitleplus: {
-    width: windowWidth * 0.6,
-    marginLeft: 10,
-    color: "black",
-    fontWeight: "600",
+  roundImageUpload: {
+    width: 40,
+    height: 40,
+    alignSelf: "center",
+    flexDirection: "row",
+    // marginLeft: windowWidth * 0.4,
   },
-  avatar: {
-    marginRight: 20,
-    backgroundColor: "green",
+  excel: {
+    width: 40,
+    height: 40,
+    alignSelf: "center",
+    flexDirection: "row",
+    // marginLeft: windowWidth * 0.4,
   },
-  likeComment: {
+  roundImageUploadmas: {
+    width: 30,
+    height: 30,
+    margin: 5,
+  },
+  company: {
+    paddingHorizontal: 15,
+    fontWeight: "bold",
+    fontSize: 20,
+    textAlign: "center",
+  },
+  history: {
     flexDirection: "row",
     alignItems: "center",
-    marginRight: windowWidth * 0.1,
+    // marginRight: windowWidth * 0.1,
+    marginLeft: windowWidth * 0.3,
+
+    width: 40,
+    height: 40,
+    alignSelf: "flex-end",
+    // marginRight: 10,
+
+    // position: "absolute",
+  },
+  container22: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF",
+  },
+  titleText: {
+    paddingHorizontal: 15,
+    fontWeight: "600",
+    textAlign: "center",
+  },
+  iconMinMax: {
+    paddingHorizontal: 15,
+    fontWeight: "600",
+    alignSelf: "flex-end",
+    flexDirection: "row",
+    zIndex: 100,
   },
 });

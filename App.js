@@ -11,6 +11,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { ConnectedLoginNavigator } from "./src/navigation/LoginNavigator";
 import { StatusBar } from "expo-status-bar";
 import Toast from "react-native-toast-message";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // LogBox.ignoreAllLogs();
 
@@ -22,9 +23,11 @@ export default function App() {
     <>
       <Provider store={store}>
         <StatusBar backgroundColor="white" />
-        <NavigationContainer>
-          <ConnectedLoginNavigator />
-        </NavigationContainer>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <NavigationContainer>
+            <ConnectedLoginNavigator />
+          </NavigationContainer>
+        </GestureHandlerRootView>
       </Provider>
       <Toast />
     </>

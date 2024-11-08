@@ -8,47 +8,53 @@ import { ProfileStack } from "./ProfileStack";
 import { SearchStack } from "./SearchStack";
 import { styles } from "./Navigation.styles";
 import { ReportStack } from "./ReportStack";
+import OnboardingScreen from "../screens/OnBoarding/onboarding";
 
 export function AppNavigation() {
+  const [onBoarding, setOnBoarding] = React.useState(false);
   const Tab = createBottomTabNavigator();
 
-  return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        headerShown: false,
-        tabBarInactiveTintColor: "black",
-        tabBarIcon: ({ color, size }) => screenOptions(route, color, size),
-        tabBarStyle: styles.globalStylesTab,
-      })}
-    >
-      <Tab.Screen
-        name={screen.home.tab}
-        component={ConnectedHomeStack}
-        options={{ title: "Inicio" }}
-      />
-      {/* <Tab.Screen
-        name={screen.report.tab}
-        component={ReportStack}
-        options={{ title: "Reportes" }}
-      /> */}
-      <Tab.Screen
-        name={screen.post.tab}
-        component={PostStack}
-        options={{ title: "Publicar" }}
-      />
-      <Tab.Screen
-        name={screen.search.tab}
-        component={SearchStack}
-        options={{ title: "Buscar" }}
-      />
+  if (!onBoarding) {
+    return <OnboardingScreen setOnBoarding={setOnBoarding} />;
+  } else {
+    return (
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          headerShown: false,
+          tabBarInactiveTintColor: "black",
+          tabBarIcon: ({ color, size }) => screenOptions(route, color, size),
+          tabBarStyle: styles.globalStylesTab,
+        })}
+      >
+        <Tab.Screen
+          name={screen.home.tab}
+          component={ConnectedHomeStack}
+          options={{ title: "Inicio" }}
+        />
+        {/* <Tab.Screen
+          name={screen.report.tab}
+          component={ReportStack}
+          options={{ title: "Reportes" }}
+        /> */}
+        <Tab.Screen
+          name={screen.post.tab}
+          component={PostStack}
+          options={{ title: "Publicar" }}
+        />
+        <Tab.Screen
+          name={screen.search.tab}
+          component={SearchStack}
+          options={{ title: "Buscar" }}
+        />
 
-      <Tab.Screen
-        name={screen.profile.tab}
-        component={ProfileStack}
-        options={{ title: "Perfil" }}
-      />
-    </Tab.Navigator>
-  );
+        <Tab.Screen
+          name={screen.profile.tab}
+          component={ProfileStack}
+          options={{ title: "Perfil" }}
+        />
+      </Tab.Navigator>
+    );
+  }
 }
 
 function screenOptions(route, color, size) {

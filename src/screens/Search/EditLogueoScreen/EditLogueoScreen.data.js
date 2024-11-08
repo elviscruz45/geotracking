@@ -20,6 +20,7 @@ export function initialValues() {
     previa: "",
   };
 }
+
 export function validationSchema() {
   return Yup.object({
     // titulo: Yup.string().required("Campo obligatorio"),

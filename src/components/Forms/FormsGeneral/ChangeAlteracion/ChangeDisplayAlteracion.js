@@ -17,7 +17,7 @@ export function ChangeDisplayAlteracion(props) {
           containerStyle={styles.btnContainer}
           buttonStyle={styles.btn}
           onPress={() => {
-            formik.setFieldValue("alteración", text.toString());
+            formik.setFieldValue("alteracion", text.toString());
 
             onClose();
           }}
