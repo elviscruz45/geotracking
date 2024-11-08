@@ -41,9 +41,8 @@ const onboardingSteps = [
   },
   {
     icon: "book-reader",
-    title: "Contraten me please!",
-    description:
-      'Contribute to the fundraiser "Education for Children" to help Save the Children in their effort of providing education to every child',
+    title: "Te quiero <3",
+    description: "dar todos los dias",
   },
 ];
 
