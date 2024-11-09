@@ -22,6 +22,7 @@ import {
   limit,
   where,
   orderBy,
+  getDocs,
 } from "firebase/firestore";
 import { db } from "../../../utils";
 import { LoadingSpinner } from "../../../components/shared/LoadingSpinner/LoadingSpinner";
@@ -36,17 +37,62 @@ import { saveApprovalListnew } from "../../../actions/search";
 import { updateAITServicesDATA } from "../../../actions/home";
 import { mineraCorreosList } from "../../../utils/MineraList";
 import Toast from "react-native-toast-message";
+import { MontoEDPList } from "../RecursosScreen/MontoEDPList";
+import { AvanceGuardia } from "../RecursosScreen/AvanceGuardia";
+import { AvanceMes } from "../RecursosScreen/AvanceMes";
+import { AvanceTotal } from "../RecursosScreen/AvanceTotal";
 
 function HomeScreen(props) {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [companyName, setCompanyName] = useState("");
+  const [data, setData] = useState();
   const navigation = useNavigation();
+  const [dataReport, setDataReport] = useState([]);
   //Data about the company belong this event
   function capitalizeFirstLetter(str) {
     return str?.charAt(0).toUpperCase() + str?.slice(1);
   }
   const regex = /@(.+?)\./i;
+  useEffect(() => {
+    // Function to fetch data from Firestore
+    async function fetchData() {
+      try {
+        const queryRef1 = query(
+          collection(db, "Reporte"),
+          orderBy("createdAt", "desc"),
+          limit(1)
+        );
+        const getDocs1 = await getDocs(queryRef1);
+        const lista = [];
+
+        // Process results from the first query
+        if (getDocs1) {
+          getDocs1.forEach((doc) => {
+            lista.push(doc.data());
+          });
+        }
+
+        setDataReport(lista);
+      } catch (error) {
+        // console.error("Error fetching data:", error);
+        Toast.show({
+          type: "error",
+          position: "bottom",
+          text1: "Error al cargar los datos",
+        });
+        // Handle the error as needed
+      }
+    }
+    // Call the fetchData function when the component mounts
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (Array.isArray(props.servicesData)) {
+      setData(props.servicesData);
+    }
+  }, [props.servicesData]);
 
   // this useEffect is used to retrive all data from firebase
   useEffect(() => {
@@ -99,6 +145,10 @@ function HomeScreen(props) {
     }
   }, [props.email]);
 
+  const goToEdit = () => {
+    navigation.navigate(screen.home.comment);
+  };
+
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -108,8 +158,10 @@ function HomeScreen(props) {
       showsVerticalScrollIndicator={false}
     >
       <Text></Text>
+      <View style={{ height: 0, width: 0 }}>
+        <HeaderScreen />
+      </View>
 
-      <HeaderScreen />
       <Text></Text>
       <Text></Text>
 
@@ -117,226 +169,37 @@ function HomeScreen(props) {
         source={require("../../../../assets/empresa.png")}
         style={styles.roundImageUpload}
       />
+      <Text></Text>
+      <TouchableOpacity onPress={() => goToEdit()}>
+        <Image
+          source={require("../../../../assets/editIcon2.png")}
+          style={{
+            width: 20,
+            height: 20,
+            alignSelf: "center",
+          }}
+        />
+      </TouchableOpacity>
 
       <Text style={styles.company}>Reporte General</Text>
-
-      {/*
-        <Text></Text>
-        <Text></Text>
-        <Text></Text>
-        <View style={styles.iconMinMax}>
-          <View style={styles.container22}>
-            <Text style={styles.titleText}>Servicios Activos Asignados</Text>
-          </View>
-          <TouchableOpacity onPress={() => setServiciosActivos(true)}>
-            <Image
-              source={require("../../../../assets/plus3.png")}
-              style={styles.roundImageUploadmas}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => setServiciosActivos(false)}>
-            <Image
-              source={require("../../../../assets/minus3.png")}
-              style={styles.roundImageUploadmas}
-            />
-          </TouchableOpacity>
-        </View>
-
-        {serviciosActivos && (
-          <>
-            <PieChartView data={data} />
-            <ServiceList data={data} />
-          </>
-        )}
-        <Text></Text>
-        <Text></Text>
-
-        <View style={styles.iconMinMax}>
-          <View style={styles.container22}>
-            <Text style={styles.titleText}>Estado de Servicios Activos</Text>
-          </View>
-          <TouchableOpacity onPress={() => setEstadoServicios(true)}>
-            <Image
-              source={require("../../../../assets/plus3.png")}
-              style={styles.roundImageUploadmas}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => setEstadoServicios(false)}>
-            <Image
-              source={require("../../../../assets/minus3.png")}
-              style={styles.roundImageUploadmas}
-            />
-          </TouchableOpacity>
-        </View>
-        {estadoServicios && <EstadoServiceList data={data} />}
-        <Text></Text>
-
-        <Text></Text>
-        <View style={styles.iconMinMax}>
-          <View style={styles.container22}>
-            <Text style={styles.titleText}>Servicios Inactivos</Text>
-          </View>
-          <TouchableOpacity onPress={() => setServiciosInactivos(true)}>
-            <Image
-              source={require("../../../../assets/plus3.png")}
-              style={styles.roundImageUploadmas}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => setServiciosInactivos(false)}>
-            <Image
-              source={require("../../../../assets/minus3.png")}
-              style={styles.roundImageUploadmas}
-            />
-          </TouchableOpacity>
-        </View>
-        <Text></Text>
-
-        {serviciosInactivos && (
-          <>
-            <Text style={{ margin: 10 }}>
-              <BarInactiveServices
-                data={data}
-                titulo={"Stand by"}
-                unidad={"servicios"}
-              />
-            </Text>
-            <Text style={{ marginLeft: 10 }}>
-              <BarInactiveServices
-                data={data}
-                titulo={"Cancelacion"}
-                unidad={"servicios"}
-              />
-            </Text>
-            <InactiveServiceList data={data} />
-          </>
-        )}
-        <Text></Text>
-
-        {(userType === "Gerente" ||
-          userType === "Planificador" ||
-          userType === "GerenteContratista" ||
-          userType === "PlanificadorContratista") && (
-          <View style={styles.iconMinMax}>
-            <View style={styles.container22}>
-              <Text style={styles.titleText}>Monto Servicios</Text>
-            </View>
-            <TouchableOpacity onPress={() => setMontoServicios(true)}>
-              <Image
-                source={require("../../../../assets/plus3.png")}
-                style={styles.roundImageUploadmas}
-              />
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => setMontoServicios(false)}>
-              <Image
-                source={require("../../../../assets/minus3.png")}
-                style={styles.roundImageUploadmas}
-              />
-            </TouchableOpacity>
-          </View>
-        )}
-        {montoServicios &&
-          (userType === "Gerente" ||
-            userType === "Planificador" ||
-            userType === "GerenteContratista" ||
-            userType === "PlanificadorContratista") && (
-            <>
-              <BarChartMontoServicios data={data} />
-              <MontoServiceList data={data} />
-            </>
-          )}
-        <Text></Text>
-
-        <Text></Text>
-        {(userType === "Gerente" ||
-          userType === "Planificador" ||
-          userType === "GerenteContratista" ||
-          userType === "PlanificadorContratista") && (
-          <View style={styles.iconMinMax}>
-            <View style={styles.container22}>
-              <Text style={styles.titleText}>Monto Estado de Pago</Text>
-            </View>
-            <TouchableOpacity onPress={() => setMontoEDP(true)}>
-              <Image
-                source={require("../../../../assets/plus3.png")}
-                style={styles.roundImageUploadmas}
-              />
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => setMontoEDP(false)}>
-              <Image
-                source={require("../../../../assets/minus3.png")}
-                style={styles.roundImageUploadmas}
-              />
-            </TouchableOpacity>
-          </View>
-        )}
-        {montoEDP &&
-          (userType === "Gerente" ||
-            userType === "Planificador" ||
-            userType === "GerenteContratista" ||
-            userType === "PlanificadorContratista") && (
-            <>
-              <BarChartProceso data={data} />
-              <MontoEDPList data={data} />
-            </>
-          )}
-
-        <Text></Text>
-
-        <Text></Text>
-
-        {(userType === "Gerente" ||
-          userType === "Planificador" ||
-          userType === "GerenteContratista" ||
-          userType === "PlanificadorContratista") && (
-          <View style={styles.iconMinMax}>
-            <View style={styles.container22}>
-              <Text style={styles.titleText}>Montos Comprometidos</Text>
-            </View>
-            <TouchableOpacity onPress={() => setComprometido(true)}>
-              <Image
-                source={require("../../../../assets/plus3.png")}
-                style={styles.roundImageUploadmas}
-              />
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => setComprometido(false)}>
-              <Image
-                source={require("../../../../assets/minus3.png")}
-                style={styles.roundImageUploadmas}
-              />
-            </TouchableOpacity>
-          </View>
-        )}
-
-        {comprometido &&
-          (userType === "Gerente" ||
-            userType === "Planificador" ||
-            userType === "GerenteContratista" ||
-            userType === "PlanificadorContratista") && (
-            <MontoComprometido data={data} />
-          )}
-        <Text></Text>
-
-        <TouchableOpacity
-          onPress={
-            userType === "Gerente" ||
-            userType === "Planificador" ||
-            userType === "GerenteContratista" ||
-            userType === "PlanificadorContratista"
-              ? () => getExcelReportData(data)
-              : () => userTypeWarn()
-          }
-        >
-          <Image
-            source={require("../../../../assets/excel2.png")}
-            style={styles.excel}
-          />
-        </TouchableOpacity> */}
+      <Text></Text>
+      <Text></Text>
+      <Text>Fecha: {dataReport[0]?.fechaPost}</Text>
+      <Text>Reportado por:{dataReport[0]?.emailPerfil}</Text>
+      <Text></Text>
+      <Text></Text>
+      <View style={styles.container22}>
+        <Text style={styles.titleText}>Avance Guardia</Text>
+      </View>
+      <AvanceGuardia dataReport={dataReport} />
+      <View style={styles.container22}>
+        <Text style={styles.titleText}>Avance Mes Actual</Text>
+      </View>
+      <AvanceMes dataReport={dataReport} />
+      <View style={styles.container22}>
+        <Text style={styles.titleText}>Avance Total</Text>
+      </View>
+      <AvanceTotal dataReport={dataReport} />
     </ScrollView>
   );
 }

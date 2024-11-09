@@ -14,6 +14,7 @@ import { update_firebaseEmail } from "../actions/profile";
 import { update_firebaseUid } from "../actions/profile";
 import { saveActualAITServicesFirebaseGlobalState } from "../actions/post";
 import Toast from "react-native-toast-message";
+import { EditReportScreen } from "../screens/Home/EditReportScreen/EditReportScreen";
 
 function HomeStack(props) {
   const Stack = createNativeStackNavigator();
@@ -113,7 +114,7 @@ function HomeStack(props) {
         />
         <Stack.Screen
           name={screen.home.comment}
-          component={ConnectedCommentScreen}
+          component={EditReportScreen}
           options={{ title: " " }}
         />
       </Stack.Navigator>

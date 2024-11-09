@@ -153,6 +153,7 @@ function CommentScreen(props) {
       { cancelable: false }
     );
   };
+  return <Text>hola</Text>;
 
   if (!postsComments) {
     return <LoadingSpinner />;
