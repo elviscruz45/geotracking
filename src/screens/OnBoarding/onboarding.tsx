@@ -115,7 +115,6 @@ export default function OnboardingScreen({ setOnBoarding }) {
                 color="#CEF202"
               />
             </Animated.View> */}
-
             <View style={styles.footer}>
               <Animated.Text
                 entering={SlideInRight}
@@ -131,19 +130,18 @@ export default function OnboardingScreen({ setOnBoarding }) {
               >
                 {data.description}
               </Animated.Text>
-
-              <View style={styles.buttonsRow}>
-                <Text onPress={endOnboarding} style={styles.buttonText}>
-                  Salir
-                </Text>
-
-                <Pressable onPress={onContinue} style={styles.button}>
-                  <Text style={styles.buttonText}>Continuar</Text>
-                </Pressable>
-              </View>
             </View>
           </View>
         </GestureDetector>
+        <View style={styles.buttonsRow}>
+          <Text onPress={endOnboarding} style={styles.buttonText}>
+            Salir
+          </Text>
+
+          <Pressable onPress={onContinue} style={styles.button}>
+            <Text style={styles.buttonText}>Continuar</Text>
+          </Pressable>
+        </View>
       </SafeAreaView>
     </ImageBackground>
   );
@@ -165,6 +163,7 @@ const styles = StyleSheet.create({
   pageContent: {
     padding: 20,
     flex: 1,
+    marginBottom: 50,
   },
   image: {
     alignSelf: "center",
@@ -188,6 +187,8 @@ const styles = StyleSheet.create({
   },
   footer: {
     marginTop: "auto",
+    // flexDirection: "column",
+    // justifyContent: "flex-end",
   },
 
   buttonsRow: {
