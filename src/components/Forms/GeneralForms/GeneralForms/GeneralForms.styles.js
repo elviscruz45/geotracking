@@ -45,4 +45,12 @@ export const styles = StyleSheet.create({
     marginHorizontal: 90,
     marginVertical: 10,
   },
+  pickImagesButton: {
+    // flexDirection: "row",
+    // justifyContent: "space-between",
+    // alignItems: "center",
+    // backgroundColor: "#2A3B76",
+    marginHorizontal: 90,
+    marginVertical: 10,
+  },
 });

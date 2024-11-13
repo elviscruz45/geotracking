@@ -54,7 +54,7 @@ function EditReportNoReduxScreen(props) {
     const year = date.getFullYear();
     const hour = date.getHours();
     const minute = date.getMinutes();
-    const formattedDate = `${day} ${month} ${year} `;
+    const formattedDate = `${day} ${month} ${year}, ${hour}:${minute} hrs`;
     const fechaPostFormato = formattedDate;
     return fechaPostFormato;
   };

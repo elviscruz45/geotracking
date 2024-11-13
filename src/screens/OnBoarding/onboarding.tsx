@@ -32,17 +32,17 @@ const onboardingSteps = [
     icon: "gem",
     title: "Bienvenido a GeoTrack",
     description:
-      "Una aplicación para hacer seguimiento a los avances diarios de perforación diamantina.",
+      "La herramienta de seguimiento de perforación, diseñada para el equipo de exploraciones del proyecto Michiquillay.",
   },
   {
     icon: "people-arrows",
-    title: "Conecta",
-    description: "Learn by building 24 projects with React Native and Expo",
+    title: "Registra y Visualiza",
+    description: "Asegurando un control efectivo del proyecto Michiquillay.",
   },
   {
     icon: "book-reader",
-    title: "Te quiero <3",
-    description: "dar todos los dias",
+    title: "Comenzar",
+    description: " Ingresa para explorar los avances",
   },
 ];
 
@@ -83,7 +83,7 @@ export default function OnboardingScreen({ setOnBoarding }) {
     <ImageBackground
       source={
         screenIndex === 0
-          ? require("../../../assets/onBoarding/paisaje1.png")
+          ? require("../../../assets/onBoarding/paisaje6.jpg")
           : screenIndex === 1
           ? require("../../../assets/onBoarding/paisaje2.jpg")
           : require("../../../assets/onBoarding/paisaje3.jpg")
@@ -99,7 +99,7 @@ export default function OnboardingScreen({ setOnBoarding }) {
               key={index}
               style={[
                 styles.stepIndicator,
-                { backgroundColor: index === screenIndex ? "#97022F" : "grey" },
+                { backgroundColor: index === screenIndex ? "white" : "grey" },
               ]}
             />
           ))}

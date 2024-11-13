@@ -199,6 +199,30 @@ export const GanttHistorial = (props) => {
                 />
                 <Text style={styles.textdetail}>{item.previa}</Text>
               </View>
+              <Text></Text>
+
+              <FlatList
+                style={{
+                  backgroundColor: "white",
+                  paddingTop: 10,
+                  paddingVertical: 10,
+                }}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                data={item?.newImages}
+                renderItem={({ item }) => {
+                  return (
+                    <View>
+                      <ImageExpo
+                        source={{ uri: item }}
+                        style={styles.postPhoto2}
+                        cachePolicy={"memory-disk"}
+                      />
+                    </View>
+                  );
+                }}
+                keyExtractor={(index) => `${index}`}
+              />
 
               <Text></Text>
 

@@ -9,9 +9,11 @@ jest.mock("expo-image-picker", () => ({
     Promise.resolve({ canceled: false, assets: [{ uri: "test-uri" }] })
   ),
 }));
+
 jest.mock("firebase/app", () => ({
   initializeApp: jest.fn(),
 }));
+
 jest.mock("firebase/auth", () => ({
   getAuth: jest.fn(),
   updateProfile: jest.fn(),

@@ -19,6 +19,8 @@ export function initialValues() {
     porcentajeMin: null,
     calcopiritaX: null,
     previa: "",
+    documentoName: "",
+    newImages: [],
   };
 }
 

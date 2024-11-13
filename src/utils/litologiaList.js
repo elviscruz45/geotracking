@@ -12,6 +12,12 @@ export const litologia = [
     value: "Hornfels",
   },
   {
+    value: "Arenisca",
+  },
+  {
+    value: "Limolita",
+  },
+  {
     value: "Skarn",
   },
   {
@@ -21,7 +27,6 @@ export const litologia = [
     value: "Roca",
   },
 ];
-
 export const color = [
   {
     value: "gris",

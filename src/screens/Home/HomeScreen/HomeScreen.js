@@ -49,6 +49,8 @@ function HomeScreen(props) {
   const [data, setData] = useState();
   const navigation = useNavigation();
   const [dataReport, setDataReport] = useState([]);
+  const [actualizar, setActualizar] = useState(false);
+  console.log("actualizar", actualizar);
   //Data about the company belong this event
   function capitalizeFirstLetter(str) {
     return str?.charAt(0).toUpperCase() + str?.slice(1);
@@ -86,7 +88,7 @@ function HomeScreen(props) {
     }
     // Call the fetchData function when the component mounts
     fetchData();
-  }, []);
+  }, [actualizar]);
 
   useEffect(() => {
     if (Array.isArray(props.servicesData)) {
@@ -158,6 +160,30 @@ function HomeScreen(props) {
       showsVerticalScrollIndicator={false}
     >
       <Text></Text>
+
+      <View style={{ flexDirection: "row", alignContent: "space-around" }}>
+        <TouchableOpacity onPress={() => setActualizar((prev) => !prev)}>
+          <Image
+            source={require("../../../../assets/southernLogoVer2.png")}
+            style={{
+              marginHorizontal: 30,
+              width: 38,
+              height: 38,
+              // alignSelf: "center",
+            }}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => goToEdit()}>
+          <Image
+            source={require("../../../../assets/editIcon2.png")}
+            style={{
+              width: 30,
+              height: 30,
+              // alignSelf: "center",
+            }}
+          />
+        </TouchableOpacity>
+      </View>
       <View style={{ height: 0, width: 0 }}>
         <HeaderScreen />
       </View>
@@ -170,30 +196,24 @@ function HomeScreen(props) {
         style={styles.roundImageUpload}
       />
       <Text></Text>
-      <TouchableOpacity onPress={() => goToEdit()}>
-        <Image
-          source={require("../../../../assets/editIcon2.png")}
-          style={{
-            width: 20,
-            height: 20,
-            alignSelf: "center",
-          }}
-        />
-      </TouchableOpacity>
 
       <Text style={styles.company}>Reporte General</Text>
       <Text></Text>
       <Text></Text>
-      <Text>Fecha: {dataReport[0]?.fechaPost}</Text>
-      <Text>Reportado por:{dataReport[0]?.emailPerfil}</Text>
+      <Text style={{ marginLeft: 5 }}>Fecha: {dataReport[0]?.fechaPost}</Text>
+      <Text></Text>
+
+      <Text style={{ marginLeft: 5 }}>
+        Reportado por: {dataReport[0]?.emailPerfil}
+      </Text>
       <Text></Text>
       <Text></Text>
       <View style={styles.container22}>
-        <Text style={styles.titleText}>Avance Guardia</Text>
+        <Text style={styles.titleText}>Avance de Guardia</Text>
       </View>
       <AvanceGuardia dataReport={dataReport} />
       <View style={styles.container22}>
-        <Text style={styles.titleText}>Avance Mes Actual</Text>
+        <Text style={styles.titleText}>Avance del Mes Actual</Text>
       </View>
       <AvanceMes dataReport={dataReport} />
       <View style={styles.container22}>

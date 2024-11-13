@@ -7,10 +7,14 @@ import { screen } from "../../../utils";
 export const AvanceGuardia = (props) => {
   const { dataReport } = props;
   const navigation = useNavigation();
+
+  const total =
+    (Number(dataReport[0]?.GuardiaDia) || 0) +
+    (Number(dataReport[0]?.GuardiaNoche) || 0);
   const newTableData = [
     { name: "Dia", metros: dataReport[0]?.GuardiaDia, negrita: false },
     { name: "Noche", metros: dataReport[0]?.GuardiaNoche, negrita: false },
-    { name: "Total", metros: dataReport[0]?.GuardiaTotal, negrita: true },
+    { name: "Total", metros: total, negrita: true },
   ];
 
   const goToInformation = (idServiciosAIT) => {

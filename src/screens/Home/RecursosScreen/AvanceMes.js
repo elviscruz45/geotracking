@@ -7,6 +7,11 @@ import { screen } from "../../../utils";
 export const AvanceMes = (props) => {
   const { dataReport } = props;
   const navigation = useNavigation();
+
+  const pendiente =
+    (Number(dataReport[0]?.MesPlanificado) || 0) -
+    (Number(dataReport[0]?.MesAvanzado) || 0);
+
   const newTableData = [
     {
       name: "Planificado",
@@ -14,7 +19,7 @@ export const AvanceMes = (props) => {
       negrita: false,
     },
     { name: "Avanzado", metros: dataReport[0]?.MesAvanzado, negrita: false },
-    { name: "Pendiente", metros: dataReport[0]?.MesPendiente, negrita: true },
+    { name: "Pendiente", metros: pendiente, negrita: true },
   ];
 
   const goToInformation = (idServiciosAIT) => {

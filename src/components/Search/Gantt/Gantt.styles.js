@@ -178,4 +178,13 @@ export const styles = StyleSheet.create({
     textAlign: "left",
     // alignItems: "flex-start",
   },
+  postPhoto2: {
+    height: windowWidth * 0.5,
+    width: windowWidth * 0.3,
+    margin: 5,
+    marginTop: 0,
+    borderRadius: 10,
+    // borderWidth: 0.1,
+    alignSelf: "center",
+  },
 });

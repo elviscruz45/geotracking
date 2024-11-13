@@ -156,6 +156,10 @@ export function ReportForm(props) {
   return (
     <View>
       <View style={styles.content}>
+        <View style={styles.container22}>
+          <Text style={styles.titleText}>Avance de Guardia</Text>
+        </View>
+        <Text></Text>
         <Input
           value={formik.values.GuardiaDia}
           label="Guardia Dia"
@@ -174,15 +178,11 @@ export function ReportForm(props) {
             formik.setFieldValue("GuardiaNoche", text);
           }}
         />
-        <Input
-          value={formik.values.GuardiaTotal}
-          label="Guardia Total"
-          keyboardType="numeric"
-          editable={true}
-          onChangeText={(text) => {
-            formik.setFieldValue("GuardiaTotal", text);
-          }}
-        />
+        <View style={styles.container22}>
+          <Text style={styles.titleText}>Avance del Mes Actual</Text>
+        </View>
+        <Text></Text>
+
         <Input
           value={formik.values.MesPlanificado}
           label="Mes Planificado"
@@ -201,15 +201,11 @@ export function ReportForm(props) {
             formik.setFieldValue("MesAvanzado", text);
           }}
         />
-        <Input
-          value={formik.values.MesPendiente}
-          label="Mes Pendiente"
-          keyboardType="numeric"
-          editable={true}
-          onChangeText={(text) => {
-            formik.setFieldValue("MesPendiente", text);
-          }}
-        />
+        <View style={styles.container22}>
+          <Text style={styles.titleText}>Avance Total</Text>
+        </View>
+        <Text></Text>
+
         <Input
           value={formik.values.TotalPlanificado}
           label="Total Planificado"
@@ -226,15 +222,6 @@ export function ReportForm(props) {
           editable={true}
           onChangeText={(text) => {
             formik.setFieldValue("TotalAvanzado", text);
-          }}
-        />
-        <Input
-          value={formik.values.TotalPendiente}
-          label="Total Pendiente"
-          keyboardType="numeric"
-          editable={true}
-          onChangeText={(text) => {
-            formik.setFieldValue("TotalPendiente", text);
           }}
         />
       </View>

@@ -7,6 +7,11 @@ import { screen } from "../../../utils";
 export const AvanceTotal = (props) => {
   const { dataReport } = props;
   const navigation = useNavigation();
+
+  const pendiente =
+    (Number(dataReport[0]?.TotalPlanificado) || 0) -
+    (Number(dataReport[0]?.TotalAvanzado) || 0);
+
   const newTableData = [
     {
       name: "Planificado",
@@ -14,7 +19,7 @@ export const AvanceTotal = (props) => {
       negrita: false,
     },
     { name: "Avanzado", metros: dataReport[0]?.TotalAvanzado, negrita: false },
-    { name: "Pendiente", metros: dataReport[0]?.TotalPendiente, negrita: true },
+    { name: "Pendiente", metros: pendiente, negrita: true },
   ];
 
   const goToInformation = (idServiciosAIT) => {

@@ -17,4 +17,15 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     marginLeft: 9,
   },
+  container22: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF",
+  },
+  titleText: {
+    paddingHorizontal: 15,
+    fontWeight: "600",
+    textAlign: "center",
+  },
 });

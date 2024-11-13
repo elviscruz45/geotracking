@@ -25,7 +25,12 @@ import { resetPostPerPageHome } from "../../../actions/home";
 import { saveTotalUsers } from "../../../actions/post";
 import { Image as ImageExpo } from "expo-image";
 import Toast from "react-native-toast-message";
-
+import {
+  dateFormat,
+  useUserData,
+  uploadPdf,
+  uploadImage,
+} from "./InformatioScreen.calc";
 ///function to date format
 const formatdate = () => {
   const date = new Date();
@@ -48,13 +53,14 @@ const formatdate = () => {
   const year = date.getFullYear();
   const hour = date.getHours();
   const minute = date.getMinutes();
-  const formattedDate = `${day} ${month} ${year} `;
+  const formattedDate = `${day} ${month} ${year}  `;
   const fechaPostFormato = formattedDate;
   return fechaPostFormato;
 };
 
 function InformationScreen(props) {
   const navigation = useNavigation();
+  const [moreImages, setMoreImages] = useState([]);
 
   // retrieving data from formik forms ,data from ./InfomartionScreen.data.js
   const formik = useFormik({
@@ -73,6 +79,18 @@ function InformationScreen(props) {
         newData.emailPerfil = props.email || "Anonimo";
         newData.nombrePerfil = props.firebase_user_name || "Anonimo";
         newData.fotoUsuarioPerfil = props.user_photo;
+
+        //upload more Images to firebase Storage
+        newData.newImages = [];
+        for (let i = 0; i < moreImages.length; i++) {
+          const moreSnapshot = await uploadImage(moreImages[i]);
+          const moreImagePath = moreSnapshot.metadata.fullPath;
+          const moreImageUrl = await getDownloadURL(
+            ref(getStorage(), moreImagePath)
+          );
+          newData.newImages.push(moreImageUrl);
+        }
+
         // Posting data to Firebase and adding the ID firestore
         const docRef = await addDoc(collection(db, "events"), newData);
         newData.IDReporte = docRef.id;
@@ -157,7 +175,7 @@ function InformationScreen(props) {
             </Text>
           </View>
         </View>
-        <GeneralForms formik={formik} />
+        <GeneralForms formik={formik} setMoreImages={setMoreImages} />
         <Button
           title="Agregar Reporte"
           buttonStyle={styles.addInformation}
