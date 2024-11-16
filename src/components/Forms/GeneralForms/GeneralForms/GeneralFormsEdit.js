@@ -20,15 +20,18 @@ import { ChangeDisplayFraccionamiento } from "../../FormsGeneral/ChangeFracciona
 import { ChangeDisplayAlteracion } from "../../FormsGeneral/ChangeAlteracion/ChangeDisplayAlteracion";
 import { ChangeDisplayVenillas } from "../../FormsGeneral/ChangeVenillas/ChangeDisplayVenillas";
 import { ChangeDisplayMineralizacion } from "../../FormsGeneral/ChangeMineralizacion/ChangeDisplayMineralizacion";
-
+import * as ImageManipulator from "expo-image-manipulator";
+import * as ImagePicker from "expo-image-picker";
+import { Image as ImageExpo } from "expo-image";
 import { connect } from "react-redux";
 import Toast from "react-native-toast-message";
 
 function GeneralFormsBare(props) {
-  const { formik } = props;
+  const { formik, setMoreImages } = props;
   const [renderComponent, setRenderComponent] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [verprevio, setVerprevio] = useState(true);
+  const [images, setImages] = useState([]);
 
   //calculo de Ley de Cobre
   let LeyCobre = (
@@ -118,7 +121,33 @@ function GeneralFormsBare(props) {
     }
     onCloseOpenModal();
   };
+  //method to retrieve the picture required in the event post (pick Imagen, take a photo)
+  const pickImages = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      // allowsEditing: true,
+      allowsMultipleSelection: true,
+      selectionLimit: 7,
+      aspect: [4, 3],
+      quality: 1,
+    });
+    let uriImages = [];
 
+    if (!result.canceled) {
+      const imageManipulationPromises = result.assets.map(async (item) => {
+        const resizedPhoto = await ImageManipulator.manipulateAsync(
+          item.uri,
+          [{ resize: { width: 800 } }],
+          { compress: 0.1, format: "jpeg", base64: true }
+        );
+        return resizedPhoto.uri;
+      });
+
+      uriImages = await Promise.all(imageManipulationPromises);
+    }
+    setImages(uriImages);
+    setMoreImages(uriImages);
+  };
   return (
     <>
       <View
@@ -330,6 +359,40 @@ function GeneralFormsBare(props) {
             }}
           />
         )}
+        <Text></Text>
+        <Text></Text>
+
+        <View style={styles.pickImagesButton}>
+          <Button title="Agregar Imagenes" onPress={pickImages} />
+        </View>
+        <FlatList
+          style={{
+            backgroundColor: "white",
+            paddingTop: 10,
+            paddingVertical: 10,
+          }}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={images}
+          renderItem={({ item }) => {
+            return (
+              <View>
+                <ImageExpo
+                  source={{ uri: item }}
+                  style={{
+                    marginLeft: 20,
+                    width: 80,
+                    height: 80,
+                    // borderRadius: 80,
+                    // borderWidth: 0.3,
+                  }}
+                  // cachePolicy={"memory-disk"}
+                />
+              </View>
+            );
+          }}
+          keyExtractor={(index) => `${index}`}
+        />
       </View>
       <Modal show={showModal} close={onCloseOpenModal}>
         {renderComponent}

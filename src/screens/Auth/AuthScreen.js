@@ -12,7 +12,7 @@ export function AuthScreen(props) {
   };
 
   return (
-    <KeyboardAwareScrollView>
+    <KeyboardAwareScrollView style={{ backgroundColor: "white" }}>
       <View style={styles.image}>
         <Text></Text>
         <Text></Text>

@@ -39,6 +39,7 @@ import { areaLists } from "../../../utils/areaList";
 
 function EditLogueoScreenBare(props) {
   const navigation = useNavigation();
+  const [moreImages, setMoreImages] = useState([]);
 
   // retrieving data from formik forms ,data from ./InfomartionScreen.data.js
   const formik = useFormik({
@@ -111,6 +112,19 @@ function EditLogueoScreenBare(props) {
         if (newData?.previa) {
           updateDataLasEventPost.previa = newData.previa;
         }
+        //upload more Images to firebase Storage
+        updateDataLasEventPost.newImages = [];
+        for (let i = 0; i < moreImages.length; i++) {
+          const moreSnapshot = await uploadImage(moreImages[i]);
+          const moreImagePath = moreSnapshot.metadata.fullPath;
+          const moreImageUrl = await getDownloadURL(
+            ref(getStorage(), moreImagePath)
+          );
+          updateDataLasEventPost.newImages.push(moreImageUrl);
+        }
+
+
+
 
         await updateDoc(RefFirebaseLasEventPostd, updateDataLasEventPost);
 
@@ -175,7 +189,7 @@ function EditLogueoScreenBare(props) {
             </Text>
           </View>
         </View>
-        <GeneralFormsEdit formik={formik} />
+        <GeneralFormsEdit formik={formik} setMoreImages={setMoreImages}/>
         <Button
           title="Agregar Reporte"
           buttonStyle={styles.addInformation}
